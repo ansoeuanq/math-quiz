@@ -30,6 +30,7 @@ let proofsById = new Map();
 let session = null; // { filter, problem, order, done }
 
 function show(screen) {
+  $('boot').hidden = true;
   for (const id of SCREENS) $(id).hidden = id !== screen;
   $('overall').textContent = (state && overall(state)) ?? '–';
   window.scrollTo(0, 0);
