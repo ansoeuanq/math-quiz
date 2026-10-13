@@ -7,6 +7,7 @@ export const DOMAINS = [
   { id: 'number', name: '정수론' },
   { id: 'discrete', name: '확률·이산' },
   { id: 'logic', name: '논리·기초론' },
+  { id: 'olympiad', name: '수학 올림피아드' },
   { id: 'misc', name: '기타' },
 ];
 

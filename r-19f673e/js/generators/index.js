@@ -5,9 +5,10 @@ import geometry from './geometry.js';
 import number from './number.js';
 import discrete from './discrete.js';
 import logic from './logic.js';
+import olympiad from './olympiad.js';
 import misc from './misc.js';
 
-export const TEMPLATES = [...algebra, ...analysis, ...geometry, ...number, ...discrete, ...logic, ...misc];
+export const TEMPLATES = [...algebra, ...analysis, ...geometry, ...number, ...discrete, ...logic, ...olympiad, ...misc];
 
 const byId = new Map(TEMPLATES.map((t) => [t.id, t]));
 

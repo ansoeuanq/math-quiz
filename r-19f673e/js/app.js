@@ -1,7 +1,7 @@
 // 화면. 계산과 저장 규칙은 다른 모듈에 있고 여기서는 그리기와 입력 처리만 한다.
 import { DOMAINS, LEVELS } from './elo.js';
 import { TEMPLATES } from './generators/index.js';
-import { buildPool, pickDomain, pickProblem } from './pick.js';
+import { buildPool, openDomains, pickDomain, pickProblem } from './pick.js';
 import { applyAnswer, grade, toProblem } from './quiz.js';
 import { STORAGE_KEY, load, newState, overall, save } from './store.js';
 
@@ -73,7 +73,7 @@ function renderStart() {
 function renderHome() {
   const total = Object.values(state.ratings).reduce((s, x) => s + x.n, 0);
   const rows = [{ id: null, name: '전체', r: overall(state) ?? '–', n: total }];
-  for (const d of DOMAINS) rows.push({ id: d.id, name: d.name, r: state.ratings[d.id].r, n: state.ratings[d.id].n });
+  for (const id of openDomains(pool, state.ratings)) rows.push({ id, name: DOMAIN_NAME[id], r: state.ratings[id].r, n: state.ratings[id].n });
   $('domains').tBodies[0].replaceChildren(...rows.map((row) => {
     const button = el('button', { type: 'button', textContent: row.name });
     button.addEventListener('click', () => startQuiz(row.id));
