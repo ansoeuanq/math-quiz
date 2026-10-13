@@ -10,10 +10,13 @@ export function buildPool(templates, proofs) {
   return [...templates.map(item('numeric')), ...proofs.map(item('proof'))];
 }
 
-// "전체"로 풀 때 쓸 영역을 문제가 있는 영역 중에서 고른다.
-export function pickDomain(pool, rnd) {
+// "전체"로 풀 때 쓸 영역. 내 ELO ±150 안에 문제가 있는 영역 중에서 고른다
+// (초등 ELO에서 대학 수준뿐인 "기타" 문제가 섞이지 않게). 그런 영역이 없으면 문제가 있는 모든 영역에서 고른다.
+export function pickDomain(pool, ratings, rnd) {
   const present = DOMAINS.map((d) => d.id).filter((id) => pool.some((p) => p.domain === id));
-  return present[Math.floor(rnd() * present.length)];
+  const near = present.filter((id) => pool.some((p) => p.domain === id && Math.abs(p.rating - ratings[id].r) <= WINDOW));
+  const from = near.length > 0 ? near : present;
+  return from[Math.floor(rnd() * from.length)];
 }
 
 // 영역 안에서 ELO ±150인 문제를 고르고 최근 문제는 뺀다.

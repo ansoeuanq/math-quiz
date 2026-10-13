@@ -103,7 +103,7 @@ function shuffled(list) {
 }
 
 function nextProblem() {
-  const domain = session.filter ?? pickDomain(pool, Math.random);
+  const domain = session.filter ?? pickDomain(pool, state.ratings, Math.random);
   const item = pickProblem(pool, domain, state.ratings[domain].r, state.recent, Math.random);
   const problem = toProblem(item, proofsById, 1 + Math.floor(Math.random() * 0x7fffffff));
   session = { filter: session.filter, problem, order: shuffled([0, 1, 2, 3]), done: false };
