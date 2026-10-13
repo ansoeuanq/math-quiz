@@ -1,0 +1,2717 @@
+[
+ {
+  "id": "p-algebra-001",
+  "domain": "algebra",
+  "rating": 1750,
+  "topic": "선형대수",
+  "theorem": "서로 다른 고윳값의 고유벡터는 일차독립",
+  "statement": "선형변환 $T$의 서로 다른 고윳값 $\\lambda_1 \\neq \\lambda_2$에 대응하는 고유벡터 $v_1$, $v_2$는 일차독립이다.",
+  "steps": [
+   "$c_1 v_1 + c_2 v_2 = 0$이라 하자.",
+   "양변에 $T$를 적용하면 $c_1 \\lambda_1 v_1 + c_2 \\lambda_2 v_2 = 0$이다.",
+   "첫 식에 $\\lambda_2$를 곱해 둘째 식에서 빼면 $c_1(\\lambda_1 - \\lambda_2)v_1 = 0$이다.",
+   "$\\lambda_1 \\neq \\lambda_2$이고 $v_1 \\neq 0$이므로 $c_1 = 0$이다.",
+   "같은 방법으로 $c_2 = 0$이므로 $v_1$, $v_2$는 일차독립이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "첫 식에 $\\lambda_2$를 곱해 둘째 식에서 빼면 $c_1(\\lambda_1 - \\lambda_2)v_1 = 0$이다.",
+   "첫 식에 $\\lambda_2$를 곱해 둘째 식에 더하면 $c_1(\\lambda_1 + \\lambda_2)v_1 = 0$이다.",
+   "둘째 식의 양변을 $\\lambda_1 \\lambda_2$로 나누면 $c_1 v_1 + c_2 v_2 = 1$이다.",
+   "$v_1$과 $v_2$는 서로 수직이므로 $c_1 = c_2$이다."
+  ],
+  "answer": 0,
+  "explain": "$T$를 적용한 식에서 원래 식의 $\\lambda_2$배를 빼면 $v_2$ 항이 소거된다."
+ },
+ {
+  "id": "p-algebra-002",
+  "domain": "algebra",
+  "rating": 1850,
+  "topic": "선형대수",
+  "theorem": "실대칭행렬의 고윳값은 실수",
+  "statement": "실대칭행렬 $A$의 고윳값은 모두 실수이다.",
+  "steps": [
+   "$Av = \\lambda v$, $v \\neq 0$ ($v \\in \\mathbb{C}^n$)이라 하자.",
+   "양변의 왼쪽에 $\\overline{v}^{T}$를 곱하면 $\\overline{v}^{T} A v = \\lambda\\, \\overline{v}^{T} v$이다.",
+   "$A$가 실대칭이므로 $\\overline{v}^{T} A v$는 자신의 켤레복소수와 같고, 따라서 실수이다.",
+   "$\\overline{v}^{T} v = \\sum_i |v_i|^2$은 양의 실수이다.",
+   "따라서 $\\lambda = \\frac{\\overline{v}^{T} A v}{\\overline{v}^{T} v}$는 실수이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$A$의 성분이 모두 실수이므로 $v$도 실벡터이고, 따라서 $\\overline{v}^{T} A v$는 실수이다.",
+   "$A$가 실대칭이므로 $\\overline{v}^{T} A v$는 자신의 켤레복소수와 같고, 따라서 실수이다.",
+   "$A$가 실대칭이므로 $\\overline{v}^{T} A v = 0$이다.",
+   "$A$가 가역이므로 $\\overline{v}^{T} A v \\neq 0$이고, 따라서 실수이다."
+  ],
+  "answer": 1,
+  "explain": "스칼라 $\\overline{v}^{T} A v$의 켤레전치를 취하면 $A^T = A$, $\\overline{A} = A$에 의해 자기 자신이 된다."
+ },
+ {
+  "id": "p-algebra-003",
+  "domain": "algebra",
+  "rating": 1950,
+  "topic": "선형대수",
+  "theorem": "차원 정리 (rank–nullity)",
+  "statement": "유한차원 벡터공간 사이의 선형사상 $T: V \\to W$에 대해 $\\dim \\ker T + \\dim \\operatorname{im} T = \\dim V$이다.",
+  "steps": [
+   "$\\ker T$의 기저 $u_1, \\ldots, u_k$를 $V$의 기저 $u_1, \\ldots, u_k, w_1, \\ldots, w_m$으로 확장한다.",
+   "$T(u_i) = 0$이므로 $T(w_1), \\ldots, T(w_m)$이 $\\operatorname{im} T$를 생성한다.",
+   "$\\sum_j c_j T(w_j) = 0$이면 $\\sum_j c_j w_j \\in \\ker T$이므로 $\\sum_j c_j w_j = \\sum_i d_i u_i$로 쓸 수 있다.",
+   "$V$의 기저의 일차독립성에 의해 모든 $c_j = 0$이다.",
+   "따라서 $\\dim \\operatorname{im} T = m$이고 $k + m = \\dim V$이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$\\sum_j c_j T(w_j) = 0$이면 $T$가 단사이므로 $\\sum_j c_j w_j = 0$이다.",
+   "$\\sum_j c_j T(w_j) = 0$이면 각 $T(w_j) = 0$이므로 $w_j \\in \\ker T$이다.",
+   "$\\sum_j c_j T(w_j) = 0$이면 $\\sum_j c_j w_j \\in \\ker T$이므로 $\\sum_j c_j w_j = \\sum_i d_i u_i$로 쓸 수 있다.",
+   "$\\sum_j c_j T(w_j) = 0$이면 $\\sum_j c_j w_j \\in \\operatorname{im} T$이므로 $\\sum_j c_j w_j = \\sum_i d_i u_i$로 쓸 수 있다."
+  ],
+  "answer": 2,
+  "explain": "선형성으로 $T\\left(\\sum_j c_j w_j\\right) = 0$이므로 이 벡터는 핵에 속하고, 핵의 기저로 표현된다."
+ },
+ {
+  "id": "p-algebra-004",
+  "domain": "algebra",
+  "rating": 1800,
+  "topic": "추상대수",
+  "theorem": "라그랑주 정리",
+  "statement": "유한군 $G$의 부분군 $H$에 대해 $|H|$는 $|G|$의 약수이다.",
+  "steps": [
+   "$H$의 왼쪽 잉여류 $gH$들은 $G$를 분할한다.",
+   "사상 $H \\to gH$, $h \\mapsto gh$는 전단사이다.",
+   "따라서 모든 잉여류의 크기는 $|H|$이다.",
+   "잉여류의 개수를 $k$라 하면 $|G| = k|H|$이므로 $|H|$는 $|G|$의 약수이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "사상 $G \\to H$, $g \\mapsto gH$는 전단사이다.",
+   "잉여류 $gH$는 모두 $G$의 부분군이다.",
+   "사상 $H \\to gH$, $h \\mapsto gh$는 군 준동형사상이다.",
+   "사상 $H \\to gH$, $h \\mapsto gh$는 전단사이다."
+  ],
+  "answer": 3,
+  "explain": "왼쪽 곱셈 $h \\mapsto gh$는 역사상 $x \\mapsto g^{-1}x$를 가지므로 잉여류는 모두 $H$와 크기가 같다."
+ },
+ {
+  "id": "p-algebra-005",
+  "domain": "algebra",
+  "rating": 1900,
+  "topic": "추상대수",
+  "theorem": "소수 위수 군은 순환군",
+  "statement": "위수가 소수 $p$인 군 $G$는 순환군이다.",
+  "steps": [
+   "항등원이 아닌 원소 $a \\in G$를 택한다.",
+   "라그랑주 정리에 의해 부분군 $\\langle a \\rangle$의 위수는 $p$의 약수이다.",
+   "$a \\neq e$이므로 $\\langle a \\rangle$의 위수는 $1$이 아니고, 따라서 $p$이다.",
+   "그러므로 $\\langle a \\rangle = G$이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$a \\neq e$이므로 $\\langle a \\rangle$의 위수는 $1$이 아니고, 따라서 $p$이다.",
+   "$a \\neq e$이므로 $\\langle a \\rangle$의 위수는 $p$가 아니고, 따라서 $1$이다.",
+   "$p$가 소수이므로 $\\langle a \\rangle$의 위수는 $p - 1$이다.",
+   "$G$가 아벨 군이므로 $\\langle a \\rangle$의 위수는 $p$이다."
+  ],
+  "answer": 0,
+  "explain": "소수 $p$의 약수는 $1$과 $p$뿐이고, 위수가 $1$인 부분군은 $\\{e\\}$뿐이다."
+ },
+ {
+  "id": "p-algebra-006",
+  "domain": "algebra",
+  "rating": 2000,
+  "topic": "추상대수",
+  "theorem": "유한 정역은 체",
+  "statement": "유한 정역 $D$는 체이다.",
+  "steps": [
+   "$0$이 아닌 $a \\in D$에 대해 사상 $f: D \\to D$, $f(x) = ax$를 생각한다.",
+   "$ax = ay$이면 $a(x - y) = 0$이고 $D$가 정역이므로 $x = y$, 즉 $f$는 단사이다.",
+   "$D$가 유한집합이므로 단사인 $f$는 전사이다.",
+   "따라서 $ax = 1$인 $x$가 존재하고 $a$는 가역이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$ax = ay$이면 $a$가 가역이므로 양변에 $a^{-1}$을 곱해 $x = y$, 즉 $f$는 단사이다.",
+   "$ax = ay$이면 $a(x - y) = 0$이고 $D$가 정역이므로 $x = y$, 즉 $f$는 단사이다.",
+   "$ax = ay$이면 $D$가 유한집합이므로 $x = y$, 즉 $f$는 단사이다.",
+   "$f(x + y) = f(x) + f(y)$이므로 $f$는 전사이다."
+  ],
+  "answer": 1,
+  "explain": "정역에는 영인자가 없으므로 $a \\neq 0$, $a(x - y) = 0$에서 $x - y = 0$이다. $a$의 가역성은 증명할 대상이라 쓸 수 없다."
+ },
+ {
+  "id": "p-algebra-007",
+  "domain": "algebra",
+  "rating": 2350,
+  "topic": "갈루아 이론",
+  "theorem": "확대 차수의 곱셈 공식",
+  "statement": "$[\\mathbb{Q}(\\sqrt{2}, \\sqrt{3}) : \\mathbb{Q}] = 4$이다.",
+  "steps": [
+   "$x^2 - 2$는 $\\mathbb{Q}$ 위에서 기약이므로 $[\\mathbb{Q}(\\sqrt{2}) : \\mathbb{Q}] = 2$이다.",
+   "$\\sqrt{3} = a + b\\sqrt{2}$ ($a, b \\in \\mathbb{Q}$)라 가정하고 제곱하면 $3 = a^2 + 2b^2 + 2ab\\sqrt{2}$이다.",
+   "$\\sqrt{2}$가 무리수이므로 $ab = 0$이고, $b = 0$이면 $\\sqrt{3} \\in \\mathbb{Q}$, $a = 0$이면 $\\sqrt{\\frac{3}{2}} \\in \\mathbb{Q}$가 되어 모순이다.",
+   "따라서 $\\sqrt{3} \\notin \\mathbb{Q}(\\sqrt{2})$이고 $[\\mathbb{Q}(\\sqrt{2}, \\sqrt{3}) : \\mathbb{Q}(\\sqrt{2})] = 2$이다.",
+   "차수의 곱셈 공식에 의해 전체 차수는 $2 \\cdot 2 = 4$이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$\\sqrt{2}$가 무리수이므로 $a^2 + 2b^2 = 0$이고, 따라서 $a = b = 0$이 되어 모순이다.",
+   "$\\sqrt{2}$가 무리수이므로 $ab = 0$이고, $a = 0$이면 $b = \\sqrt{\\frac{3}{2}}$로 잡을 수 있어 가정이 성립한다.",
+   "$\\sqrt{2}$가 무리수이므로 $ab = 0$이고, $b = 0$이면 $\\sqrt{3} \\in \\mathbb{Q}$, $a = 0$이면 $\\sqrt{\\frac{3}{2}} \\in \\mathbb{Q}$가 되어 모순이다.",
+   "양변의 유리수 부분을 비교하면 $3 = 2$가 되어 모순이다."
+  ],
+  "answer": 2,
+  "explain": "$1$, $\\sqrt{2}$는 $\\mathbb{Q}$ 위에서 일차독립이므로 $\\sqrt{2}$의 계수 $2ab$가 $0$이어야 한다."
+ },
+ {
+  "id": "p-algebra-008",
+  "domain": "algebra",
+  "rating": 2500,
+  "topic": "갈루아 이론",
+  "theorem": "유한체의 갈루아 군은 프로베니우스로 생성",
+  "statement": "$\\mathrm{Gal}(\\mathbb{F}_{p^n} / \\mathbb{F}_p)$는 프로베니우스 사상 $\\sigma(x) = x^p$로 생성되는 위수 $n$의 순환군이다.",
+  "steps": [
+   "표수 $p$에서 $(x + y)^p = x^p + y^p$이므로 $\\sigma$는 체 준동형이고, 유한체에서 단사이므로 자기동형이다.",
+   "$\\mathbb{F}_p$의 원소는 $x^p = x$를 만족하므로 $\\sigma$는 $\\mathbb{F}_p$를 고정한다.",
+   "$\\sigma^k = \\mathrm{id}$이면 $\\mathbb{F}_{p^n}$의 모든 원소가 $x^{p^k} - x$의 근이므로 $p^n \\le p^k$, 즉 $k \\ge n$이다.",
+   "한편 $\\sigma^n = \\mathrm{id}$이므로 $\\sigma$의 위수는 정확히 $n$이다.",
+   "갈루아 군의 위수는 $[\\mathbb{F}_{p^n} : \\mathbb{F}_p] = n$ 이하이므로 갈루아 군은 $\\langle \\sigma \\rangle$이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$\\sigma^k = \\mathrm{id}$이면 $\\mathbb{F}_{p^n}$의 모든 원소가 $x^{pk} - x$의 근이므로 $p^n \\le pk$이다.",
+   "$\\sigma^k = \\mathrm{id}$이면 $x^{p^k} - x$의 근이 $k$개뿐이므로 $k \\ge p^n$이다.",
+   "$\\sigma^k = \\mathrm{id}$이면 $k$가 $p$의 배수여야 하므로 $k \\ge p$이다.",
+   "$\\sigma^k = \\mathrm{id}$이면 $\\mathbb{F}_{p^n}$의 모든 원소가 $x^{p^k} - x$의 근이므로 $p^n \\le p^k$, 즉 $k \\ge n$이다."
+  ],
+  "answer": 3,
+  "explain": "$\\sigma^k(x) = x^{p^k}$이고, 차수 $p^k$인 다항식은 근을 많아야 $p^k$개 가진다."
+ },
+ {
+  "id": "p-algebra-009",
+  "domain": "algebra",
+  "rating": 2300,
+  "topic": "가군론",
+  "theorem": "슈어 보조정리",
+  "statement": "단순 가군 사이의 영이 아닌 준동형 $f: M \\to N$은 동형사상이다.",
+  "steps": [
+   "$\\ker f$는 $M$의 부분가군이고 $\\operatorname{im} f$는 $N$의 부분가군이다.",
+   "$f \\neq 0$이므로 $\\ker f \\neq M$이고, $M$이 단순하므로 $\\ker f = 0$이다.",
+   "$f \\neq 0$이므로 $\\operatorname{im} f \\neq 0$이고, $N$이 단순하므로 $\\operatorname{im} f = N$이다.",
+   "따라서 $f$는 단사이면서 전사이므로 동형사상이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$f \\neq 0$이므로 $\\ker f \\neq M$이고, $M$이 단순하므로 $\\ker f = 0$이다.",
+   "$f \\neq 0$이므로 $\\ker f \\neq 0$이고, $M$이 단순하므로 $\\ker f = M$이다.",
+   "$N$이 단순하므로 $\\ker f = N$이다.",
+   "$M$이 단순하므로 $f$는 전사이고, 따라서 $\\ker f = 0$이다."
+  ],
+  "answer": 0,
+  "explain": "단순 가군의 부분가군은 $0$과 자기 자신뿐이고, $f \\neq 0$이면 핵이 전체일 수 없다."
+ },
+ {
+  "id": "p-algebra-010",
+  "domain": "algebra",
+  "rating": 2450,
+  "topic": "가군론",
+  "theorem": "자유 가군은 사영 가군",
+  "statement": "자유 가군 $F$, 전사 준동형 $g: M \\to N$, 준동형 $f: F \\to N$에 대해 $g \\circ h = f$인 준동형 $h: F \\to M$이 존재한다.",
+  "steps": [
+   "$F$의 기저를 $\\{e_i\\}$라 하자.",
+   "$g$가 전사이므로 각 $i$에 대해 $g(m_i) = f(e_i)$인 $m_i \\in M$을 택할 수 있다.",
+   "기저의 보편 성질에 의해 $h(e_i) = m_i$인 준동형 $h: F \\to M$이 유일하게 존재한다.",
+   "$g \\circ h$와 $f$는 기저 위에서 일치하므로 $g \\circ h = f$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$g$가 전사이므로 역사상 $g^{-1}: N \\to M$이 존재하고 $m_i = g^{-1}(f(e_i))$로 놓는다.",
+   "$g$가 전사이므로 각 $i$에 대해 $g(m_i) = f(e_i)$인 $m_i \\in M$을 택할 수 있다.",
+   "$f$가 단사이므로 각 $i$에 대해 $f(m_i) = e_i$인 $m_i \\in M$을 택할 수 있다.",
+   "$g$가 단사이므로 각 $i$에 대해 $g(e_i) = f(e_i)$이다."
+  ],
+  "answer": 1,
+  "explain": "전사성은 원상의 존재만 보장한다. 기저 원소마다 원상을 하나씩 고르면 자유성에 의해 준동형으로 확장된다."
+ },
+ {
+  "id": "p-algebra-011",
+  "domain": "algebra",
+  "rating": 2400,
+  "topic": "표현론",
+  "theorem": "마슈케 정리",
+  "statement": "유한군 $G$의 복소 표현 $V$의 부분표현 $W$는 $G$-불변인 여공간을 가진다.",
+  "steps": [
+   "$V$에서 $W$ 위로의 선형 사영 $\\pi$를 하나 택한다.",
+   "$\\tilde{\\pi} = \\frac{1}{|G|} \\sum_{g \\in G} g \\pi g^{-1}$로 정의한다.",
+   "$W$가 $G$-불변이므로 $\\tilde{\\pi}$의 상은 $W$에 포함되고, $w \\in W$에 대해 $\\tilde{\\pi}(w) = w$이다.",
+   "임의의 $h \\in G$에 대해 $h \\tilde{\\pi} h^{-1} = \\tilde{\\pi}$이므로 $\\tilde{\\pi}$는 $G$의 작용과 교환한다.",
+   "따라서 $\\ker \\tilde{\\pi}$는 $G$-불변이고 $V = W \\oplus \\ker \\tilde{\\pi}$이다."
+  ],
+  "blank": 3,
+  "choices": [
+   "임의의 $h \\in G$에 대해 $h \\tilde{\\pi} = \\tilde{\\pi}$이므로 $\\tilde{\\pi}$의 상은 한 점이다.",
+   "$\\tilde{\\pi}^2 = 0$이므로 $\\tilde{\\pi}$는 멱영 사상이다.",
+   "임의의 $h \\in G$에 대해 $h \\tilde{\\pi} h^{-1} = \\tilde{\\pi}$이므로 $\\tilde{\\pi}$는 $G$의 작용과 교환한다.",
+   "$\\pi$가 이미 $G$의 작용과 교환하므로 $\\tilde{\\pi} = \\pi$이다."
+  ],
+  "answer": 2,
+  "explain": "$h$로 켤레를 취하면 합의 항 $g$가 $hg$로 바뀔 뿐이므로 평균은 변하지 않는다."
+ },
+ {
+  "id": "p-algebra-012",
+  "domain": "algebra",
+  "rating": 2550,
+  "topic": "표현론",
+  "theorem": "기약성의 지표 판정법",
+  "statement": "유한군 $G$의 복소 표현 $V$의 지표 $\\chi$에 대해, $V$가 기약인 것과 $\\langle \\chi, \\chi \\rangle = 1$인 것은 동치이다.",
+  "steps": [
+   "마슈케 정리에 의해 $V \\cong \\bigoplus_i V_i^{\\oplus m_i}$ (서로 동형이 아닌 기약표현 $V_i$)로 분해된다.",
+   "따라서 $\\chi = \\sum_i m_i \\chi_i$이다.",
+   "기약 지표의 직교관계 $\\langle \\chi_i, \\chi_j \\rangle = \\delta_{ij}$에 의해 $\\langle \\chi, \\chi \\rangle = \\sum_i m_i^2$이다.",
+   "음이 아닌 정수 $m_i$에 대해 $\\sum_i m_i^2 = 1$인 것은 하나의 $m_i$만 $1$이고 나머지가 $0$인 경우뿐이다.",
+   "이는 $V$가 기약인 것과 같다."
+  ],
+  "blank": 2,
+  "choices": [
+   "기약 지표의 직교관계 $\\langle \\chi_i, \\chi_j \\rangle = \\delta_{ij}$에 의해 $\\langle \\chi, \\chi \\rangle = \\sum_i m_i$이다.",
+   "기약 지표의 직교관계 $\\langle \\chi_i, \\chi_j \\rangle = \\delta_{ij}$에 의해 $\\langle \\chi, \\chi \\rangle = \\prod_i m_i$이다.",
+   "기약 지표의 직교관계에 의해 $\\langle \\chi, \\chi \\rangle = |G|$이다.",
+   "기약 지표의 직교관계 $\\langle \\chi_i, \\chi_j \\rangle = \\delta_{ij}$에 의해 $\\langle \\chi, \\chi \\rangle = \\sum_i m_i^2$이다."
+  ],
+  "answer": 3,
+  "explain": "내적을 전개하면 교차항 $m_i m_j \\langle \\chi_i, \\chi_j \\rangle$ ($i \\neq j$)은 사라지고 $m_i^2$만 남는다."
+ },
+ {
+  "id": "p-algebra-013",
+  "domain": "algebra",
+  "rating": 2500,
+  "topic": "리군·리대수",
+  "theorem": "대각합의 성질 tr(XY) = tr(YX)",
+  "statement": "$\\mathfrak{sl}_n = \\{X : \\operatorname{tr} X = 0\\}$은 리 대수 $\\mathfrak{gl}_n$의 아이디얼이다.",
+  "steps": [
+   "$\\mathfrak{sl}_n$은 선형사상 $\\operatorname{tr}$의 핵이므로 부분공간이다.",
+   "$X \\in \\mathfrak{gl}_n$, $Y \\in \\mathfrak{sl}_n$을 택한다.",
+   "$\\operatorname{tr}(XY) = \\operatorname{tr}(YX)$이므로 $\\operatorname{tr}([X, Y]) = 0$이다.",
+   "따라서 $[X, Y] \\in \\mathfrak{sl}_n$이고 $\\mathfrak{sl}_n$은 아이디얼이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$\\operatorname{tr}(XY) = \\operatorname{tr}(YX)$이므로 $\\operatorname{tr}([X, Y]) = 0$이다.",
+   "$\\operatorname{tr}(XY) = \\operatorname{tr}(X)\\operatorname{tr}(Y)$이고 $\\operatorname{tr} Y = 0$이므로 $\\operatorname{tr}([X, Y]) = 0$이다.",
+   "$\\operatorname{tr} Y = 0$이므로 $XY = YX$이고 $[X, Y] = 0$이다.",
+   "$\\det(XY) = \\det(YX)$이므로 $\\operatorname{tr}([X, Y]) = 0$이다."
+  ],
+  "answer": 0,
+  "explain": "$[X, Y] = XY - YX$이고 대각합은 곱의 순서를 바꿔도 같으므로 교환자의 대각합은 항상 $0$이다."
+ },
+ {
+  "id": "p-algebra-014",
+  "domain": "algebra",
+  "rating": 2650,
+  "topic": "리군·리대수",
+  "theorem": "det(exp X) = exp(tr X)",
+  "statement": "$X \\in \\mathfrak{sl}_n(\\mathbb{C})$이면 $e^X \\in SL_n(\\mathbb{C})$이다.",
+  "steps": [
+   "가역행렬 $P$를 택해 $T = PXP^{-1}$이 상삼각행렬이 되게 하고, 그 대각성분을 $\\lambda_1, \\ldots, \\lambda_n$이라 하자.",
+   "$e^{X} = P^{-1} e^{T} P$이고 $e^{T}$는 대각성분이 $e^{\\lambda_i}$인 상삼각행렬이다.",
+   "따라서 $\\det(e^X) = \\prod_i e^{\\lambda_i} = e^{\\sum_i \\lambda_i} = e^{\\operatorname{tr} X}$이다.",
+   "$\\operatorname{tr} X = 0$이므로 $\\det(e^X) = 1$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$e^{X} = P^{-1} e^{T} P$이고 $e^{T}$는 대각성분이 $\\lambda_i$인 상삼각행렬이다.",
+   "$e^{X} = P^{-1} e^{T} P$이고 $e^{T}$는 대각성분이 $e^{\\lambda_i}$인 상삼각행렬이다.",
+   "$e^{X} = P^{-1} e^{T} P$이고 $e^{T}$는 대각성분이 $1 + \\lambda_i$인 상삼각행렬이다.",
+   "$e^{X} = e^{P} e^{T} e^{-P}$이고 $e^{T}$는 대각행렬이다."
+  ],
+  "answer": 1,
+  "explain": "상삼각행렬의 거듭제곱은 대각성분이 $\\lambda_i^k$인 상삼각행렬이므로 지수급수의 대각성분은 $e^{\\lambda_i}$이다."
+ },
+ {
+  "id": "p-algebra-015",
+  "domain": "algebra",
+  "rating": 1400,
+  "topic": "고등",
+  "theorem": "수학적 귀납법",
+  "statement": "모든 자연수 $n$에 대해 $1 + 2 + \\cdots + n = \\frac{n(n+1)}{2}$이다.",
+  "steps": [
+   "$n = 1$일 때 좌변과 우변이 모두 $1$이다.",
+   "$n = k$일 때 $1 + 2 + \\cdots + k = \\frac{k(k+1)}{2}$가 성립한다고 가정한다.",
+   "양변에 $k + 1$을 더하면 $1 + \\cdots + k + (k + 1) = \\frac{k(k+1)}{2} + (k + 1) = \\frac{(k+1)(k+2)}{2}$이다.",
+   "따라서 $n = k + 1$일 때도 성립하므로 모든 자연수 $n$에 대해 성립한다."
+  ],
+  "blank": 2,
+  "choices": [
+   "양변에 $k + 1$을 더하면 $1 + \\cdots + k + (k + 1) = \\frac{k(k+1)}{2} + (k + 1) = \\frac{(k+1)^2}{2}$이다.",
+   "양변에 $k + 1$을 곱하면 $1 + \\cdots + k + (k + 1) = \\frac{k(k+1)^2}{2}$이다.",
+   "양변에 $k + 1$을 더하면 $1 + \\cdots + k + (k + 1) = \\frac{k(k+1)}{2} + (k + 1) = \\frac{(k+1)(k+2)}{2}$이다.",
+   "가정의 $k$ 자리에 $k + 1$을 대입하면 $n = k + 1$일 때의 식이 바로 나온다."
+  ],
+  "answer": 2,
+  "explain": "$\\frac{k(k+1)}{2} + (k+1) = (k+1)\\left(\\frac{k}{2} + 1\\right) = \\frac{(k+1)(k+2)}{2}$이다."
+ },
+ {
+  "id": "p-algebra-016",
+  "domain": "algebra",
+  "rating": 1550,
+  "topic": "고등",
+  "theorem": "산술-기하 평균 부등식",
+  "statement": "양수 $a$, $b$에 대해 $\\frac{a + b}{2} \\ge \\sqrt{ab}$이다.",
+  "steps": [
+   "실수의 제곱은 음이 아니므로 $\\left(\\sqrt{a} - \\sqrt{b}\\right)^2 \\ge 0$이다.",
+   "전개하면 $a - 2\\sqrt{ab} + b \\ge 0$이다.",
+   "따라서 $\\frac{a + b}{2} \\ge \\sqrt{ab}$이고, 등호는 $a = b$일 때 성립한다."
+  ],
+  "blank": 0,
+  "choices": [
+   "실수의 제곱은 음이 아니므로 $\\left(\\sqrt{a} + \\sqrt{b}\\right)^2 \\ge 0$이다.",
+   "$a$, $b$가 양수이므로 $\\sqrt{a} - \\sqrt{b} \\ge 0$이다.",
+   "실수의 제곱은 양이 아니므로 $(a - b)^2 \\le 0$이다.",
+   "실수의 제곱은 음이 아니므로 $\\left(\\sqrt{a} - \\sqrt{b}\\right)^2 \\ge 0$이다."
+  ],
+  "answer": 3,
+  "explain": "$\\sqrt{a} - \\sqrt{b}$의 제곱을 전개해야 $-2\\sqrt{ab}$ 항이 나와 원하는 부등식이 된다."
+ },
+ {
+  "id": "p-analysis-001",
+  "domain": "analysis",
+  "rating": 1750,
+  "topic": "다변수 미적분",
+  "theorem": "연쇄법칙",
+  "statement": "미분가능한 함수 $f$의 등위곡선 $f(x, y) = c$ 위를 움직이는 곡선 $\\gamma(t)$에 대해 $\\nabla f(\\gamma(t)) \\cdot \\gamma'(t) = 0$이다.",
+  "steps": [
+   "$\\gamma$가 등위곡선 위에 있으므로 모든 $t$에 대해 $f(\\gamma(t)) = c$이다.",
+   "양변을 $t$로 미분하면 연쇄법칙에 의해 $\\nabla f(\\gamma(t)) \\cdot \\gamma'(t) = 0$이다.",
+   "따라서 그래디언트는 등위곡선의 접선 방향과 수직이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "양변을 $t$로 미분하면 연쇄법칙에 의해 $\\nabla f(\\gamma(t)) \\cdot \\gamma'(t) = 0$이다.",
+   "양변을 $t$로 미분하면 연쇄법칙에 의해 $\\nabla f(\\gamma(t)) \\cdot \\gamma'(t) = c$이다.",
+   "양변을 $t$로 미분하면 $\\nabla f(\\gamma(t)) = 0$이다.",
+   "양변을 $t$로 적분하면 $\\nabla f(\\gamma(t)) \\cdot \\gamma(t) = ct$이다."
+  ],
+  "answer": 0,
+  "explain": "상수 $c$의 도함수는 $0$이고, 합성함수 $f(\\gamma(t))$의 도함수는 $\\nabla f \\cdot \\gamma'$이다."
+ },
+ {
+  "id": "p-analysis-002",
+  "domain": "analysis",
+  "rating": 1900,
+  "topic": "다변수 미적분",
+  "theorem": "그린 정리",
+  "statement": "단순 닫힌 곡선으로 둘러싸인 영역 $D$의 넓이는 $\\frac{1}{2}\\oint_{\\partial D} (x\\,dy - y\\,dx)$이다.",
+  "steps": [
+   "그린 정리에 의해 $\\oint_{\\partial D} P\\,dx + Q\\,dy = \\iint_D \\left(\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y}\\right) dA$이다.",
+   "$P = -y$, $Q = x$로 놓으면 $\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y} = 2$이다.",
+   "따라서 $\\oint_{\\partial D} (x\\,dy - y\\,dx) = 2 \\iint_D dA$이고, 양변을 $2$로 나누면 넓이가 된다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$P = -y$, $Q = x$로 놓으면 $\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y} = 0$이다.",
+   "$P = -y$, $Q = x$로 놓으면 $\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y} = 2$이다.",
+   "$P = x$, $Q = y$로 놓으면 $\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y} = 2$이다.",
+   "$P = -y$, $Q = x$로 놓으면 $\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y} = 1$이다."
+  ],
+  "answer": 1,
+  "explain": "$\\frac{\\partial x}{\\partial x} = 1$, $\\frac{\\partial(-y)}{\\partial y} = -1$이므로 차는 $2$이다."
+ },
+ {
+  "id": "p-analysis-003",
+  "domain": "analysis",
+  "rating": 1800,
+  "topic": "미분방정식",
+  "theorem": "일계 선형 방정식 해의 유일성",
+  "statement": "$y' = ky$의 해는 모두 $y = Ce^{kx}$ 꼴이다.",
+  "steps": [
+   "$y$가 해라 하고 $u(x) = y(x)e^{-kx}$로 놓는다.",
+   "곱의 미분법에 의해 $u' = y'e^{-kx} - kye^{-kx} = (y' - ky)e^{-kx} = 0$이다.",
+   "따라서 $u$는 상수 $C$이고 $y = Ce^{kx}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "곱의 미분법에 의해 $u' = y'e^{-kx} + kye^{-kx} = 2kye^{-kx}$이다.",
+   "$u' = y'e^{-kx} = kye^{-kx} = ku$이다.",
+   "곱의 미분법에 의해 $u' = y'e^{-kx} - kye^{-kx} = (y' - ky)e^{-kx} = 0$이다.",
+   "$e^{-kx}$는 상수이므로 $u' = y'$이다."
+  ],
+  "answer": 2,
+  "explain": "$e^{-kx}$의 도함수는 $-ke^{-kx}$이므로 두 항이 $y' = ky$에 의해 상쇄된다."
+ },
+ {
+  "id": "p-analysis-004",
+  "domain": "analysis",
+  "rating": 2000,
+  "topic": "미분방정식",
+  "theorem": "적분인자법",
+  "statement": "$y' + p(x)y = q(x)$의 일반해는 $\\mu = e^{\\int p\\,dx}$에 대해 $y = \\frac{1}{\\mu}\\left(\\int \\mu q\\,dx + C\\right)$이다.",
+  "steps": [
+   "$\\mu(x) = e^{\\int p(x)\\,dx}$로 놓으면 $\\mu' = p\\mu$이다.",
+   "방정식에 $\\mu$를 곱하면 $\\mu y' + p\\mu y = \\mu q$이고, 좌변은 $(\\mu y)'$이다.",
+   "양변을 적분하면 $\\mu y = \\int \\mu q\\,dx + C$이다.",
+   "$\\mu > 0$이므로 양변을 $\\mu$로 나누면 일반해를 얻는다."
+  ],
+  "blank": 1,
+  "choices": [
+   "방정식에 $\\mu$를 곱하면 $\\mu y' + p\\mu y = \\mu q$이고, 좌변은 $\\mu' y'$이다.",
+   "방정식에 $\\mu$를 곱하면 $\\mu y' + p\\mu y = \\mu q$이고, 좌변은 $(\\mu + y)'$이다.",
+   "방정식을 $\\mu$로 나누면 좌변은 $\\left(\\frac{y}{\\mu}\\right)'$이다.",
+   "방정식에 $\\mu$를 곱하면 $\\mu y' + p\\mu y = \\mu q$이고, 좌변은 $(\\mu y)'$이다."
+  ],
+  "answer": 3,
+  "explain": "$(\\mu y)' = \\mu y' + \\mu' y = \\mu y' + p\\mu y$이므로 좌변이 완전미분이 된다."
+ },
+ {
+  "id": "p-analysis-005",
+  "domain": "analysis",
+  "rating": 1850,
+  "topic": "해석학",
+  "theorem": "수렴하는 수열은 유계",
+  "statement": "수렴하는 실수열 $(a_n)$은 유계이다.",
+  "steps": [
+   "$a_n \\to L$이므로 $\\varepsilon = 1$에 대해 $n \\ge N$이면 $|a_n - L| < 1$인 $N$이 존재한다.",
+   "$n \\ge N$이면 삼각부등식에 의해 $|a_n| \\le |a_n - L| + |L| < 1 + |L|$이다.",
+   "$M = \\max\\{|a_1|, \\ldots, |a_{N-1}|, 1 + |L|\\}$로 놓으면 모든 $n$에 대해 $|a_n| \\le M$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$n \\ge N$이면 삼각부등식에 의해 $|a_n| \\le |a_n - L| + |L| < 1 + |L|$이다.",
+   "$n \\ge N$이면 삼각부등식에 의해 $|a_n| \\le |a_n - L| - |L| < 1 - |L|$이다.",
+   "$n < N$이면 삼각부등식에 의해 $|a_n| < 1 + |L|$이다.",
+   "$n \\ge N$이면 $a_n = L$이다."
+  ],
+  "answer": 0,
+  "explain": "꼬리 부분은 $L$ 근처에 있어 유계이고, 앞의 유한 개 항은 최댓값으로 묶는다."
+ },
+ {
+  "id": "p-analysis-006",
+  "domain": "analysis",
+  "rating": 2100,
+  "topic": "해석학",
+  "theorem": "최대·최소 정리",
+  "statement": "닫힌 유계 구간 $[a, b]$에서 연속인 함수 $f$는 최댓값을 가진다.",
+  "steps": [
+   "$f([a, b])$는 유계이므로 $M = \\sup f$가 존재하고, $f(x_n) \\to M$인 수열 $x_n \\in [a, b]$를 택할 수 있다.",
+   "볼차노-바이어슈트라스 정리에 의해 수렴하는 부분수열 $x_{n_k} \\to c$가 있고, 구간이 닫혀 있으므로 $c \\in [a, b]$이다.",
+   "$f$가 연속이므로 $f(x_{n_k}) \\to f(c)$이다.",
+   "극한의 유일성에 의해 $f(c) = M$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$(x_n)$은 단조수열이므로 단조수렴정리에 의해 $x_n \\to c$이고 $c \\in [a, b]$이다.",
+   "볼차노-바이어슈트라스 정리에 의해 수렴하는 부분수열 $x_{n_k} \\to c$가 있고, 구간이 닫혀 있으므로 $c \\in [a, b]$이다.",
+   "볼차노-바이어슈트라스 정리에 의해 수렴하는 부분수열 $x_{n_k} \\to c$가 있고, 구간이 열려 있으므로 $c \\in (a, b)$이다.",
+   "$f$가 유계이므로 $(x_n)$은 코시 수열이고 $x_n \\to c$이다."
+  ],
+  "answer": 1,
+  "explain": "유계 수열은 수렴하는 부분수열을 가지며, 닫힌 구간은 극한점을 포함한다."
+ },
+ {
+  "id": "p-analysis-007",
+  "domain": "analysis",
+  "rating": 2000,
+  "topic": "복소해석",
+  "theorem": "리우빌 정리",
+  "statement": "유계인 전해석함수는 상수이다.",
+  "steps": [
+   "$f$가 전해석함수이고 모든 $z$에서 $|f(z)| \\le M$이라 하자.",
+   "중심 $z$, 반지름 $R$인 원에 코시 적분공식을 적용하면 $|f'(z)| \\le \\frac{M}{R}$이다.",
+   "$R$은 임의로 크게 잡을 수 있으므로 $f'(z) = 0$이다.",
+   "따라서 $f$는 상수이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "중심 $z$, 반지름 $R$인 원에 코시 적분공식을 적용하면 $|f'(z)| \\le MR$이다.",
+   "중심 $z$, 반지름 $R$인 원에 코시 적분공식을 적용하면 $|f'(z)| \\ge \\frac{M}{R}$이다.",
+   "중심 $z$, 반지름 $R$인 원에 코시 적분공식을 적용하면 $|f'(z)| \\le \\frac{M}{R}$이다.",
+   "최대 절댓값 원리에 의해 $|f'(z)| = M$이다."
+  ],
+  "answer": 2,
+  "explain": "$f'(z) = \\frac{1}{2\\pi i}\\oint \\frac{f(w)}{(w - z)^2}\\,dw$에서 길이 $2\\pi R$, 피적분함수 크기 $\\frac{M}{R^2}$ 이하이다."
+ },
+ {
+  "id": "p-analysis-008",
+  "domain": "analysis",
+  "rating": 2200,
+  "topic": "복소해석",
+  "theorem": "대수학의 기본정리",
+  "statement": "상수가 아닌 복소계수 다항식 $p$는 복소수 근을 가진다.",
+  "steps": [
+   "$p$가 근을 갖지 않는다고 가정하면 $\\frac{1}{p}$는 전해석함수이다.",
+   "$|z| \\to \\infty$일 때 $|p(z)| \\to \\infty$이므로 $\\frac{1}{p}$는 유계이다.",
+   "리우빌 정리에 의해 $\\frac{1}{p}$는 상수이다.",
+   "이는 $p$가 상수가 아니라는 가정에 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$|z| \\to \\infty$일 때 $|p(z)| \\to 0$이므로 $\\frac{1}{p}$는 유계이다.",
+   "$p$가 다항식이므로 $p$ 자신이 유계이고, 따라서 $\\frac{1}{p}$도 유계이다.",
+   "$\\frac{1}{p}$는 극점을 가지므로 유계이다.",
+   "$|z| \\to \\infty$일 때 $|p(z)| \\to \\infty$이므로 $\\frac{1}{p}$는 유계이다."
+  ],
+  "answer": 3,
+  "explain": "큰 원 밖에서는 $\\left|\\frac{1}{p}\\right|$이 작고, 원 안에서는 연속함수가 콤팩트 집합 위에서 유계이다."
+ },
+ {
+  "id": "p-analysis-009",
+  "domain": "analysis",
+  "rating": 2050,
+  "topic": "푸리에 해석",
+  "theorem": "푸리에 계수의 감소 (리만-르베그)",
+  "statement": "$2\\pi$-주기 $C^1$ 함수 $f$의 푸리에 계수는 $|n| \\to \\infty$일 때 $\\hat{f}(n) \\to 0$이다.",
+  "steps": [
+   "$\\hat{f}(n) = \\frac{1}{2\\pi}\\int_0^{2\\pi} f(x)e^{-inx}\\,dx$이다.",
+   "$n \\neq 0$일 때 부분적분하면 경계항은 주기성으로 사라지고 $\\hat{f}(n) = \\frac{1}{in}\\widehat{f'}(n)$이다.",
+   "$|\\widehat{f'}(n)| \\le \\frac{1}{2\\pi}\\int_0^{2\\pi} |f'(x)|\\,dx = C$는 $n$과 무관하다.",
+   "따라서 $|\\hat{f}(n)| \\le \\frac{C}{|n|} \\to 0$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$n \\neq 0$일 때 부분적분하면 경계항은 주기성으로 사라지고 $\\hat{f}(n) = \\frac{1}{in}\\widehat{f'}(n)$이다.",
+   "$n \\neq 0$일 때 부분적분하면 경계항은 주기성으로 사라지고 $\\hat{f}(n) = in\\,\\widehat{f'}(n)$이다.",
+   "$n \\neq 0$일 때 부분적분하면 경계항은 주기성으로 사라지고 $\\hat{f}(n) = \\widehat{f'}(n)$이다.",
+   "$n \\neq 0$일 때 부분적분하면 경계항만 남아 $\\hat{f}(n) = f(0)$이다."
+  ],
+  "answer": 0,
+  "explain": "$e^{-inx}$를 적분하면 $\\frac{e^{-inx}}{-in}$이 되어 $\\frac{1}{n}$이 하나 나온다."
+ },
+ {
+  "id": "p-analysis-010",
+  "domain": "analysis",
+  "rating": 2250,
+  "topic": "푸리에 해석",
+  "theorem": "합성곱 정리",
+  "statement": "$2\\pi$-주기 연속함수 $f$, $g$의 합성곱 $(f * g)(x) = \\frac{1}{2\\pi}\\int_0^{2\\pi} f(x - y)g(y)\\,dy$에 대해 $\\widehat{f * g}(n) = \\hat{f}(n)\\hat{g}(n)$이다.",
+  "steps": [
+   "$\\widehat{f * g}(n) = \\frac{1}{(2\\pi)^2}\\int_0^{2\\pi}\\int_0^{2\\pi} f(x - y)g(y)e^{-inx}\\,dy\\,dx$이다.",
+   "$e^{-inx} = e^{-in(x - y)}e^{-iny}$로 쓰고 푸비니 정리로 적분 순서를 바꾼다.",
+   "$x$에 대한 안쪽 적분은 주기성에 의해 $y$와 무관하게 $2\\pi\\hat{f}(n)$이다.",
+   "남은 $y$에 대한 적분은 $2\\pi\\hat{g}(n)$이므로 $\\widehat{f * g}(n) = \\hat{f}(n)\\hat{g}(n)$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$e^{-inx} = e^{-in(x - y)} + e^{-iny}$로 쓰고 푸비니 정리로 적분 순서를 바꾼다.",
+   "$e^{-inx} = e^{-in(x - y)}e^{-iny}$로 쓰고 푸비니 정리로 적분 순서를 바꾼다.",
+   "$e^{-inx} = e^{-in(x + y)}e^{-iny}$로 쓰고 푸비니 정리로 적분 순서를 바꾼다.",
+   "부분적분으로 $f$의 도함수를 $g$ 쪽으로 옮긴다."
+  ],
+  "answer": 1,
+  "explain": "지수법칙 $e^{a + b} = e^a e^b$로 지수함수를 $x - y$와 $y$의 인수로 나누면 이중적분이 두 적분의 곱으로 갈라진다."
+ },
+ {
+  "id": "p-analysis-011",
+  "domain": "analysis",
+  "rating": 2300,
+  "topic": "측도론",
+  "theorem": "측도의 아래로부터의 연속성",
+  "statement": "측도 $\\mu$와 증가하는 가측집합열 $A_1 \\subseteq A_2 \\subseteq \\cdots$에 대해 $\\mu\\left(\\bigcup_n A_n\\right) = \\lim_n \\mu(A_n)$이다.",
+  "steps": [
+   "$A = \\bigcup_n A_n$이라 하자.",
+   "$B_1 = A_1$, $B_n = A_n \\setminus A_{n-1}$로 놓으면 $B_n$들은 서로소이고 $\\bigcup_{k \\le n} B_k = A_n$, $\\bigcup_n B_n = A$이다.",
+   "가산가법성에 의해 $\\mu(A) = \\sum_n \\mu(B_n) = \\lim_N \\sum_{n \\le N} \\mu(B_n)$이다.",
+   "유한가법성에 의해 $\\sum_{n \\le N} \\mu(B_n) = \\mu(A_N)$이므로 $\\mu(A) = \\lim_N \\mu(A_N)$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$B_n = A_n$으로 놓으면 $B_n$들은 서로소이고 $\\bigcup_n B_n = A$이다.",
+   "$B_1 = A_1$, $B_n = A_n \\cap A_{n-1}$로 놓으면 $B_n$들은 서로소이고 $\\bigcup_n B_n = A$이다.",
+   "$B_1 = A_1$, $B_n = A_n \\setminus A_{n-1}$로 놓으면 $B_n$들은 서로소이고 $\\bigcup_{k \\le n} B_k = A_n$, $\\bigcup_n B_n = A$이다.",
+   "$B_n = A \\setminus A_n$으로 놓으면 $B_n$들은 서로소이고 $\\bigcup_n B_n = A$이다."
+  ],
+  "answer": 2,
+  "explain": "가산가법성은 서로소인 집합에만 쓸 수 있으므로, 새로 추가되는 부분 $A_n \\setminus A_{n-1}$로 쪼갠다."
+ },
+ {
+  "id": "p-analysis-012",
+  "domain": "analysis",
+  "rating": 2500,
+  "topic": "측도론",
+  "theorem": "보렐-칸텔리 보조정리",
+  "statement": "$\\sum_n \\mu(A_n) < \\infty$이면 $\\mu\\left(\\limsup_n A_n\\right) = 0$이다.",
+  "steps": [
+   "$A = \\limsup_n A_n = \\bigcap_N \\bigcup_{n \\ge N} A_n$이라 하자.",
+   "모든 $N$에 대해 $A \\subseteq \\bigcup_{n \\ge N} A_n$이므로 가산준가법성에 의해 $\\mu(A) \\le \\sum_{n \\ge N} \\mu(A_n)$이다.",
+   "수렴하는 급수의 꼬리이므로 우변은 $N \\to \\infty$일 때 $0$으로 수렴한다.",
+   "따라서 $\\mu(A) = 0$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "모든 $N$에 대해 $A \\supseteq \\bigcup_{n \\ge N} A_n$이므로 $\\mu(A) \\ge \\sum_{n \\ge N} \\mu(A_n)$이다.",
+   "모든 $N$에 대해 $A \\subseteq \\bigcup_{n \\ge N} A_n$이므로 $\\mu(A) = \\prod_{n \\ge N} \\mu(A_n)$이다.",
+   "모든 $N$에 대해 $A \\subseteq \\bigcap_{n \\ge N} A_n$이므로 $\\mu(A) \\le \\mu(A_N)$이다.",
+   "모든 $N$에 대해 $A \\subseteq \\bigcup_{n \\ge N} A_n$이므로 가산준가법성에 의해 $\\mu(A) \\le \\sum_{n \\ge N} \\mu(A_n)$이다."
+  ],
+  "answer": 3,
+  "explain": "교집합은 각 항에 포함되고, 합집합의 측도는 측도의 합을 넘지 않는다."
+ },
+ {
+  "id": "p-analysis-013",
+  "domain": "analysis",
+  "rating": 2350,
+  "topic": "르베그 적분",
+  "theorem": "마르코프(체비셰프) 부등식",
+  "statement": "음이 아닌 가측함수 $f$와 $a > 0$에 대해 $\\mu(\\{f \\ge a\\}) \\le \\frac{1}{a}\\int f\\,d\\mu$이다.",
+  "steps": [
+   "$E = \\{x : f(x) \\ge a\\}$라 하자.",
+   "$E$ 위에서는 $f \\ge a$이고 $E$ 밖에서는 $f \\ge 0$이므로 모든 점에서 $f \\ge a\\,\\mathbf{1}_E$이다.",
+   "적분의 단조성에 의해 $\\int f\\,d\\mu \\ge a\\,\\mu(E)$이다.",
+   "양변을 $a$로 나누면 원하는 부등식을 얻는다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$E$ 위에서는 $f \\ge a$이고 $E$ 밖에서는 $f \\ge 0$이므로 모든 점에서 $f \\ge a\\,\\mathbf{1}_E$이다.",
+   "$E$ 위에서는 $f \\le a$이므로 모든 점에서 $f \\le a\\,\\mathbf{1}_E$이다.",
+   "$E$ 밖에서는 $f = 0$이므로 $f = a\\,\\mathbf{1}_E$이다.",
+   "$f$가 음이 아니므로 모든 점에서 $f \\ge a$이다."
+  ],
+  "answer": 0,
+  "explain": "$f$를 아래에서 받치는 단순함수 $a\\,\\mathbf{1}_E$를 찾아 적분을 비교한다."
+ },
+ {
+  "id": "p-analysis-014",
+  "domain": "analysis",
+  "rating": 2550,
+  "topic": "르베그 적분",
+  "theorem": "지배수렴정리 (파투 보조정리 이용)",
+  "statement": "$f_n \\to f$가 거의 어디서나 성립하고 적분가능한 $g$에 대해 $|f_n| \\le g$이면 $\\int f_n\\,d\\mu \\to \\int f\\,d\\mu$이다.",
+  "steps": [
+   "$g + f_n \\ge 0$이고 $g - f_n \\ge 0$이다.",
+   "$g + f_n$에 파투 보조정리를 적용하면 $\\int f\\,d\\mu \\le {\\liminf_n} \\int f_n\\,d\\mu$이다.",
+   "$g - f_n$에 파투 보조정리를 적용하면 $\\int f\\,d\\mu \\ge {\\limsup_n} \\int f_n\\,d\\mu$이다.",
+   "따라서 $\\lim_n \\int f_n\\,d\\mu$가 존재하고 $\\int f\\,d\\mu$와 같다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$g - f_n$에 파투 보조정리를 적용하면 $\\int f\\,d\\mu \\le {\\limsup_n} \\int f_n\\,d\\mu$이다.",
+   "$g - f_n$에 파투 보조정리를 적용하면 $\\int f\\,d\\mu \\ge {\\limsup_n} \\int f_n\\,d\\mu$이다.",
+   "$f_n - g$에 파투 보조정리를 적용하면 $\\int f\\,d\\mu \\ge {\\limsup_n} \\int f_n\\,d\\mu$이다.",
+   "$f_n$에 단조수렴정리를 적용하면 $\\int f\\,d\\mu \\ge {\\limsup_n} \\int f_n\\,d\\mu$이다."
+  ],
+  "answer": 1,
+  "explain": "$\\int (g - f) \\le {\\liminf} \\int (g - f_n) = \\int g - {\\limsup} \\int f_n$에서 유한한 $\\int g$를 소거한다."
+ },
+ {
+  "id": "p-analysis-015",
+  "domain": "analysis",
+  "rating": 2400,
+  "topic": "함수해석학",
+  "theorem": "유계 선형작용소는 연속",
+  "statement": "노름공간 사이의 선형작용소 $T$가 $\\|Tx\\| \\le M\\|x\\|$를 만족하면 $T$는 연속이다.",
+  "steps": [
+   "임의의 $x$, $y$를 택한다.",
+   "선형성에 의해 $\\|Tx - Ty\\| = \\|T(x - y)\\| \\le M\\|x - y\\|$이다.",
+   "따라서 $T$는 립시츠 연속이고, 특히 연속이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$\\|Tx - Ty\\| = \\|Tx\\| - \\|Ty\\| \\le M(\\|x\\| - \\|y\\|)$이다.",
+   "선형성에 의해 $\\|Tx - Ty\\| = \\|T(x - y)\\| \\ge M\\|x - y\\|$이다.",
+   "선형성에 의해 $\\|Tx - Ty\\| = \\|T(x - y)\\| \\le M\\|x - y\\|$이다.",
+   "$\\|Tx - Ty\\| \\le \\|Tx\\| \\cdot \\|Ty\\| \\le M^2\\|x\\|\\|y\\|$이다."
+  ],
+  "answer": 2,
+  "explain": "선형성 $Tx - Ty = T(x - y)$로 차의 노름을 유계 조건에 넣을 수 있다."
+ },
+ {
+  "id": "p-analysis-016",
+  "domain": "analysis",
+  "rating": 2600,
+  "topic": "함수해석학",
+  "theorem": "리스 표현정리",
+  "statement": "힐베르트 공간 $H$ 위의 유계 선형범함수 $\\varphi$에 대해 $\\varphi(x) = \\langle x, y \\rangle$인 $y \\in H$가 존재한다.",
+  "steps": [
+   "$\\varphi = 0$이면 $y = 0$으로 택한다. $\\varphi \\neq 0$이면 $N = \\ker \\varphi$는 닫힌 진부분공간이다.",
+   "사영정리에 의해 $H = N \\oplus N^{\\perp}$이고 $N \\neq H$이므로 $N^{\\perp}$에 $0$이 아닌 벡터 $z$가 존재한다.",
+   "임의의 $x$에 대해 $\\varphi(x)z - \\varphi(z)x \\in N$이므로 $z$와 내적하면 $\\varphi(x)\\|z\\|^2 = \\varphi(z)\\langle x, z \\rangle$이다.",
+   "따라서 $y = \\frac{\\overline{\\varphi(z)}}{\\|z\\|^2}z$로 놓으면 $\\varphi(x) = \\langle x, y \\rangle$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$N$이 $H$에서 조밀하므로 $N^{\\perp}$에 $0$이 아닌 벡터 $z$가 존재한다.",
+   "$N^{\\perp} = \\{0\\}$이므로 $z = 0$으로 택한다.",
+   "$\\varphi$가 유계이므로 $N$ 안에 $\\varphi(z) \\neq 0$인 벡터 $z$가 존재한다.",
+   "사영정리에 의해 $H = N \\oplus N^{\\perp}$이고 $N \\neq H$이므로 $N^{\\perp}$에 $0$이 아닌 벡터 $z$가 존재한다."
+  ],
+  "answer": 3,
+  "explain": "닫힌 부분공간에는 사영정리가 적용되어, 진부분공간이면 직교여공간이 자명하지 않다."
+ },
+ {
+  "id": "p-analysis-017",
+  "domain": "analysis",
+  "rating": 2400,
+  "topic": "편미분방정식",
+  "theorem": "에너지 방법에 의한 열방정식 해의 유일성",
+  "statement": "$u_t = u_{xx}$ ($0 < x < L$), $u(0, t) = u(L, t) = 0$, $u(x, 0) = 0$의 매끄러운 해는 $u \\equiv 0$뿐이다.",
+  "steps": [
+   "$E(t) = \\frac{1}{2}\\int_0^L u^2\\,dx$로 놓으면 $E'(t) = \\int_0^L u u_t\\,dx = \\int_0^L u u_{xx}\\,dx$이다.",
+   "부분적분하면 경계조건에 의해 경계항이 사라져 $E'(t) = -\\int_0^L u_x^2\\,dx \\le 0$이다.",
+   "따라서 $0 \\le E(t) \\le E(0) = 0$이다.",
+   "그러므로 모든 $t$에서 $u \\equiv 0$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "부분적분하면 경계조건에 의해 경계항이 사라져 $E'(t) = -\\int_0^L u_x^2\\,dx \\le 0$이다.",
+   "부분적분하면 경계조건에 의해 경계항이 사라져 $E'(t) = \\int_0^L u_x^2\\,dx \\ge 0$이다.",
+   "부분적분하면 경계조건에 의해 경계항이 사라져 $E'(t) = -\\int_0^L u^2\\,dx$이다.",
+   "부분적분을 두 번 하면 $E'(t) = \\int_0^L u_{xx}^2\\,dx \\ge 0$이다."
+  ],
+  "answer": 0,
+  "explain": "$\\int u u_{xx} = [u u_x]_0^L - \\int u_x^2$이고 경계에서 $u = 0$이다."
+ },
+ {
+  "id": "p-analysis-018",
+  "domain": "analysis",
+  "rating": 2600,
+  "topic": "편미분방정식",
+  "theorem": "조화함수의 약한 최대원리",
+  "statement": "유계 영역 $\\Omega \\subset \\mathbb{R}^n$에서 조화이고 $\\overline{\\Omega}$에서 연속인 $u$는 $\\max_{\\overline{\\Omega}} u = \\max_{\\partial\\Omega} u$를 만족한다.",
+  "steps": [
+   "$\\varepsilon > 0$에 대해 $v = u + \\varepsilon|x|^2$로 놓으면 $\\Delta v = 2n\\varepsilon > 0$이다.",
+   "$v$가 내부점에서 최댓값을 가지면 그 점에서 헤세 행렬이 음의 준정부호이므로 $\\Delta v \\le 0$이다.",
+   "이는 모순이므로 $v$의 최댓값은 경계에서 나온다.",
+   "$\\varepsilon \\to 0$으로 보내면 $\\max_{\\overline{\\Omega}} u = \\max_{\\partial\\Omega} u$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$v$가 내부점에서 최댓값을 가지면 그 점에서 헤세 행렬이 양의 정부호이므로 $\\Delta v \\ge 0$이다.",
+   "$v$가 내부점에서 최댓값을 가지면 그 점에서 헤세 행렬이 음의 준정부호이므로 $\\Delta v \\le 0$이다.",
+   "$v$가 내부점에서 최댓값을 가지면 그 점에서 $\\nabla v \\neq 0$이므로 $\\Delta v \\le 0$이다.",
+   "$v$가 내부점에서 최댓값을 가지면 그 점에서 $v = 0$이다."
+  ],
+  "answer": 1,
+  "explain": "내부 극대점에서는 이계도함수 판정에 의해 각 방향의 이계도함수가 $0$ 이하이고, 그 합이 라플라시안이다."
+ },
+ {
+  "id": "p-analysis-019",
+  "domain": "analysis",
+  "rating": 2500,
+  "topic": "분포론",
+  "theorem": "분포 도함수의 정의",
+  "statement": "헤비사이드 함수 $H$의 분포 도함수는 디랙 델타 $\\delta$이다.",
+  "steps": [
+   "시험함수 $\\varphi$에 대해 분포 도함수는 $\\langle H', \\varphi \\rangle = -\\langle H, \\varphi' \\rangle$로 정의된다.",
+   "$-\\langle H, \\varphi' \\rangle = -\\int_0^{\\infty} \\varphi'(x)\\,dx = \\varphi(0)$이다 ($\\varphi$의 지지집합은 콤팩트).",
+   "따라서 $\\langle H', \\varphi \\rangle = \\varphi(0) = \\langle \\delta, \\varphi \\rangle$이고 $H' = \\delta$이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "시험함수 $\\varphi$에 대해 분포 도함수는 $\\langle H', \\varphi \\rangle = \\langle H, \\varphi' \\rangle$로 정의된다.",
+   "시험함수 $\\varphi$에 대해 분포 도함수는 $\\langle H', \\varphi \\rangle = -\\langle H', \\varphi' \\rangle$로 정의된다.",
+   "시험함수 $\\varphi$에 대해 분포 도함수는 $\\langle H', \\varphi \\rangle = -\\langle H, \\varphi' \\rangle$로 정의된다.",
+   "시험함수 $\\varphi$에 대해 분포 도함수는 $\\langle H', \\varphi \\rangle = \\langle H, \\varphi \\rangle'$로 정의된다."
+  ],
+  "answer": 2,
+  "explain": "부분적분 공식을 정의로 삼기 때문에 음의 부호가 붙고 도함수는 시험함수 쪽으로 옮겨진다."
+ },
+ {
+  "id": "p-analysis-020",
+  "domain": "analysis",
+  "rating": 2700,
+  "topic": "분포론",
+  "theorem": "매끄러운 함수와 분포의 곱",
+  "statement": "분포로서 $x\\delta' = -\\delta$이다.",
+  "steps": [
+   "매끄러운 함수 $a$와 분포 $T$의 곱은 $\\langle aT, \\varphi \\rangle = \\langle T, a\\varphi \\rangle$로 정의된다.",
+   "$\\langle x\\delta', \\varphi \\rangle = \\langle \\delta', x\\varphi \\rangle = -(x\\varphi)'(0)$이다.",
+   "$(x\\varphi)' = \\varphi + x\\varphi'$이므로 $(x\\varphi)'(0) = \\varphi(0)$이다.",
+   "따라서 $\\langle x\\delta', \\varphi \\rangle = -\\varphi(0) = \\langle -\\delta, \\varphi \\rangle$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$\\langle x\\delta', \\varphi \\rangle = \\langle \\delta', x\\varphi \\rangle = (x\\varphi)'(0)$이다.",
+   "$\\langle x\\delta', \\varphi \\rangle = \\langle \\delta', x\\varphi \\rangle = (x\\varphi)(0)$이다.",
+   "$\\langle x\\delta', \\varphi \\rangle = x\\langle \\delta', \\varphi \\rangle = -x\\varphi'(0)$이다.",
+   "$\\langle x\\delta', \\varphi \\rangle = \\langle \\delta', x\\varphi \\rangle = -(x\\varphi)'(0)$이다."
+  ],
+  "answer": 3,
+  "explain": "$\\langle \\delta', \\psi \\rangle = -\\psi'(0)$이므로 $\\psi = x\\varphi$를 넣는다."
+ },
+ {
+  "id": "p-analysis-021",
+  "domain": "analysis",
+  "rating": 2450,
+  "topic": "변분법",
+  "theorem": "오일러-라그랑주 방정식",
+  "statement": "$J[y] = \\int_a^b L(x, y, y')\\,dx$의 극값함수 $y$는 $L_y - \\frac{d}{dx}L_{y'} = 0$을 만족한다.",
+  "steps": [
+   "$\\eta(a) = \\eta(b) = 0$인 임의의 매끄러운 $\\eta$에 대해 $\\left.\\frac{d}{d\\varepsilon}J[y + \\varepsilon\\eta]\\right|_{\\varepsilon = 0} = 0$이다.",
+   "적분 기호 안에서 미분하면 $\\int_a^b \\left(L_y\\eta + L_{y'}\\eta'\\right)dx = 0$이다.",
+   "둘째 항을 부분적분하면 경계항이 사라져 $\\int_a^b \\left(L_y - \\frac{d}{dx}L_{y'}\\right)\\eta\\,dx = 0$이다.",
+   "$\\eta$가 임의이므로 변분법의 기본 보조정리에 의해 $L_y - \\frac{d}{dx}L_{y'} = 0$이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "둘째 항을 부분적분하면 경계항이 사라져 $\\int_a^b \\left(L_y - \\frac{d}{dx}L_{y'}\\right)\\eta\\,dx = 0$이다.",
+   "둘째 항을 부분적분하면 경계항이 사라져 $\\int_a^b \\left(L_y + \\frac{d}{dx}L_{y'}\\right)\\eta\\,dx = 0$이다.",
+   "첫째 항을 부분적분하면 $\\int_a^b \\left(L_{y'} - \\frac{d}{dx}L_y\\right)\\eta'\\,dx = 0$이다.",
+   "둘째 항을 부분적분하면 경계항만 남아 $L_{y'}\\eta = 0$이다."
+  ],
+  "answer": 0,
+  "explain": "$\\int L_{y'}\\eta' = [L_{y'}\\eta]_a^b - \\int \\frac{d}{dx}L_{y'}\\,\\eta$이고 $\\eta$는 양 끝에서 $0$이다."
+ },
+ {
+  "id": "p-analysis-022",
+  "domain": "analysis",
+  "rating": 2650,
+  "topic": "변분법",
+  "theorem": "벨트라미 항등식",
+  "statement": "$L = L(y, y')$가 $x$에 명시적으로 의존하지 않으면 극값함수 위에서 $L - y'L_{y'}$는 상수이다.",
+  "steps": [
+   "연쇄법칙과 곱의 미분법에 의해 $\\frac{d}{dx}\\left(L - y'L_{y'}\\right) = L_y y' + L_{y'}y'' - y''L_{y'} - y'\\frac{d}{dx}L_{y'}$이다.",
+   "가운데 두 항이 상쇄되어 $y'\\left(L_y - \\frac{d}{dx}L_{y'}\\right)$가 남는다.",
+   "오일러-라그랑주 방정식에 의해 괄호 안은 $0$이다.",
+   "따라서 $L - y'L_{y'}$의 도함수가 $0$이므로 상수이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "연쇄법칙과 곱의 미분법에 의해 $\\frac{d}{dx}\\left(L - y'L_{y'}\\right) = L_y y' + L_{y'}y'' + y''L_{y'} + y'\\frac{d}{dx}L_{y'}$이다.",
+   "연쇄법칙과 곱의 미분법에 의해 $\\frac{d}{dx}\\left(L - y'L_{y'}\\right) = L_y y' + L_{y'}y'' - y''L_{y'} - y'\\frac{d}{dx}L_{y'}$이다.",
+   "$L$이 $x$에 의존하지 않으므로 $\\frac{d}{dx}\\left(L - y'L_{y'}\\right) = L_y - L_{y'}$이다.",
+   "연쇄법칙에 의해 $\\frac{d}{dx}\\left(L - y'L_{y'}\\right) = L_y y' - y'L_{y'}$이다."
+  ],
+  "answer": 1,
+  "explain": "$\\frac{dL}{dx} = L_y y' + L_{y'}y''$ ($L_x = 0$)이고, $y'L_{y'}$는 곱의 미분법으로 두 항이 된다."
+ },
+ {
+  "id": "p-geometry-001",
+  "domain": "geometry",
+  "rating": 1800,
+  "topic": "미분기하",
+  "theorem": "단위속력 곡선의 접벡터와 그 도함수는 수직",
+  "statement": "단위속력 곡선 $\\gamma$의 접벡터 $T = \\gamma'$에 대해 $T' \\cdot T = 0$이다.",
+  "steps": [
+   "단위속력이므로 $T \\cdot T = 1$이다.",
+   "양변을 미분하면 곱의 미분법에 의해 $2\\,T' \\cdot T = 0$이다.",
+   "따라서 $T'$은 $T$와 수직이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "양변을 미분하면 곱의 미분법에 의해 $2\\,T' \\cdot T = 0$이다.",
+   "양변을 미분하면 $T' \\cdot T' = 0$이다.",
+   "양변을 미분하면 곱의 미분법에 의해 $2\\,T' \\cdot T = 1$이다.",
+   "$T$의 크기가 일정하므로 $T$는 상수벡터이고 $T' = 0$이다."
+  ],
+  "answer": 0,
+  "explain": "$(T \\cdot T)' = T' \\cdot T + T \\cdot T'$이고 상수 $1$의 도함수는 $0$이다."
+ },
+ {
+  "id": "p-geometry-002",
+  "domain": "geometry",
+  "rating": 2100,
+  "topic": "미분기하",
+  "theorem": "측지선의 속력은 일정",
+  "statement": "곡면 위의 곡선 $\\gamma$의 가속도 $\\gamma''$이 항상 곡면에 수직이면 속력 $|\\gamma'|$은 일정하다.",
+  "steps": [
+   "$\\frac{d}{dt}|\\gamma'|^2 = 2\\,\\gamma'' \\cdot \\gamma'$이다.",
+   "$\\gamma'$은 곡면에 접하고 $\\gamma''$은 곡면에 수직이므로 $\\gamma'' \\cdot \\gamma' = 0$이다.",
+   "따라서 $|\\gamma'|^2$은 상수이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$\\gamma'$과 $\\gamma''$은 모두 곡면에 접하므로 $\\gamma'' \\cdot \\gamma' = 0$이다.",
+   "$\\gamma'$은 곡면에 접하고 $\\gamma''$은 곡면에 수직이므로 $\\gamma'' \\cdot \\gamma' = 0$이다.",
+   "$\\gamma'$은 곡면에 수직이고 $\\gamma''$은 곡면에 접하므로 $\\gamma'' = 0$이다.",
+   "$\\gamma''$이 곡면에 수직이므로 $\\gamma'' \\cdot \\gamma' = |\\gamma'|^2$이다."
+  ],
+  "answer": 1,
+  "explain": "곡면 위 곡선의 속도는 접평면에 놓이므로 법선 방향 벡터와의 내적이 $0$이다."
+ },
+ {
+  "id": "p-geometry-003",
+  "domain": "geometry",
+  "rating": 1900,
+  "topic": "위상수학",
+  "theorem": "콤팩트 공간의 연속상은 콤팩트",
+  "statement": "$X$가 콤팩트이고 $f: X \\to Y$가 연속이면 $f(X)$는 콤팩트이다.",
+  "steps": [
+   "$\\{V_\\alpha\\}$를 $f(X)$의 열린 덮개라 하자.",
+   "$f$가 연속이므로 $\\{f^{-1}(V_\\alpha)\\}$는 $X$의 열린 덮개이다.",
+   "$X$가 콤팩트이므로 유한 부분덮개 $f^{-1}(V_{\\alpha_1}), \\ldots, f^{-1}(V_{\\alpha_k})$가 있다.",
+   "그러면 $V_{\\alpha_1}, \\ldots, V_{\\alpha_k}$가 $f(X)$를 덮는다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$f$가 연속이므로 $\\{f(V_\\alpha)\\}$는 $X$의 열린 덮개이다.",
+   "$Y$가 콤팩트이므로 $\\{V_\\alpha\\}$는 유한 부분덮개를 가진다.",
+   "$f$가 연속이므로 $\\{f^{-1}(V_\\alpha)\\}$는 $X$의 열린 덮개이다.",
+   "$f$가 열린 사상이므로 $\\{f^{-1}(V_\\alpha)\\}$는 $X$의 닫힌 덮개이다."
+  ],
+  "answer": 2,
+  "explain": "연속사상에 의한 열린집합의 원상은 열린집합이므로 덮개를 $X$로 끌어올 수 있다."
+ },
+ {
+  "id": "p-geometry-004",
+  "domain": "geometry",
+  "rating": 2150,
+  "topic": "위상수학",
+  "theorem": "하우스도르프 공간의 콤팩트 부분집합은 닫힌집합",
+  "statement": "하우스도르프 공간 $X$의 콤팩트 부분집합 $K$는 닫힌집합이다.",
+  "steps": [
+   "$x \\notin K$를 택한다. 각 $y \\in K$에 대해 $x \\in U_y$, $y \\in V_y$인 서로소인 열린집합 $U_y$, $V_y$가 있다.",
+   "$K$가 콤팩트이므로 유한 개의 $V_{y_1}, \\ldots, V_{y_k}$가 $K$를 덮는다.",
+   "$U = U_{y_1} \\cap \\cdots \\cap U_{y_k}$는 $x$를 포함하는 열린집합이고 $K$와 만나지 않는다.",
+   "따라서 $X \\setminus K$의 모든 점이 내점이므로 $K$는 닫힌집합이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$U = U_{y_1} \\cup \\cdots \\cup U_{y_k}$는 $x$를 포함하는 열린집합이고 $K$와 만나지 않는다.",
+   "$U = \\bigcap_{y \\in K} U_y$는 열린집합들의 교집합이므로 $x$를 포함하는 열린집합이고 $K$와 만나지 않는다.",
+   "$U = V_{y_1} \\cap \\cdots \\cap V_{y_k}$는 $x$를 포함하는 열린집합이고 $K$와 만나지 않는다.",
+   "$U = U_{y_1} \\cap \\cdots \\cap U_{y_k}$는 $x$를 포함하는 열린집합이고 $K$와 만나지 않는다."
+  ],
+  "answer": 3,
+  "explain": "유한 교집합이어야 열린집합이 보장되고, 교집합은 모든 $V_{y_i}$와 서로소라서 그 합집합에 포함된 $K$와 만나지 않는다."
+ },
+ {
+  "id": "p-geometry-005",
+  "domain": "geometry",
+  "rating": 2000,
+  "topic": "사영기하학",
+  "theorem": "사영평면의 두 직선은 반드시 만난다",
+  "statement": "실사영평면 $\\mathbb{RP}^2$의 서로 다른 두 직선은 정확히 한 점에서 만난다.",
+  "steps": [
+   "$\\mathbb{RP}^2$의 점은 $\\mathbb{R}^3$의 1차원 부분공간이고 직선은 2차원 부분공간이다.",
+   "서로 다른 두 2차원 부분공간의 합은 $\\mathbb{R}^3$ 전체이므로, 차원 공식에 의해 교집합의 차원은 $2 + 2 - 3 = 1$이다.",
+   "이 1차원 부분공간이 두 사영직선의 유일한 교점이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "서로 다른 두 2차원 부분공간의 합은 $\\mathbb{R}^3$ 전체이므로, 차원 공식에 의해 교집합의 차원은 $2 + 2 - 3 = 1$이다.",
+   "서로 다른 두 2차원 부분공간은 평행할 수 있으므로 교집합이 공집합일 수 있다.",
+   "서로 다른 두 2차원 부분공간의 합은 4차원이므로, 차원 공식에 의해 교집합의 차원은 $2 + 2 - 4 = 0$이다.",
+   "서로 다른 두 2차원 부분공간의 교집합의 차원은 $2 \\cdot 2 - 2 = 2$이다."
+  ],
+  "answer": 0,
+  "explain": "원점을 지나는 서로 다른 두 평면은 항상 원점을 지나는 직선에서 만난다. $\\dim(U \\cap W) = \\dim U + \\dim W - \\dim(U + W)$."
+ },
+ {
+  "id": "p-geometry-006",
+  "domain": "geometry",
+  "rating": 2200,
+  "topic": "사영기하학",
+  "theorem": "복비는 사영변환에 대해 불변",
+  "statement": "사상 $x \\mapsto \\frac{1}{x}$는 복비 $(a, b; c, d) = \\frac{(c - a)(d - b)}{(c - b)(d - a)}$를 보존한다.",
+  "steps": [
+   "$\\frac{1}{c} - \\frac{1}{a} = \\frac{a - c}{ac}$이고 나머지 세 차도 같은 꼴이다.",
+   "따라서 변환 후의 복비는 $\\frac{\\frac{a - c}{ac} \\cdot \\frac{b - d}{bd}}{\\frac{b - c}{bc} \\cdot \\frac{a - d}{ad}}$이다.",
+   "분자와 분모의 $abcd$가 약분되고 부호는 위아래에서 두 번씩 바뀌므로 원래의 복비와 같다."
+  ],
+  "blank": 0,
+  "choices": [
+   "$\\frac{1}{c} - \\frac{1}{a} = \\frac{1}{c - a}$이고 나머지 세 차도 같은 꼴이다.",
+   "$\\frac{1}{c} - \\frac{1}{a} = \\frac{a - c}{ac}$이고 나머지 세 차도 같은 꼴이다.",
+   "$\\frac{1}{c} - \\frac{1}{a} = \\frac{a - c}{a + c}$이고 나머지 세 차도 같은 꼴이다.",
+   "$\\frac{1}{c} - \\frac{1}{a} = \\frac{c - a}{ac}$이고 나머지 세 차도 같은 꼴이다."
+  ],
+  "answer": 1,
+  "explain": "통분하면 $\\frac{1}{c} - \\frac{1}{a} = \\frac{a - c}{ac}$이다. 평행이동, 상수배, 역수가 사영변환을 생성하므로 복비는 모든 사영변환에서 보존된다."
+ },
+ {
+  "id": "p-geometry-007",
+  "domain": "geometry",
+  "rating": 2400,
+  "topic": "리만기하학",
+  "theorem": "레비-치비타 접속의 계량 양립성",
+  "statement": "리만 다양체 $(M, g)$의 측지선 $\\gamma$의 속력 $\\sqrt{g(\\gamma', \\gamma')}$은 일정하다.",
+  "steps": [
+   "$\\gamma$가 측지선이므로 $\\nabla_{\\gamma'}\\gamma' = 0$이다.",
+   "계량 양립성에 의해 $\\frac{d}{dt}g(\\gamma', \\gamma') = 2g(\\nabla_{\\gamma'}\\gamma', \\gamma')$이다.",
+   "따라서 $\\frac{d}{dt}g(\\gamma', \\gamma') = 0$이고 속력은 일정하다."
+  ],
+  "blank": 1,
+  "choices": [
+   "계량 양립성에 의해 $\\frac{d}{dt}g(\\gamma', \\gamma') = g(\\nabla_{\\gamma'}\\gamma', \\nabla_{\\gamma'}\\gamma')$이다.",
+   "접속에 꼬임이 없으므로 $\\frac{d}{dt}g(\\gamma', \\gamma') = 2g(\\gamma', \\gamma')$이다.",
+   "계량 양립성에 의해 $\\frac{d}{dt}g(\\gamma', \\gamma') = 2g(\\nabla_{\\gamma'}\\gamma', \\gamma')$이다.",
+   "계량 양립성에 의해 $\\frac{d}{dt}g(\\gamma', \\gamma') = g(\\gamma', \\gamma')$이다."
+  ],
+  "answer": 2,
+  "explain": "$\\nabla g = 0$은 $X\\,g(Y, Z) = g(\\nabla_X Y, Z) + g(Y, \\nabla_X Z)$를 뜻하고, $Y = Z = \\gamma'$을 넣는다."
+ },
+ {
+  "id": "p-geometry-008",
+  "domain": "geometry",
+  "rating": 2650,
+  "topic": "리만기하학",
+  "theorem": "킬링 벡터장과 측지선의 보존량",
+  "statement": "킬링 벡터장 $X$와 측지선 $\\gamma$에 대해 $g(X, \\gamma')$은 $\\gamma$ 위에서 상수이다.",
+  "steps": [
+   "계량 양립성에 의해 $\\frac{d}{dt}g(X, \\gamma') = g(\\nabla_{\\gamma'}X, \\gamma') + g(X, \\nabla_{\\gamma'}\\gamma')$이다.",
+   "$\\gamma$가 측지선이므로 둘째 항은 $0$이다.",
+   "킬링 방정식 $g(\\nabla_Y X, Z) + g(\\nabla_Z X, Y) = 0$에 $Y = Z = \\gamma'$을 넣으면 $g(\\nabla_{\\gamma'}X, \\gamma') = 0$이다.",
+   "따라서 $\\frac{d}{dt}g(X, \\gamma') = 0$이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "킬링 벡터장은 평행 벡터장이므로 $\\nabla_{\\gamma'}X = 0$이다.",
+   "킬링 방정식 $g(\\nabla_Y X, Z) - g(\\nabla_Z X, Y) = 0$에 $Y = Z = \\gamma'$을 넣으면 $g(\\nabla_{\\gamma'}X, \\gamma') = 0$이다.",
+   "킬링 방정식 $g(\\nabla_Y X, Z) + g(\\nabla_Z X, Y) = 0$에 $Y = X$, $Z = \\gamma'$을 넣으면 $g(\\nabla_{\\gamma'}X, \\gamma') = 0$이다.",
+   "킬링 방정식 $g(\\nabla_Y X, Z) + g(\\nabla_Z X, Y) = 0$에 $Y = Z = \\gamma'$을 넣으면 $g(\\nabla_{\\gamma'}X, \\gamma') = 0$이다."
+  ],
+  "answer": 3,
+  "explain": "킬링 방정식은 $\\nabla X$가 반대칭임을 뜻하므로, 같은 벡터를 두 번 넣으면 $2g(\\nabla_{\\gamma'}X, \\gamma') = 0$이다."
+ },
+ {
+  "id": "p-geometry-009",
+  "domain": "geometry",
+  "rating": 2400,
+  "topic": "미분위상수학",
+  "theorem": "정칙값 정리",
+  "statement": "구면 $S^n = \\{x \\in \\mathbb{R}^{n+1} : |x| = 1\\}$은 $n$차원 매끄러운 다양체이다.",
+  "steps": [
+   "$f: \\mathbb{R}^{n+1} \\to \\mathbb{R}$, $f(x) = |x|^2$는 매끄럽고 $S^n = f^{-1}(1)$이다.",
+   "$df_x(v) = 2x \\cdot v$이므로 $x \\neq 0$이면 $df_x$는 전사이다.",
+   "$f^{-1}(1)$의 점은 모두 $x \\neq 0$이므로 $1$은 $f$의 정칙값이다.",
+   "정칙값 정리에 의해 $S^n$은 $(n + 1) - 1 = n$차원 매끄러운 부분다양체이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$df_x(v) = 2x \\cdot v$이므로 $x \\neq 0$이면 $df_x$는 전사이다.",
+   "$df_x(v) = |v|^2$이므로 모든 $x$에서 $df_x$는 전사이다.",
+   "$df_x(v) = 2x \\cdot v$이므로 $x \\neq 0$이면 $df_x$는 단사이다.",
+   "$df_x(v) = 2x \\cdot v$이므로 $x = 0$에서도 $df_x$는 전사이다."
+  ],
+  "answer": 0,
+  "explain": "$x \\neq 0$이면 $v = x$에서 $df_x(x) = 2|x|^2 \\neq 0$이므로 $\\mathbb{R}$ 위로 전사이다."
+ },
+ {
+  "id": "p-geometry-010",
+  "domain": "geometry",
+  "rating": 2700,
+  "topic": "미분위상수학",
+  "theorem": "브라우어 부동점 정리 (매끄러운 경우)",
+  "statement": "매끄러운 사상 $f: D^n \\to D^n$은 부동점을 가진다.",
+  "steps": [
+   "$f$가 부동점을 갖지 않는다고 가정한다.",
+   "$f(x)$에서 출발하여 $x$를 지나는 반직선이 $\\partial D^n$과 만나는 점을 $r(x)$라 하면 $r$은 매끄럽다.",
+   "$x \\in \\partial D^n$이면 $r(x) = x$이므로 $r$은 $D^n$에서 경계로의 수축 사상이다.",
+   "이는 경계가 있는 콤팩트 다양체에서 그 경계로의 매끄러운 수축 사상이 없다는 정리에 모순이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$x \\in \\partial D^n$이면 $r(x) = -x$이므로 $r$은 대척 사상이다.",
+   "$x \\in \\partial D^n$이면 $r(x) = x$이므로 $r$은 $D^n$에서 경계로의 수축 사상이다.",
+   "$r$은 전단사이므로 $D^n$과 $\\partial D^n$은 미분동형이다.",
+   "$x \\in \\partial D^n$이면 $r(x) = f(x)$이므로 $r$은 $f$의 확장이다."
+  ],
+  "answer": 1,
+  "explain": "$x$가 이미 경계 위에 있으면 $f(x)$에서 $x$로 가는 반직선이 경계와 만나는 점은 $x$ 자신이다."
+ },
+ {
+  "id": "p-geometry-011",
+  "domain": "geometry",
+  "rating": 2350,
+  "topic": "대수적 위상수학",
+  "theorem": "기본군의 함자성",
+  "statement": "원판 $D^2$에서 경계 $S^1$로의 수축 사상(경계 위에서 항등인 연속사상)은 존재하지 않는다.",
+  "steps": [
+   "수축 사상 $r: D^2 \\to S^1$이 있다고 하고 포함사상을 $i: S^1 \\to D^2$라 하면 $r \\circ i = \\mathrm{id}_{S^1}$이다.",
+   "기본군을 취하면 $r_* \\circ i_* = \\mathrm{id}$이므로 $i_*: \\pi_1(S^1) \\to \\pi_1(D^2)$는 단사이다.",
+   "그런데 $\\pi_1(S^1) \\cong \\mathbb{Z}$이고 $\\pi_1(D^2) = 0$이다.",
+   "$\\mathbb{Z}$에서 자명군으로 가는 단사 준동형은 없으므로 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "기본군을 취하면 $i_* \\circ r_* = \\mathrm{id}$이므로 $r_*: \\pi_1(D^2) \\to \\pi_1(S^1)$는 단사이다.",
+   "기본군을 취하면 $r_* \\circ i_* = 0$이므로 $i_* = 0$이다.",
+   "기본군을 취하면 $r_* \\circ i_* = \\mathrm{id}$이므로 $i_*: \\pi_1(S^1) \\to \\pi_1(D^2)$는 단사이다.",
+   "기본군을 취하면 $r_* \\circ i_* = \\mathrm{id}$이므로 $i_*: \\pi_1(S^1) \\to \\pi_1(D^2)$는 전사이다."
+  ],
+  "answer": 2,
+  "explain": "합성이 항등이면 먼저 적용되는 사상은 단사, 나중에 적용되는 사상은 전사이다."
+ },
+ {
+  "id": "p-geometry-012",
+  "domain": "geometry",
+  "rating": 2600,
+  "topic": "대수적 위상수학",
+  "theorem": "호몰로지의 호모토피 불변성",
+  "statement": "호모토피 동치 $f: X \\to Y$는 호몰로지 군 사이의 동형사상 $f_*$를 유도한다.",
+  "steps": [
+   "호모토피 역사상 $g: Y \\to X$가 있어 $g \\circ f \\simeq \\mathrm{id}_X$, $f \\circ g \\simeq \\mathrm{id}_Y$이다.",
+   "호모토픽한 두 사상은 호몰로지에서 같은 준동형을 유도한다.",
+   "함자성에 의해 $g_* \\circ f_* = \\mathrm{id}$이고 $f_* \\circ g_* = \\mathrm{id}$이다.",
+   "따라서 $f_*$는 동형사상이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "호모토픽한 두 사상은 서로 같은 사상이다.",
+   "연속사상은 모두 호몰로지에서 동형사상을 유도한다.",
+   "호몰로지는 반변 함자이므로 $(g \\circ f)_* = f_* \\circ g_*$이다.",
+   "호모토픽한 두 사상은 호몰로지에서 같은 준동형을 유도한다."
+  ],
+  "answer": 3,
+  "explain": "$g \\circ f \\simeq \\mathrm{id}$만으로는 $g \\circ f = \\mathrm{id}$가 아니므로, 호모토피 불변성이 있어야 $(g \\circ f)_* = \\mathrm{id}$를 얻는다."
+ },
+ {
+  "id": "p-geometry-013",
+  "domain": "geometry",
+  "rating": 2500,
+  "topic": "심플렉틱 기하학",
+  "theorem": "심플렉틱 벡터공간의 차원은 짝수",
+  "statement": "비퇴화 반대칭 쌍선형형식 $\\omega$를 갖는 유한차원 실벡터공간 $V$의 차원은 짝수이다.",
+  "steps": [
+   "기저에 대한 $\\omega$의 행렬을 $A$라 하면 $A^T = -A$이고 $\\det A \\neq 0$이다.",
+   "$n = \\dim V$일 때 $\\det A = \\det A^T = \\det(-A) = (-1)^n \\det A$이다.",
+   "$\\det A \\neq 0$이므로 $(-1)^n = 1$이다.",
+   "따라서 $n$은 짝수이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$n = \\dim V$일 때 $\\det A = \\det A^T = \\det(-A) = (-1)^n \\det A$이다.",
+   "$n = \\dim V$일 때 $\\det A = \\det A^T = \\det(-A) = -\\det A$이다.",
+   "$n = \\dim V$일 때 $\\det A = \\det(-A) = (-1)^n$이다.",
+   "$n = \\dim V$일 때 $\\det A = -\\det A^T$이므로 $\\det A = 0$이다."
+  ],
+  "answer": 0,
+  "explain": "$n \\times n$ 행렬에 $-1$을 곱하면 행렬식에 $(-1)^n$이 곱해진다."
+ },
+ {
+  "id": "p-geometry-014",
+  "domain": "geometry",
+  "rating": 2750,
+  "topic": "심플렉틱 기하학",
+  "theorem": "해밀턴 흐름은 해밀토니안을 보존",
+  "statement": "심플렉틱 다양체 $(M, \\omega)$ 위의 함수 $H$는 자신의 해밀턴 벡터장 $X_H$의 흐름을 따라 보존된다.",
+  "steps": [
+   "$X_H$는 $\\iota_{X_H}\\omega = dH$로 정의된다.",
+   "흐름선 $\\gamma$에 대해 $\\frac{d}{dt}H(\\gamma(t)) = dH(X_H)$이다.",
+   "$\\omega$가 반대칭이므로 $dH(X_H) = \\omega(X_H, X_H) = 0$이다.",
+   "따라서 $H$는 흐름선 위에서 상수이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$\\omega$가 비퇴화이므로 $dH(X_H) = \\omega(X_H, X_H) \\neq 0$이다.",
+   "$\\omega$가 반대칭이므로 $dH(X_H) = \\omega(X_H, X_H) = 0$이다.",
+   "$\\omega$가 닫힌 형식이므로 $dH(X_H) = d\\omega(X_H) = 0$이다.",
+   "$dH(X_H) = |X_H|^2 \\ge 0$이다."
+  ],
+  "answer": 1,
+  "explain": "반대칭 형식에 같은 벡터를 두 번 넣으면 $\\omega(v, v) = -\\omega(v, v)$이므로 $0$이다. 에너지 보존의 기하학적 표현이다."
+ },
+ {
+  "id": "p-geometry-015",
+  "domain": "geometry",
+  "rating": 1350,
+  "topic": "고등",
+  "theorem": "평행선의 엇각",
+  "statement": "삼각형 $ABC$의 세 내각의 크기의 합은 $180^\\circ$이다.",
+  "steps": [
+   "꼭짓점 $A$를 지나고 변 $BC$에 평행한 직선 $\\ell$을 긋는다.",
+   "평행선에서 엇각의 크기는 같으므로 $\\ell$이 변 $AB$, $AC$와 이루는 각은 각각 $\\angle B$, $\\angle C$와 같다.",
+   "점 $A$에서 이 두 각과 $\\angle A$가 직선 $\\ell$ 위에 나란히 놓여 평각을 이룬다.",
+   "따라서 $\\angle A + \\angle B + \\angle C = 180^\\circ$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "평행선에서 엇각의 크기의 합은 $180^\\circ$이므로 $\\ell$이 변 $AB$, $AC$와 이루는 각은 각각 $180^\\circ - \\angle B$, $180^\\circ - \\angle C$와 같다.",
+   "$\\ell$이 변 $BC$와 평행하므로 $\\angle B = \\angle C$이다.",
+   "평행선에서 엇각의 크기는 같으므로 $\\ell$이 변 $AB$, $AC$와 이루는 각은 각각 $\\angle B$, $\\angle C$와 같다.",
+   "평행선에서 동위각의 크기의 합은 $90^\\circ$이므로 $\\ell$이 변 $AB$, $AC$와 이루는 각의 합은 $90^\\circ$이다."
+  ],
+  "answer": 2,
+  "explain": "평행선과 한 직선이 만나 생기는 엇각은 크기가 같다. 이를 이용해 세 각을 한 점에 모은다."
+ },
+ {
+  "id": "p-geometry-016",
+  "domain": "geometry",
+  "rating": 1600,
+  "topic": "고등",
+  "theorem": "원주각과 중심각",
+  "statement": "원의 중심 $O$가 원주각 $\\angle APB$의 변 $PB$ 위에 있을 때 $\\angle AOB = 2\\angle APB$이다.",
+  "steps": [
+   "$OA = OP$(반지름)이므로 삼각형 $OAP$는 이등변삼각형이고 $\\angle OAP = \\angle OPA$이다.",
+   "삼각형의 외각은 이웃하지 않는 두 내각의 합과 같으므로 $\\angle AOB = \\angle OAP + \\angle OPA$이다.",
+   "따라서 $\\angle AOB = 2\\angle OPA = 2\\angle APB$이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "$OA = AP$이므로 삼각형 $OAP$는 이등변삼각형이고 $\\angle AOP = \\angle OPA$이다.",
+   "삼각형 $OAP$는 정삼각형이므로 세 각이 모두 $60^\\circ$이다.",
+   "$OA = OP$(반지름)이므로 $\\angle OAP = 90^\\circ$이다.",
+   "$OA = OP$(반지름)이므로 삼각형 $OAP$는 이등변삼각형이고 $\\angle OAP = \\angle OPA$이다."
+  ],
+  "answer": 3,
+  "explain": "반지름 두 개가 이등변삼각형을 만들고, 그 밑각 두 개의 합이 외각인 중심각이 된다."
+ },
+ {
+  "id": "p-number-001",
+  "domain": "number",
+  "rating": 1750,
+  "topic": "합동식",
+  "theorem": "합동식의 곱셈",
+  "statement": "$a \\equiv b \\pmod{n}$이고 $c \\equiv d \\pmod{n}$이면 $ac \\equiv bd \\pmod{n}$이다.",
+  "steps": [
+   "$a - b = nk$, $c - d = nl$인 정수 $k$, $l$이 있다.",
+   "$ac - bd = (a - b)c + b(c - d)$로 쓸 수 있다.",
+   "따라서 $ac - bd = n(kc + bl)$이다.",
+   "즉 $ac \\equiv bd \\pmod{n}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$ac - bd = (a - b)c + b(c - d)$로 쓸 수 있다.",
+   "$ac - bd = (a - b)(c - d)$로 쓸 수 있다.",
+   "$ac - bd = (a - b)c - b(c - d)$로 쓸 수 있다.",
+   "$ac - bd = (a + b)(c - d)$로 쓸 수 있다."
+  ],
+  "answer": 0,
+  "explain": "$bc$를 빼고 더하면 $ac - bd = (ac - bc) + (bc - bd)$가 되어 두 항 모두 $n$의 배수이다."
+ },
+ {
+  "id": "p-number-002",
+  "domain": "number",
+  "rating": 1850,
+  "topic": "합동식",
+  "theorem": "베주 항등식과 법 n에서의 역원",
+  "statement": "$\\gcd(a, n) = 1$이면 $ax \\equiv 1 \\pmod{n}$을 만족하는 정수 $x$가 존재한다.",
+  "steps": [
+   "$\\gcd(a, n) = 1$이므로 베주 항등식에 의해 $as + nt = 1$인 정수 $s$, $t$가 있다.",
+   "$nt \\equiv 0 \\pmod{n}$이므로 $as \\equiv 1 \\pmod{n}$이다.",
+   "따라서 $x = s$가 구하는 정수이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "$\\gcd(a, n) = 1$이므로 베주 항등식에 의해 $as + nt = 0$인 $0$이 아닌 정수 $s$, $t$가 있다.",
+   "$\\gcd(a, n) = 1$이므로 베주 항등식에 의해 $as + nt = 1$인 정수 $s$, $t$가 있다.",
+   "$\\gcd(a, n) = 1$이므로 $a$는 $n$의 약수이다.",
+   "$\\gcd(a, n) = 1$이므로 $as \\cdot nt = 1$인 정수 $s$, $t$가 있다."
+  ],
+  "answer": 1,
+  "explain": "최대공약수는 두 수의 정수 계수 일차결합으로 나타낼 수 있다."
+ },
+ {
+  "id": "p-number-003",
+  "domain": "number",
+  "rating": 1900,
+  "topic": "오일러 정리",
+  "theorem": "페르마 소정리",
+  "statement": "소수 $p$가 정수 $a$를 나누지 않으면 $a^{p-1} \\equiv 1 \\pmod{p}$이다.",
+  "steps": [
+   "$a, 2a, \\ldots, (p-1)a$는 법 $p$로 $1, 2, \\ldots, p - 1$을 재배열한 것이다.",
+   "모두 곱하면 $a^{p-1}(p-1)! \\equiv (p-1)! \\pmod{p}$이다.",
+   "$(p-1)!$은 $p$와 서로소이므로 양변에서 소거하면 $a^{p-1} \\equiv 1 \\pmod{p}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "모두 곱하면 $a(p-1)! \\equiv (p-1)! \\pmod{p}$이다.",
+   "모두 곱하면 $a^{p}(p-1)! \\equiv (p-1)! \\pmod{p}$이다.",
+   "모두 곱하면 $a^{p-1}(p-1)! \\equiv (p-1)! \\pmod{p}$이다.",
+   "모두 더하면 $a^{p-1} + (p-1)! \\equiv (p-1)! \\pmod{p}$이다."
+  ],
+  "answer": 2,
+  "explain": "인수가 $p - 1$개이므로 $a$가 $p - 1$번 곱해진다."
+ },
+ {
+  "id": "p-number-004",
+  "domain": "number",
+  "rating": 2000,
+  "topic": "오일러 정리",
+  "theorem": "오일러 정리",
+  "statement": "$\\gcd(a, n) = 1$이면 $a^{\\varphi(n)} \\equiv 1 \\pmod{n}$이다.",
+  "steps": [
+   "$r_1, \\ldots, r_{\\varphi(n)}$을 법 $n$의 기약잉여계라 하자.",
+   "$ar_1, \\ldots, ar_{\\varphi(n)}$도 기약잉여계이다: 각각 $n$과 서로소이고, $ar_i \\equiv ar_j$이면 $a$를 소거해 $r_i \\equiv r_j$이다.",
+   "두 잉여계의 곱을 비교하면 $a^{\\varphi(n)}\\prod_i r_i \\equiv \\prod_i r_i \\pmod{n}$이다.",
+   "$\\prod_i r_i$는 $n$과 서로소이므로 소거하면 $a^{\\varphi(n)} \\equiv 1 \\pmod{n}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$a + r_1, \\ldots, a + r_{\\varphi(n)}$도 기약잉여계이다: 평행이동은 서로소 관계를 보존한다.",
+   "$ar_1, \\ldots, ar_{\\varphi(n)}$은 법 $n$으로 모두 서로 합동이다.",
+   "각 $i$에 대해 $ar_i \\equiv r_i \\pmod{n}$이다.",
+   "$ar_1, \\ldots, ar_{\\varphi(n)}$도 기약잉여계이다: 각각 $n$과 서로소이고, $ar_i \\equiv ar_j$이면 $a$를 소거해 $r_i \\equiv r_j$이다."
+  ],
+  "answer": 3,
+  "explain": "$a$가 법 $n$에서 가역이므로 $a$를 곱하는 사상은 기약잉여류의 집합 위의 전단사이다."
+ },
+ {
+  "id": "p-number-005",
+  "domain": "number",
+  "rating": 1950,
+  "topic": "중국인의 나머지 정리",
+  "theorem": "중국인의 나머지 정리 (존재성)",
+  "statement": "$\\gcd(m, n) = 1$이면 $x \\equiv a \\pmod{m}$, $x \\equiv b \\pmod{n}$을 모두 만족하는 정수 $x$가 존재한다.",
+  "steps": [
+   "$\\gcd(m, n) = 1$이므로 $ms + nt = 1$인 정수 $s$, $t$가 있다.",
+   "$x = a\\,nt + b\\,ms$로 놓는다.",
+   "$nt \\equiv 1 \\pmod{m}$이고 $ms \\equiv 0 \\pmod{m}$이므로 $x \\equiv a \\pmod{m}$이다.",
+   "마찬가지로 $ms \\equiv 1 \\pmod{n}$이고 $nt \\equiv 0 \\pmod{n}$이므로 $x \\equiv b \\pmod{n}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$x = a\\,nt + b\\,ms$로 놓는다.",
+   "$x = a\\,ms + b\\,nt$로 놓는다.",
+   "$x = a + b$로 놓는다.",
+   "$x = ab(ms + nt)$로 놓는다."
+  ],
+  "answer": 0,
+  "explain": "$nt$는 법 $m$으로 $1$, 법 $n$으로 $0$이고 $ms$는 그 반대이므로, $a$에는 $nt$를, $b$에는 $ms$를 곱해야 한다."
+ },
+ {
+  "id": "p-number-006",
+  "domain": "number",
+  "rating": 2100,
+  "topic": "중국인의 나머지 정리",
+  "theorem": "중국인의 나머지 정리 (유일성)",
+  "statement": "$\\gcd(m, n) = 1$이면 $x \\equiv a \\pmod{m}$, $x \\equiv b \\pmod{n}$의 해는 법 $mn$으로 유일하다.",
+  "steps": [
+   "$x$, $y$가 모두 해이면 $x - y$는 $m$의 배수이면서 $n$의 배수이다.",
+   "$m$과 $n$이 서로소이므로 $x - y$는 $mn$의 배수이다.",
+   "따라서 $x \\equiv y \\pmod{mn}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$m$과 $n$이 서로소이므로 $x - y$는 $m + n$의 배수이다.",
+   "$m$과 $n$이 서로소이므로 $x - y$는 $mn$의 배수이다.",
+   "$m$과 $n$이 서로소이므로 $x - y = 1$이다.",
+   "$x - y$는 $m$의 배수이므로 $mn$의 배수이다."
+  ],
+  "answer": 1,
+  "explain": "서로소인 두 수의 공배수는 그 곱의 배수이다 (최소공배수가 $mn$)."
+ },
+ {
+  "id": "p-number-007",
+  "domain": "number",
+  "rating": 2000,
+  "topic": "이차잉여",
+  "theorem": "오일러 판정법 (이차잉여인 경우)",
+  "statement": "홀수 소수 $p$와 $p$의 배수가 아닌 이차잉여 $a$에 대해 $a^{\\frac{p-1}{2}} \\equiv 1 \\pmod{p}$이다.",
+  "steps": [
+   "$a \\equiv x^2 \\pmod{p}$인 정수 $x$가 있고, $p$는 $x$를 나누지 않는다.",
+   "양변을 $\\frac{p-1}{2}$제곱하면 $a^{\\frac{p-1}{2}} \\equiv x^{p-1} \\pmod{p}$이다.",
+   "페르마 소정리에 의해 $x^{p-1} \\equiv 1 \\pmod{p}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "양변을 $\\frac{p-1}{2}$제곱하면 $a^{\\frac{p-1}{2}} \\equiv x^{\\frac{p-1}{2}} \\pmod{p}$이다.",
+   "양변을 $\\frac{p-1}{2}$제곱하면 $a^{\\frac{p-1}{2}} \\equiv x^{p+1} \\pmod{p}$이다.",
+   "양변을 $\\frac{p-1}{2}$제곱하면 $a^{\\frac{p-1}{2}} \\equiv x^{p-1} \\pmod{p}$이다.",
+   "양변을 $p - 1$제곱하면 $a^{\\frac{p-1}{2}} \\equiv x^{p-1} \\pmod{p}$이다."
+  ],
+  "answer": 2,
+  "explain": "$(x^2)^{\\frac{p-1}{2}} = x^{p-1}$이다."
+ },
+ {
+  "id": "p-number-008",
+  "domain": "number",
+  "rating": 2200,
+  "topic": "이차잉여",
+  "theorem": "이차 상호법칙의 제1 보충법칙",
+  "statement": "홀수 소수 $p$에 대해 $-1$이 법 $p$의 이차잉여인 것은 $p \\equiv 1 \\pmod{4}$인 것과 동치이다.",
+  "steps": [
+   "오일러 판정법에 의해 $\\left(\\frac{-1}{p}\\right) \\equiv (-1)^{\\frac{p-1}{2}} \\pmod{p}$이다.",
+   "$p \\equiv 1 \\pmod{4}$이면 $\\frac{p-1}{2}$가 짝수이므로 값은 $1$이다.",
+   "$p \\equiv 3 \\pmod{4}$이면 $\\frac{p-1}{2}$가 홀수이므로 값은 $-1$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$p \\equiv 1 \\pmod{4}$이면 $\\frac{p-1}{2}$가 홀수이므로 값은 $1$이다.",
+   "$p \\equiv 1 \\pmod{4}$이면 $\\frac{p-1}{2}$가 짝수이므로 값은 $-1$이다.",
+   "$p \\equiv 1 \\pmod{4}$이면 $p - 1$이 $8$의 배수이므로 값은 $1$이다.",
+   "$p \\equiv 1 \\pmod{4}$이면 $\\frac{p-1}{2}$가 짝수이므로 값은 $1$이다."
+  ],
+  "answer": 3,
+  "explain": "$p = 4k + 1$이면 $\\frac{p-1}{2} = 2k$는 짝수이고 $(-1)^{2k} = 1$이다."
+ },
+ {
+  "id": "p-number-009",
+  "domain": "number",
+  "rating": 2050,
+  "topic": "디오판토스 방정식",
+  "theorem": "법 4에서의 제곱수",
+  "statement": "$x^2 + y^2 = 4k + 3$을 만족하는 정수 $x$, $y$, $k$는 없다.",
+  "steps": [
+   "정수의 제곱을 $4$로 나눈 나머지는 $0$ 또는 $1$이다.",
+   "따라서 $x^2 + y^2$을 $4$로 나눈 나머지는 $0$, $1$, $2$ 중 하나이다.",
+   "우변을 $4$로 나눈 나머지는 $3$이므로 해가 없다."
+  ],
+  "blank": 0,
+  "choices": [
+   "정수의 제곱을 $4$로 나눈 나머지는 $0$ 또는 $1$이다.",
+   "정수의 제곱을 $4$로 나눈 나머지는 $0$, $1$, $2$ 중 하나이다.",
+   "정수의 제곱을 $4$로 나눈 나머지는 $1$ 또는 $3$이다.",
+   "정수의 제곱은 항상 짝수이다."
+  ],
+  "answer": 0,
+  "explain": "$(2m)^2 = 4m^2$, $(2m + 1)^2 = 4(m^2 + m) + 1$이다."
+ },
+ {
+  "id": "p-number-010",
+  "domain": "number",
+  "rating": 2250,
+  "topic": "디오판토스 방정식",
+  "theorem": "무한강하법",
+  "statement": "$x^3 + 2y^3 + 4z^3 = 0$의 정수해는 $(0, 0, 0)$뿐이다.",
+  "steps": [
+   "자명하지 않은 해가 있다면 그중 $|x| + |y| + |z|$가 최소인 해를 택한다.",
+   "$x^3 = -2y^3 - 4z^3$이 짝수이므로 $x = 2x_1$이다.",
+   "대입하고 $2$로 나누면 $4x_1^3 + y^3 + 2z^3 = 0$이므로 $y$가 짝수이고 $y = 2y_1$이다.",
+   "다시 대입하고 $2$로 나누면 $2x_1^3 + 4y_1^3 + z^3 = 0$이므로 $z = 2z_1$이고, $(x_1, y_1, z_1)$도 해이다.",
+   "이는 최소성에 모순이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "대입하고 $2$로 나누면 $x_1^3 + y^3 + 2z^3 = 0$이므로 $y$가 짝수이고 $y = 2y_1$이다.",
+   "대입하고 $2$로 나누면 $4x_1^3 + y^3 + 2z^3 = 0$이므로 $y$가 짝수이고 $y = 2y_1$이다.",
+   "대입하고 $2$로 나누면 $4x_1^3 + y^3 + 2z^3 = 0$이므로 $z$가 짝수이고 $z = 2z_1$이다.",
+   "대입하면 $8x_1^3 + 2y^3 + 4z^3 = 0$이므로 $y$는 홀수이다."
+  ],
+  "answer": 1,
+  "explain": "$(2x_1)^3 = 8x_1^3$을 $2$로 나누면 $4x_1^3$이고, $y^3 = -4x_1^3 - 2z^3$이 짝수이므로 $y$가 짝수이다."
+ },
+ {
+  "id": "p-number-011",
+  "domain": "number",
+  "rating": 2300,
+  "topic": "대수적 정수론",
+  "theorem": "노름의 곱셈성",
+  "statement": "가우스 정수환 $\\mathbb{Z}[i]$의 단원은 $\\pm 1$, $\\pm i$뿐이다.",
+  "steps": [
+   "노름 $N(a + bi) = a^2 + b^2$은 곱셈적이다.",
+   "$u$가 단원이면 $uv = 1$에서 $N(u)N(v) = 1$이고, 노름은 음이 아닌 정수이므로 $N(u) = 1$이다.",
+   "$a^2 + b^2 = 1$의 정수해는 $(\\pm 1, 0)$, $(0, \\pm 1)$이다.",
+   "따라서 단원은 $\\pm 1$, $\\pm i$이고, 이들은 실제로 가역이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$u$가 단원이면 $uv = 1$에서 $N(u) + N(v) = 1$이고, 따라서 $N(u) = 0$이다.",
+   "$u$가 단원이면 $uv = 1$에서 $N(u)N(v) = 1$이고, 따라서 $N(u) = -1$이다.",
+   "$u$가 단원이면 $uv = 1$에서 $N(u)N(v) = 1$이고, 노름은 음이 아닌 정수이므로 $N(u) = 1$이다.",
+   "$u$가 단원이면 $N(u)$는 소수이다."
+  ],
+  "answer": 2,
+  "explain": "음이 아닌 두 정수의 곱이 $1$이면 둘 다 $1$이다."
+ },
+ {
+  "id": "p-number-012",
+  "domain": "number",
+  "rating": 2500,
+  "topic": "대수적 정수론",
+  "theorem": "유일인수분해가 성립하지 않는 정수환",
+  "statement": "$\\mathbb{Z}[\\sqrt{-5}]$는 유일인수분해 정역이 아니다.",
+  "steps": [
+   "노름 $N(a + b\\sqrt{-5}) = a^2 + 5b^2$은 곱셈적이고 $N(2) = 4$이다.",
+   "$2 = \\alpha\\beta$이고 $\\alpha$, $\\beta$가 모두 단원이 아니면 $N(\\alpha) = N(\\beta) = 2$여야 한다.",
+   "그러나 $a^2 + 5b^2 = 2$는 정수해가 없으므로 $2$는 기약원이다.",
+   "같은 방법으로 $3$, $1 \\pm \\sqrt{-5}$도 기약원이고, 노름을 비교하면 $2$는 $1 \\pm \\sqrt{-5}$의 동반원이 아니다.",
+   "따라서 $6 = 2 \\cdot 3 = (1 + \\sqrt{-5})(1 - \\sqrt{-5})$는 본질적으로 다른 두 기약분해이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "그러나 $a^2 + 5b^2 = 4$는 정수해가 없으므로 $2$는 기약원이다.",
+   "$a^2 + 5b^2 = 2$는 해 $(a, b) = (1, 1)$을 가지므로 $2$는 기약원이 아니다.",
+   "$N(2) = 4$가 합성수이므로 $2$는 기약원이다.",
+   "그러나 $a^2 + 5b^2 = 2$는 정수해가 없으므로 $2$는 기약원이다."
+  ],
+  "answer": 3,
+  "explain": "$b \\neq 0$이면 $a^2 + 5b^2 \\ge 5$이고, $b = 0$이면 $a^2 = 2$가 되어 정수해가 없다."
+ },
+ {
+  "id": "p-number-013",
+  "domain": "number",
+  "rating": 2350,
+  "topic": "해석적 정수론",
+  "theorem": "뫼비우스 함수의 기본 성질",
+  "statement": "$n > 1$이면 $\\sum_{d \\mid n}\\mu(d) = 0$이다.",
+  "steps": [
+   "$n$의 서로 다른 소인수를 $p_1, \\ldots, p_k$라 하자 ($k \\ge 1$).",
+   "$\\mu(d) \\neq 0$인 약수 $d$는 이 소수들 중 일부의 곱이고, 소수 $j$개의 곱이면 $\\mu(d) = (-1)^j$이다.",
+   "따라서 $\\sum_{d \\mid n}\\mu(d) = \\sum_{j=0}^{k}\\binom{k}{j}(-1)^j = (1 - 1)^k = 0$이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "따라서 $\\sum_{d \\mid n}\\mu(d) = \\sum_{j=0}^{k}\\binom{k}{j}(-1)^j = (1 - 1)^k = 0$이다.",
+   "따라서 $\\sum_{d \\mid n}\\mu(d) = \\sum_{j=0}^{k}\\binom{k}{j} = 2^k$이다.",
+   "따라서 $\\sum_{d \\mid n}\\mu(d) = \\sum_{j=0}^{k}(-1)^j = 0$이다.",
+   "따라서 $\\sum_{d \\mid n}\\mu(d) = \\sum_{j=0}^{k}\\binom{k}{j}(-1)^j = (1 + 1)^k = 0$이다."
+  ],
+  "answer": 0,
+  "explain": "소수 $j$개를 고르는 방법이 $\\binom{k}{j}$가지이고, 이항정리로 교대합이 $(1 - 1)^k$가 된다."
+ },
+ {
+  "id": "p-number-014",
+  "domain": "number",
+  "rating": 2600,
+  "topic": "해석적 정수론",
+  "theorem": "오일러 곱 공식",
+  "statement": "$\\mathrm{Re}\\,s > 1$일 때 $\\zeta(s) = \\sum_{n \\ge 1} n^{-s} = \\prod_p \\left(1 - p^{-s}\\right)^{-1}$이다.",
+  "steps": [
+   "각 소수 $p$에 대해 등비급수 $\\left(1 - p^{-s}\\right)^{-1} = \\sum_{k \\ge 0} p^{-ks}$가 절대수렴한다.",
+   "$p \\le N$인 소수에 대한 유한 곱을 전개하면, 소인수가 모두 $N$ 이하인 $n$에 대한 $n^{-s}$의 합이 된다.",
+   "이때 각 $n$이 정확히 한 번씩 나타나는 것은 소인수분해의 유일성(산술의 기본정리) 때문이다.",
+   "$N \\to \\infty$로 보내면 절대수렴에 의해 곱은 $\\sum_{n \\ge 1} n^{-s}$로 수렴한다."
+  ],
+  "blank": 2,
+  "choices": [
+   "이때 각 $n$이 정확히 한 번씩 나타나는 것은 소수가 무한히 많기 때문이다.",
+   "이때 각 $n$이 정확히 한 번씩 나타나는 것은 소인수분해의 유일성(산술의 기본정리) 때문이다.",
+   "이때 각 $n$이 정확히 한 번씩 나타나는 것은 급수가 조건수렴하기 때문이다.",
+   "이때 각 $n$이 정확히 한 번씩 나타나는 것은 페르마 소정리 때문이다."
+  ],
+  "answer": 1,
+  "explain": "곱을 전개한 항 $p_1^{-k_1 s}\\cdots p_r^{-k_r s}$는 $n = p_1^{k_1}\\cdots p_r^{k_r}$에 대응하고, 이 대응이 일대일인 이유가 소인수분해의 유일성이다."
+ },
+ {
+  "id": "p-number-015",
+  "domain": "number",
+  "rating": 2400,
+  "topic": "p진수",
+  "theorem": "초거리 부등식",
+  "statement": "유리수 $x$, $y$에 대해 $|x + y|_p \\le \\max(|x|_p, |y|_p)$이다.",
+  "steps": [
+   "$x = p^a u$, $y = p^b v$ ($u$, $v$는 분자와 분모가 $p$와 서로소인 유리수), $a \\le b$라 하자.",
+   "$x + y = p^a\\left(u + p^{b-a}v\\right)$이고 $b - a \\ge 0$이므로 $u + p^{b-a}v$의 분모는 $p$와 서로소이다.",
+   "따라서 $v_p(x + y) \\ge a = \\min(v_p(x), v_p(y))$이다.",
+   "$|\\cdot|_p = p^{-v_p(\\cdot)}$이므로 $|x + y|_p \\le \\max(|x|_p, |y|_p)$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$x + y = p^{a+b}(u + v)$이고 $u + v$의 분모는 $p$와 서로소이다.",
+   "$x + y = p^b\\left(u + p^{a-b}v\\right)$이고 $u + p^{a-b}v$의 분모는 $p$와 서로소이다.",
+   "$x + y = p^a\\left(u + p^{b-a}v\\right)$이고 $b - a \\ge 0$이므로 $u + p^{b-a}v$의 분모는 $p$와 서로소이다.",
+   "$x + y = p^a(u + v)$이고 $u + v$의 분모는 $p$와 서로소이다."
+  ],
+  "answer": 2,
+  "explain": "작은 쪽 지수 $p^a$로 묶어야 괄호 안에 $p$의 음의 거듭제곱이 생기지 않는다."
+ },
+ {
+  "id": "p-number-016",
+  "domain": "number",
+  "rating": 2600,
+  "topic": "p진수",
+  "theorem": "p진 거리에서의 등비급수",
+  "statement": "$\\mathbb{Q}_p$에서 $\\sum_{n=0}^{\\infty} p^n = \\frac{1}{1 - p}$이다.",
+  "steps": [
+   "부분합은 $S_N = \\frac{1 - p^{N+1}}{1 - p}$이다.",
+   "$|1 - p|_p = 1$이므로 $\\left|S_N - \\frac{1}{1 - p}\\right|_p = \\frac{|p^{N+1}|_p}{|1 - p|_p} = p^{-(N+1)}$이다.",
+   "이 값은 $N \\to \\infty$일 때 $0$으로 수렴하므로 급수는 $\\frac{1}{1 - p}$로 수렴한다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$|1 - p|_p = 1$이므로 $\\left|S_N - \\frac{1}{1 - p}\\right|_p = \\frac{|p^{N+1}|_p}{|1 - p|_p} = p^{N+1}$이다.",
+   "$|1 - p|_p = p$이므로 $\\left|S_N - \\frac{1}{1 - p}\\right|_p = |p^{N+1}|_p \\cdot |1 - p|_p = p^{N+2}$이다.",
+   "$\\left|S_N - \\frac{1}{1 - p}\\right|_p = \\frac{1}{N + 1}$이다.",
+   "$|1 - p|_p = 1$이므로 $\\left|S_N - \\frac{1}{1 - p}\\right|_p = \\frac{|p^{N+1}|_p}{|1 - p|_p} = p^{-(N+1)}$이다."
+  ],
+  "answer": 3,
+  "explain": "$p$진 절댓값에서는 $p$의 높은 거듭제곱일수록 작다: $|p^k|_p = p^{-k}$."
+ },
+ {
+  "id": "p-number-017",
+  "domain": "number",
+  "rating": 2500,
+  "topic": "타원곡선",
+  "theorem": "타원곡선 군의 역원",
+  "statement": "타원곡선 $y^2 = x^3 + ax + b$ 위의 점 $P = (x_0, y_0)$에 대해 $2P = O$인 것은 $y_0 = 0$인 것과 동치이다.",
+  "steps": [
+   "군 연산에서 $P$의 역원은 $-P = (x_0, -y_0)$이다.",
+   "$2P = O$는 $P = -P$와 동치이다.",
+   "$(x_0, y_0) = (x_0, -y_0)$는 $y_0 = 0$과 동치이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$2P = O$는 $P = -P$와 동치이다.",
+   "$2P = O$는 $P = O$와 동치이다.",
+   "$2P = O$는 $P + P = P$와 동치이다.",
+   "$2P = O$는 $-P = O$와 동치이다."
+  ],
+  "answer": 0,
+  "explain": "$P + P = O$의 양변에 $-P$를 더하면 $P = -P$이다. 위수 $2$인 점은 곡선이 $x$축과 만나는 점들이다."
+ },
+ {
+  "id": "p-number-018",
+  "domain": "number",
+  "rating": 2750,
+  "topic": "타원곡선",
+  "theorem": "배가 공식의 유도",
+  "statement": "$y^2 = x^3 + ax + b$ 위의 점 $P = (x_0, y_0)$ ($y_0 \\neq 0$)에서의 접선의 기울기를 $\\lambda$라 하면 $2P$의 $x$좌표는 $\\lambda^2 - 2x_0$이다.",
+  "steps": [
+   "음함수 미분으로 $2y\\,y' = 3x^2 + a$이므로 $\\lambda = \\frac{3x_0^2 + a}{2y_0}$이다.",
+   "접선 $y = \\lambda(x - x_0) + y_0$을 곡선의 식에 대입하면 $x^3 - \\lambda^2 x^2 + \\cdots = 0$ 꼴의 삼차방정식을 얻는다.",
+   "접점이므로 $x_0$은 중근이고, 근과 계수의 관계에 의해 세 근의 합 $\\lambda^2$은 $2x_0 + x_3$과 같다.",
+   "따라서 셋째 교점의 $x$좌표는 $x_3 = \\lambda^2 - 2x_0$이고, $2P$는 그 점을 $x$축에 대해 대칭이동한 점이므로 $x$좌표가 같다."
+  ],
+  "blank": 2,
+  "choices": [
+   "접점이므로 $x_0$은 단근이고, 근과 계수의 관계에 의해 세 근의 합 $\\lambda^2$은 $x_0 + 2x_3$과 같다.",
+   "접점이므로 $x_0$은 중근이고, 근과 계수의 관계에 의해 세 근의 합 $\\lambda^2$은 $2x_0 + x_3$과 같다.",
+   "접점이므로 $x_0$은 중근이고, 근과 계수의 관계에 의해 세 근의 곱 $\\lambda^2$은 $x_0^2 x_3$과 같다.",
+   "접점이므로 $x_0$은 중근이고, 근과 계수의 관계에 의해 세 근의 합 $-\\lambda^2$은 $2x_0 + x_3$과 같다."
+  ],
+  "answer": 1,
+  "explain": "$x^3 + c_2 x^2 + \\cdots = 0$의 세 근의 합은 $-c_2$이고 여기서 $c_2 = -\\lambda^2$이다. 접선은 접점에서 곡선과 두 번 만난다."
+ },
+ {
+  "id": "p-number-019",
+  "domain": "number",
+  "rating": 2600,
+  "topic": "모듈러 형식",
+  "theorem": "홀수 무게의 모듈러 형식은 0",
+  "statement": "$SL_2(\\mathbb{Z})$에 대한 무게 $k$의 모듈러 형식 $f$는 $k$가 홀수이면 $f = 0$이다.",
+  "steps": [
+   "$f$는 $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\in SL_2(\\mathbb{Z})$에 대해 $f\\left(\\frac{az + b}{cz + d}\\right) = (cz + d)^k f(z)$를 만족한다.",
+   "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$을 대입하면 $f(z) = (-1)^k f(z)$이다.",
+   "$k$가 홀수이면 $f(z) = -f(z)$이므로 $f = 0$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$을 대입하면 $f(-z) = (-1)^k f(z)$이다.",
+   "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$을 대입하면 $f(z) = (-z)^k f(z)$이다.",
+   "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$을 대입하면 $f(z) = (-1)^k f(z)$이다.",
+   "$\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$을 대입하면 $f(z) = (-1)^k f(z)$이다."
+  ],
+  "answer": 2,
+  "explain": "$-I$는 $z \\mapsto \\frac{-z}{-1} = z$로 자명하게 작용하지만 인자 $(cz + d)^k = (-1)^k$를 남긴다."
+ },
+ {
+  "id": "p-number-020",
+  "domain": "number",
+  "rating": 2850,
+  "topic": "모듈러 형식",
+  "theorem": "모듈러 형식의 q-전개",
+  "statement": "$SL_2(\\mathbb{Z})$에 대한 모듈러 형식 $f$는 $q = e^{2\\pi i z}$에 대해 $f(z) = \\sum_{n \\ge 0} a_n q^n$으로 전개된다.",
+  "steps": [
+   "$T = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix} \\in SL_2(\\mathbb{Z})$에 변환 법칙을 적용하면 $f(z + 1) = f(z)$이다.",
+   "따라서 $f(z) = g(q)$인 함수 $g$가 구멍 뚫린 원판 $0 < |q| < 1$에서 잘 정의되고 해석적이다.",
+   "무한대에서의 정칙성 조건에 의해 $g$는 $q = 0$까지 해석적으로 확장되므로 $g(q) = \\sum_{n \\ge 0} a_n q^n$이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "$T = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix} \\in SL_2(\\mathbb{Z})$에 변환 법칙을 적용하면 $f(z + 1) = z^k f(z)$이다.",
+   "$S = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} \\in SL_2(\\mathbb{Z})$에 변환 법칙을 적용하면 $f(z + 1) = f(z)$이다.",
+   "$T = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix} \\in SL_2(\\mathbb{Z})$에 변환 법칙을 적용하면 $f(z + 1) = -f(z)$이다.",
+   "$T = \\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix} \\in SL_2(\\mathbb{Z})$에 변환 법칙을 적용하면 $f(z + 1) = f(z)$이다."
+  ],
+  "answer": 3,
+  "explain": "$T$에서는 $c = 0$, $d = 1$이므로 인자 $(cz + d)^k = 1$이고, 주기 $1$인 함수는 $e^{2\\pi i z}$의 함수로 쓸 수 있다."
+ },
+ {
+  "id": "p-discrete-001",
+  "domain": "discrete",
+  "rating": 1750,
+  "topic": "조합론",
+  "theorem": "비둘기집 원리",
+  "statement": "$n + 1$개의 정수 중에는 차가 $n$의 배수인 두 수가 있다.",
+  "steps": [
+   "정수를 $n$으로 나눈 나머지는 $0, 1, \\ldots, n - 1$의 $n$가지 중 하나이다.",
+   "수가 $n + 1$개이므로 비둘기집 원리에 의해 나머지가 같은 두 수가 있다.",
+   "그 두 수의 차는 $n$의 배수이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "수가 $n + 1$개이므로 비둘기집 원리에 의해 나머지가 같은 두 수가 있다.",
+   "수가 $n + 1$개이므로 비둘기집 원리에 의해 나머지가 모두 다르다.",
+   "수가 $n + 1$개이므로 비둘기집 원리에 의해 나머지가 $0$인 수가 있다.",
+   "수가 $n + 1$개이므로 비둘기집 원리에 의해 나머지의 합이 $n$인 두 수가 있다."
+  ],
+  "answer": 0,
+  "explain": "상자($n$가지 나머지)보다 물건($n + 1$개의 수)이 많으면 어떤 상자에는 두 개 이상 들어간다."
+ },
+ {
+  "id": "p-discrete-002",
+  "domain": "discrete",
+  "rating": 1900,
+  "topic": "조합론",
+  "theorem": "이중 세기",
+  "statement": "$\\sum_{k=0}^{n} k\\binom{n}{k} = n \\cdot 2^{n-1}$이다.",
+  "steps": [
+   "$n$명 중에서 위원회를 뽑고 그 안에서 위원장 한 명을 정하는 방법의 수를 두 가지로 센다.",
+   "위원회의 크기 $k$를 먼저 정하면 $\\sum_k k\\binom{n}{k}$가지이다.",
+   "위원장을 먼저 정하고 나머지 $n - 1$명 각각의 참여 여부를 정하면 $n \\cdot 2^{n-1}$가지이다.",
+   "같은 대상을 세었으므로 두 값은 같다."
+  ],
+  "blank": 2,
+  "choices": [
+   "위원장을 먼저 정하고 $n$명 각각의 참여 여부를 정하면 $n \\cdot 2^{n}$가지이다.",
+   "위원장을 먼저 정하고 나머지 $n - 1$명 각각의 참여 여부를 정하면 $n \\cdot 2^{n-1}$가지이다.",
+   "위원장을 먼저 정하고 나머지에서 $k$명을 뽑으면 $n\\binom{n}{k}$가지이다.",
+   "위원장을 먼저 정하고 나머지 $n - 1$명 각각의 참여 여부를 정하면 $(n - 1) \\cdot 2^{n}$가지이다."
+  ],
+  "answer": 1,
+  "explain": "위원장은 이미 위원회에 속하므로 참여 여부를 정할 사람은 $n - 1$명이다."
+ },
+ {
+  "id": "p-discrete-003",
+  "domain": "discrete",
+  "rating": 1800,
+  "topic": "그래프 이론",
+  "theorem": "악수 정리",
+  "statement": "유한 그래프에서 차수가 홀수인 꼭짓점의 개수는 짝수이다.",
+  "steps": [
+   "각 변은 양 끝점의 차수에 $1$씩 기여하므로 $\\sum_v \\deg(v) = 2|E|$이다.",
+   "차수가 짝수인 꼭짓점들의 차수 합은 짝수이므로, 차수가 홀수인 꼭짓점들의 차수 합도 짝수이다.",
+   "홀수를 홀수 개 더하면 홀수이므로, 차수가 홀수인 꼭짓점은 짝수 개이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "각 변은 한쪽 끝점의 차수에만 $1$ 기여하므로 $\\sum_v \\deg(v) = |E|$이다.",
+   "각 꼭짓점은 모든 변에 기여하므로 $\\sum_v \\deg(v) = |V||E|$이다.",
+   "각 변은 양 끝점의 차수에 $1$씩 기여하므로 $\\sum_v \\deg(v) = 2|E|$이다.",
+   "각 변은 양 끝점의 차수에 $1$씩 기여하므로 $\\sum_v \\deg(v) = 2|E| + 1$이다."
+  ],
+  "answer": 2,
+  "explain": "변 하나에 끝점이 둘이므로 차수의 총합은 변의 개수의 두 배이고, 따라서 짝수이다."
+ },
+ {
+  "id": "p-discrete-004",
+  "domain": "discrete",
+  "rating": 2050,
+  "topic": "그래프 이론",
+  "theorem": "트리의 변의 개수",
+  "statement": "꼭짓점이 $n$개인 트리의 변은 $n - 1$개이다.",
+  "steps": [
+   "$n = 1$이면 변이 없다. $n \\ge 2$인 트리에는 차수가 $1$인 꼭짓점(잎)이 있다.",
+   "잎 하나와 거기에 붙은 변을 제거하면 여전히 연결이고 순환이 없으므로 꼭짓점이 $n - 1$개인 트리가 된다.",
+   "귀납 가정에 의해 그 트리의 변은 $n - 2$개이다.",
+   "따라서 원래 트리의 변은 $n - 1$개이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "임의의 꼭짓점 하나와 거기에 붙은 변들을 제거하면 꼭짓점이 $n - 1$개인 트리가 된다.",
+   "잎 하나와 거기에 붙은 변을 제거하면 꼭짓점이 $n - 1$개인 완전그래프가 된다.",
+   "잎 하나를 제거하면 변이 두 개 줄어든 꼭짓점 $n - 1$개인 트리가 된다.",
+   "잎 하나와 거기에 붙은 변을 제거하면 여전히 연결이고 순환이 없으므로 꼭짓점이 $n - 1$개인 트리가 된다."
+  ],
+  "answer": 3,
+  "explain": "잎은 어떤 경로의 중간에도 놓이지 않으므로 제거해도 나머지가 연결된 채로 남는다. 잎이 아닌 꼭짓점을 제거하면 연결이 끊길 수 있다."
+ },
+ {
+  "id": "p-discrete-005",
+  "domain": "discrete",
+  "rating": 1850,
+  "topic": "확률론",
+  "theorem": "확률의 덧셈 정리",
+  "statement": "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$이다.",
+  "steps": [
+   "$A \\cup B$는 서로소인 $A$와 $B \\setminus A$의 합집합이다.",
+   "가법성에 의해 $P(A \\cup B) = P(A) + P(B \\setminus A)$이다.",
+   "$B$는 서로소인 $A \\cap B$와 $B \\setminus A$의 합집합이므로 $P(B \\setminus A) = P(B) - P(A \\cap B)$이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "$A \\cup B$는 서로소인 $A$와 $B \\setminus A$의 합집합이다.",
+   "$A \\cup B$는 서로소인 $A$와 $B$의 합집합이다.",
+   "$A \\cup B$는 서로소인 $A \\setminus B$와 $B \\setminus A$의 합집합이다.",
+   "$A \\cup B$는 서로소인 $A$와 $A \\cap B$의 합집합이다."
+  ],
+  "answer": 0,
+  "explain": "가법성은 서로소인 사건에만 쓸 수 있으므로, $B$에서 $A$와 겹치는 부분을 빼고 더한다."
+ },
+ {
+  "id": "p-discrete-006",
+  "domain": "discrete",
+  "rating": 2100,
+  "topic": "확률론",
+  "theorem": "체비셰프 부등식",
+  "statement": "평균 $\\mu$, 분산 $\\sigma^2$인 확률변수 $X$와 $k > 0$에 대해 $P(|X - \\mu| \\ge k) \\le \\frac{\\sigma^2}{k^2}$이다.",
+  "steps": [
+   "$Y = (X - \\mu)^2$은 음이 아니고 $E[Y] = \\sigma^2$이다.",
+   "$|X - \\mu| \\ge k$는 $Y \\ge k^2$과 같은 사건이다.",
+   "마르코프 부등식에 의해 $P(Y \\ge k^2) \\le \\frac{E[Y]}{k^2} = \\frac{\\sigma^2}{k^2}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$|X - \\mu| \\ge k$는 $Y \\ge k$와 같은 사건이다.",
+   "$|X - \\mu| \\ge k$는 $Y \\ge k^2$과 같은 사건이다.",
+   "$|X - \\mu| \\ge k$는 $Y \\le k^2$과 같은 사건이다.",
+   "$|X - \\mu| \\ge k$는 $Y \\ge \\sqrt{k}$와 같은 사건이다."
+  ],
+  "answer": 1,
+  "explain": "음이 아닌 수에서 제곱은 순서를 보존하므로 $|X - \\mu| \\ge k \\Leftrightarrow (X - \\mu)^2 \\ge k^2$이다."
+ },
+ {
+  "id": "p-discrete-007",
+  "domain": "discrete",
+  "rating": 2000,
+  "topic": "마르코프 연쇄",
+  "theorem": "정상분포의 불변성",
+  "statement": "전이행렬 $P$의 정상분포 $\\pi$ ($\\pi P = \\pi$)는 모든 $n \\ge 1$에 대해 $\\pi P^n = \\pi$를 만족한다.",
+  "steps": [
+   "$n = 1$일 때는 정상분포의 정의이다.",
+   "$\\pi P^n = \\pi$라 가정하면 $\\pi P^{n+1} = (\\pi P^n)P = \\pi P = \\pi$이다.",
+   "따라서 초기분포가 $\\pi$이면 모든 시각의 분포가 $\\pi$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$\\pi P^n = \\pi$라 가정하면 $\\pi P^{n+1} = \\pi(P^n + P) = 2\\pi$이다.",
+   "$\\pi P^n = \\pi$라 가정하면 $\\pi P^{n+1} = (\\pi P)^{n+1} = \\pi^{n+1}$이다.",
+   "$\\pi P^n = \\pi$라 가정하면 $\\pi P^{n+1} = (\\pi P^n)P = \\pi P = \\pi$이다.",
+   "$\\pi P^n = \\pi$라 가정하면 $\\pi P^{n+1} = P(\\pi P^n) = P\\pi = \\pi$이다."
+  ],
+  "answer": 2,
+  "explain": "행렬 곱의 결합법칙으로 $\\pi P^{n+1} = (\\pi P^n)P$이다. 행벡터 $\\pi$는 왼쪽에서만 곱할 수 있다."
+ },
+ {
+  "id": "p-discrete-008",
+  "domain": "discrete",
+  "rating": 2200,
+  "topic": "마르코프 연쇄",
+  "theorem": "채프먼-콜모고로프 방정식",
+  "statement": "시간 동질 마르코프 연쇄의 $n$단계 전이확률 $p^{(n)}_{ij}$에 대해 $p^{(m+n)}_{ij} = \\sum_k p^{(m)}_{ik}\\,p^{(n)}_{kj}$이다.",
+  "steps": [
+   "전확률 공식에 의해 $P(X_{m+n} = j \\mid X_0 = i) = \\sum_k P(X_{m+n} = j,\\ X_m = k \\mid X_0 = i)$이다.",
+   "마르코프 성질에 의해 각 항은 $P(X_m = k \\mid X_0 = i)\\,P(X_{m+n} = j \\mid X_m = k)$이다.",
+   "시간 동질성에 의해 이는 $\\sum_k p^{(m)}_{ik}\\,p^{(n)}_{kj}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "독립성에 의해 각 항은 $P(X_m = k)\\,P(X_{m+n} = j)$이다.",
+   "마르코프 성질에 의해 각 항은 $P(X_m = k \\mid X_0 = i) + P(X_{m+n} = j \\mid X_m = k)$이다.",
+   "마르코프 성질에 의해 각 항은 $P(X_{m+n} = j \\mid X_0 = i)$이다.",
+   "마르코프 성질에 의해 각 항은 $P(X_m = k \\mid X_0 = i)\\,P(X_{m+n} = j \\mid X_m = k)$이다."
+  ],
+  "answer": 3,
+  "explain": "조건부 확률의 곱셈 법칙으로 나눈 뒤, 마르코프 성질로 $X_m$이 주어졌을 때 $X_0$에 대한 조건을 지운다."
+ },
+ {
+  "id": "p-discrete-009",
+  "domain": "discrete",
+  "rating": 2000,
+  "topic": "생성함수",
+  "theorem": "피보나치 수열의 생성함수",
+  "statement": "$F_0 = 0$, $F_1 = 1$, $F_n = F_{n-1} + F_{n-2}$일 때 $F(x) = \\sum_{n \\ge 0} F_n x^n = \\frac{x}{1 - x - x^2}$이다.",
+  "steps": [
+   "점화식에 $x^n$을 곱해 $n \\ge 2$에 대해 더한다.",
+   "좌변은 $F(x) - F_0 - F_1 x = F(x) - x$이고 우변은 $xF(x) + x^2F(x)$이므로 $F(x) - x = xF(x) + x^2F(x)$이다.",
+   "$F(x)$에 대해 풀면 $F(x) = \\frac{x}{1 - x - x^2}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "좌변은 $F(x) - F_0 - F_1 x = F(x) - x$이고 우변은 $xF(x) + x^2F(x)$이므로 $F(x) - x = xF(x) + x^2F(x)$이다.",
+   "좌변은 $F(x)$이고 우변은 $xF(x) + x^2F(x)$이므로 $F(x) = xF(x) + x^2F(x)$이다.",
+   "좌변은 $F(x) - 1$이고 우변은 $xF(x) + x^2F(x)$이므로 $F(x) - 1 = xF(x) + x^2F(x)$이다.",
+   "좌변은 $F(x) - x$이고 우변은 $F(x) + xF(x)$이므로 $F(x) - x = F(x) + xF(x)$이다."
+  ],
+  "answer": 0,
+  "explain": "$n \\ge 2$부터 더했으므로 좌변에서 처음 두 항 $F_0 + F_1x = x$가 빠지고, 우변의 $\\sum F_{n-1}x^n = x(F(x) - F_0)$이다."
+ },
+ {
+  "id": "p-discrete-010",
+  "domain": "discrete",
+  "rating": 2200,
+  "topic": "생성함수",
+  "theorem": "방데르몽드 항등식",
+  "statement": "$\\binom{m+n}{r} = \\sum_{k=0}^{r}\\binom{m}{k}\\binom{n}{r-k}$이다.",
+  "steps": [
+   "$(1 + x)^{m+n} = (1 + x)^m(1 + x)^n$이다.",
+   "좌변에서 $x^r$의 계수는 $\\binom{m+n}{r}$이다.",
+   "우변에서 $x^r$의 계수는 두 다항식의 곱의 계수이므로 $\\sum_{k=0}^{r}\\binom{m}{k}\\binom{n}{r-k}$이다.",
+   "양변의 계수를 비교하면 된다."
+  ],
+  "blank": 2,
+  "choices": [
+   "우변에서 $x^r$의 계수는 $\\sum_{k=0}^{r}\\binom{m}{k}\\binom{n}{k}$이다.",
+   "우변에서 $x^r$의 계수는 두 다항식의 곱의 계수이므로 $\\sum_{k=0}^{r}\\binom{m}{k}\\binom{n}{r-k}$이다.",
+   "우변에서 $x^r$의 계수는 $\\binom{m}{r}\\binom{n}{r}$이다.",
+   "우변에서 $x^r$의 계수는 $\\sum_{k=0}^{r}\\left(\\binom{m}{k} + \\binom{n}{r-k}\\right)$이다."
+  ],
+  "answer": 1,
+  "explain": "$x^k$와 $x^{r-k}$를 곱해야 $x^r$이 되므로 지수의 합이 $r$인 쌍을 모두 더한다(합성곱)."
+ },
+ {
+  "id": "p-discrete-011",
+  "domain": "discrete",
+  "rating": 2300,
+  "topic": "확률과정",
+  "theorem": "대칭 랜덤워크는 마팅게일",
+  "statement": "독립이고 평균이 $0$인 $X_1, X_2, \\ldots$에 대해 $S_n = X_1 + \\cdots + X_n$은 자연 여과 $\\mathcal{F}_n$에 대한 마팅게일이다.",
+  "steps": [
+   "$S_{n+1} = S_n + X_{n+1}$이고 $S_n$은 $\\mathcal{F}_n$-가측이다.",
+   "$X_{n+1}$은 $\\mathcal{F}_n$과 독립이므로 $E[S_{n+1} \\mid \\mathcal{F}_n] = S_n + E[X_{n+1} \\mid \\mathcal{F}_n] = S_n + E[X_{n+1}]$이다.",
+   "$E[X_{n+1}] = 0$이므로 $E[S_{n+1} \\mid \\mathcal{F}_n] = S_n$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$X_{n+1}$은 $\\mathcal{F}_n$과 독립이므로 $E[S_{n+1} \\mid \\mathcal{F}_n] = E[S_n] + E[X_{n+1}]$이다.",
+   "$X_{n+1}$은 $\\mathcal{F}_n$과 독립이므로 $E[S_{n+1} \\mid \\mathcal{F}_n] = S_n \\cdot E[X_{n+1}]$이다.",
+   "$X_{n+1}$은 $\\mathcal{F}_n$과 독립이므로 $E[S_{n+1} \\mid \\mathcal{F}_n] = S_n + E[X_{n+1} \\mid \\mathcal{F}_n] = S_n + E[X_{n+1}]$이다.",
+   "$X_{n+1}$은 $\\mathcal{F}_n$-가측이므로 $E[S_{n+1} \\mid \\mathcal{F}_n] = S_n + X_{n+1}$이다."
+  ],
+  "answer": 2,
+  "explain": "이미 알려진 $S_n$은 조건부 기댓값 밖으로 그대로 나오고, 독립인 $X_{n+1}$의 조건부 기댓값은 그냥 기댓값이다."
+ },
+ {
+  "id": "p-discrete-012",
+  "domain": "discrete",
+  "rating": 2600,
+  "topic": "확률과정",
+  "theorem": "선택적 정지 정리",
+  "statement": "$0$에서 출발한 대칭 단순 랜덤워크가 $-a$보다 $b$에 먼저 도달할 확률은 $\\frac{a}{a + b}$이다 ($a, b$는 자연수).",
+  "steps": [
+   "$\\tau$를 $-a$ 또는 $b$에 처음 도달하는 시각이라 하면 $S_{n \\wedge \\tau}$는 유계 마팅게일이다.",
+   "선택적 정지 정리에 의해 $E[S_\\tau] = E[S_0] = 0$이다.",
+   "$p = P(S_\\tau = b)$라 하면 $E[S_\\tau] = pb - (1 - p)a$이다.",
+   "따라서 $pb - (1 - p)a = 0$에서 $p = \\frac{a}{a + b}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "선택적 정지 정리에 의해 $E[S_\\tau] = E[\\tau]$이다.",
+   "큰 수의 법칙에 의해 $S_\\tau = 0$이다.",
+   "선택적 정지 정리에 의해 $E[S_\\tau] = b$이다.",
+   "선택적 정지 정리에 의해 $E[S_\\tau] = E[S_0] = 0$이다."
+  ],
+  "answer": 3,
+  "explain": "유계 마팅게일은 정지 시각에서도 기댓값이 보존된다."
+ },
+ {
+  "id": "p-discrete-013",
+  "domain": "discrete",
+  "rating": 2300,
+  "topic": "수리통계학",
+  "theorem": "표본평균의 분산",
+  "statement": "독립이고 분산이 $\\sigma^2$인 $X_1, \\ldots, X_n$의 표본평균 $\\bar{X}$에 대해 $\\mathrm{Var}(\\bar{X}) = \\frac{\\sigma^2}{n}$이다.",
+  "steps": [
+   "$\\bar{X} = \\frac{1}{n}\\sum_i X_i$이다.",
+   "독립이므로 $\\mathrm{Var}\\left(\\sum_i X_i\\right) = \\sum_i \\mathrm{Var}(X_i) = n\\sigma^2$이다.",
+   "$\\mathrm{Var}(cY) = c^2\\,\\mathrm{Var}(Y)$이므로 $\\mathrm{Var}(\\bar{X}) = \\frac{1}{n^2} \\cdot n\\sigma^2 = \\frac{\\sigma^2}{n}$이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$\\mathrm{Var}(cY) = c^2\\,\\mathrm{Var}(Y)$이므로 $\\mathrm{Var}(\\bar{X}) = \\frac{1}{n^2} \\cdot n\\sigma^2 = \\frac{\\sigma^2}{n}$이다.",
+   "$\\mathrm{Var}(cY) = c\\,\\mathrm{Var}(Y)$이므로 $\\mathrm{Var}(\\bar{X}) = \\frac{1}{n} \\cdot n\\sigma^2 = \\sigma^2$이다.",
+   "$\\mathrm{Var}(cY) = c^2\\,\\mathrm{Var}(Y)$이므로 $\\mathrm{Var}(\\bar{X}) = n^2 \\cdot n\\sigma^2 = n^3\\sigma^2$이다.",
+   "$\\mathrm{Var}(cY) = \\mathrm{Var}(Y)$이므로 $\\mathrm{Var}(\\bar{X}) = n\\sigma^2$이다."
+  ],
+  "answer": 0,
+  "explain": "분산은 상수배에 대해 제곱으로 변한다: $\\frac{1}{n}$을 곱하면 분산은 $\\frac{1}{n^2}$배가 된다."
+ },
+ {
+  "id": "p-discrete-014",
+  "domain": "discrete",
+  "rating": 2550,
+  "topic": "수리통계학",
+  "theorem": "표본분산의 불편성",
+  "statement": "독립이고 평균 $\\mu$, 분산 $\\sigma^2$인 $X_1, \\ldots, X_n$에 대해 $S^2 = \\frac{1}{n-1}\\sum_i (X_i - \\bar{X})^2$은 $\\sigma^2$의 불편추정량이다.",
+  "steps": [
+   "$\\sum_i (X_i - \\bar{X})^2 = \\sum_i (X_i - \\mu)^2 - n(\\bar{X} - \\mu)^2$이다.",
+   "$E\\left[\\sum_i (X_i - \\mu)^2\\right] = n\\sigma^2$이고 $E\\left[n(\\bar{X} - \\mu)^2\\right] = n \\cdot \\frac{\\sigma^2}{n} = \\sigma^2$이다.",
+   "따라서 $E\\left[\\sum_i (X_i - \\bar{X})^2\\right] = (n - 1)\\sigma^2$이고 $E[S^2] = \\sigma^2$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$E\\left[\\sum_i (X_i - \\mu)^2\\right] = n\\sigma^2$이고 $E\\left[n(\\bar{X} - \\mu)^2\\right] = n \\cdot \\sigma^2 = n\\sigma^2$이다.",
+   "$E\\left[\\sum_i (X_i - \\mu)^2\\right] = n\\sigma^2$이고 $E\\left[n(\\bar{X} - \\mu)^2\\right] = n \\cdot \\frac{\\sigma^2}{n} = \\sigma^2$이다.",
+   "$E\\left[\\sum_i (X_i - \\mu)^2\\right] = n\\sigma^2$이고, $\\bar{X}$가 $\\mu$의 불편추정량이므로 $E\\left[n(\\bar{X} - \\mu)^2\\right] = 0$이다.",
+   "$E\\left[\\sum_i (X_i - \\mu)^2\\right] = \\sigma^2$이고 $E\\left[n(\\bar{X} - \\mu)^2\\right] = \\sigma^2$이다."
+  ],
+  "answer": 1,
+  "explain": "$E[(\\bar{X} - \\mu)^2] = \\mathrm{Var}(\\bar{X}) = \\frac{\\sigma^2}{n}$이다. 표본평균을 쓰면서 자유도 하나를 잃는 것이 $n - 1$의 이유이다."
+ },
+ {
+  "id": "p-discrete-015",
+  "domain": "discrete",
+  "rating": 2300,
+  "topic": "열거조합론",
+  "theorem": "카탈란 수의 점화식",
+  "statement": "카탈란 수는 $C_{n+1} = \\sum_{k=0}^{n} C_k C_{n-k}$를 만족한다.",
+  "steps": [
+   "길이 $2n + 2$인 뒤크 경로를 처음으로 높이 $0$에 돌아오는 지점에서 둘로 나눈다.",
+   "앞부분은 올라감, 길이 $2k$인 뒤크 경로, 내려감으로 이루어지고 뒷부분은 길이 $2(n - k)$인 뒤크 경로이다.",
+   "앞부분은 $C_k$가지, 뒷부분은 $C_{n-k}$가지이므로 $k$에 대해 더하면 점화식을 얻는다."
+  ],
+  "blank": 1,
+  "choices": [
+   "앞부분은 길이 $2k$인 뒤크 경로이고 뒷부분도 길이 $2k$인 뒤크 경로이다.",
+   "앞부분은 올라감, 길이 $2k$인 뒤크 경로, 내려감으로 이루어지고 뒷부분은 길이 $2(n + 1 - k)$인 뒤크 경로이다.",
+   "앞부분은 올라감, 길이 $2k$인 뒤크 경로, 내려감으로 이루어지고 뒷부분은 길이 $2(n - k)$인 뒤크 경로이다.",
+   "앞부분은 올라감과 내려감 한 쌍이고 뒷부분은 길이 $2n$인 뒤크 경로이다."
+  ],
+  "answer": 2,
+  "explain": "전체 길이가 $2 + 2k + 2(n - k) = 2n + 2$로 맞아야 하고, 첫 복귀 전에는 높이 $1$ 아래로 내려가지 않는다."
+ },
+ {
+  "id": "p-discrete-016",
+  "domain": "discrete",
+  "rating": 2500,
+  "topic": "열거조합론",
+  "theorem": "포함-배제 원리",
+  "statement": "교란순열의 수는 $D_n = n!\\sum_{k=0}^{n}\\frac{(-1)^k}{k!}$이다.",
+  "steps": [
+   "$A_i$를 $i$를 고정하는 순열의 집합이라 하면, 지정된 $k$개의 점을 모두 고정하는 순열은 $(n - k)!$개이다.",
+   "포함-배제 원리에 의해 $\\left|\\bigcup_i A_i\\right| = \\sum_{k=1}^{n}(-1)^{k+1}\\binom{n}{k}(n - k)!$이다.",
+   "$\\binom{n}{k}(n - k)! = \\frac{n!}{k!}$이므로 $D_n = n! - \\left|\\bigcup_i A_i\\right| = n!\\sum_{k=0}^{n}\\frac{(-1)^k}{k!}$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "포함-배제 원리에 의해 $\\left|\\bigcup_i A_i\\right| = \\sum_{k=1}^{n}\\binom{n}{k}(n - k)!$이다.",
+   "포함-배제 원리에 의해 $\\left|\\bigcup_i A_i\\right| = \\sum_{k=1}^{n}(-1)^{k+1}\\binom{n}{k}k!$이다.",
+   "포함-배제 원리에 의해 $\\left|\\bigcup_i A_i\\right| = \\sum_{k=1}^{n}(-1)^{k+1}(n - k)!$이다.",
+   "포함-배제 원리에 의해 $\\left|\\bigcup_i A_i\\right| = \\sum_{k=1}^{n}(-1)^{k+1}\\binom{n}{k}(n - k)!$이다."
+  ],
+  "answer": 3,
+  "explain": "$k$개의 집합의 교집합마다 부호 $(-1)^{k+1}$이 붙고, 그런 교집합은 $\\binom{n}{k}$개이며 각각의 크기가 $(n - k)!$이다."
+ },
+ {
+  "id": "p-discrete-017",
+  "domain": "discrete",
+  "rating": 2350,
+  "topic": "극단조합론",
+  "theorem": "만텔 정리",
+  "statement": "꼭짓점이 $n$개이고 삼각형이 없는 그래프의 변은 $\\frac{n^2}{4}$개 이하이다.",
+  "steps": [
+   "삼각형이 없으면 변 $uv$의 양 끝점은 공통 이웃이 없으므로 $\\deg(u) + \\deg(v) \\le n$이다.",
+   "모든 변에 대해 더하면 각 꼭짓점 $v$가 $\\deg(v)$번씩 나타나므로 $\\sum_v \\deg(v)^2 \\le n|E|$이다.",
+   "코시-슈바르츠 부등식과 악수 정리에 의해 $\\sum_v \\deg(v)^2 \\ge \\frac{(2|E|)^2}{n}$이다.",
+   "따라서 $\\frac{4|E|^2}{n} \\le n|E|$이고 $|E| \\le \\frac{n^2}{4}$이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "삼각형이 없으면 변 $uv$의 양 끝점은 공통 이웃이 없으므로 $\\deg(u) + \\deg(v) \\le n$이다.",
+   "삼각형이 없으면 변 $uv$의 양 끝점은 공통 이웃이 없으므로 $\\deg(u)\\deg(v) \\le n$이다.",
+   "삼각형이 없으면 변 $uv$의 양 끝점은 공통 이웃이 없으므로 $\\deg(u) + \\deg(v) \\ge n$이다.",
+   "삼각형이 없으면 변 $uv$의 양 끝점의 차수는 같으므로 $\\deg(u) = \\deg(v)$이다."
+  ],
+  "answer": 0,
+  "explain": "$u$의 이웃과 $v$의 이웃이 겹치면 삼각형이 생기므로 두 이웃 집합은 서로소이고, 합쳐서 꼭짓점 $n$개를 넘지 못한다."
+ },
+ {
+  "id": "p-discrete-018",
+  "domain": "discrete",
+  "rating": 2600,
+  "topic": "극단조합론",
+  "theorem": "램지 수 R(3, 3) ≤ 6",
+  "statement": "완전그래프 $K_6$의 변을 두 색으로 칠하면 반드시 단색 삼각형이 생긴다.",
+  "steps": [
+   "한 꼭짓점 $v$를 택한다. $v$에 붙은 변은 $5$개이다.",
+   "비둘기집 원리에 의해 그중 같은 색(빨강이라 하자)인 변이 $3$개 이상 있다.",
+   "그 세 변의 다른 끝점 $a$, $b$, $c$ 사이에 빨간 변이 하나라도 있으면 $v$와 함께 빨간 삼각형을 이룬다.",
+   "빨간 변이 하나도 없으면 $a$, $b$, $c$가 파란 삼각형을 이룬다."
+  ],
+  "blank": 1,
+  "choices": [
+   "비둘기집 원리에 의해 그중 같은 색(빨강이라 하자)인 변이 $2$개 이상 있다.",
+   "비둘기집 원리에 의해 그중 같은 색(빨강이라 하자)인 변이 $3$개 이상 있다.",
+   "비둘기집 원리에 의해 $5$개가 모두 같은 색(빨강이라 하자)이다.",
+   "비둘기집 원리에 의해 그중 같은 색(빨강이라 하자)인 변이 정확히 $4$개 있다."
+  ],
+  "answer": 1,
+  "explain": "$5$개를 두 색으로 나누면 한 색에 $\\lceil 5/2 \\rceil = 3$개 이상이 들어간다. $2$개만으로는 다음 단계의 세 끝점을 얻을 수 없다."
+ },
+ {
+  "id": "p-logic-001",
+  "domain": "logic",
+  "rating": 1300,
+  "topic": "고등",
+  "theorem": "귀류법",
+  "statement": "$\\sqrt{2}$는 무리수이다.",
+  "steps": [
+   "$\\sqrt{2} = \\frac{p}{q}$ ($p$, $q$는 서로소인 자연수)라 가정한다.",
+   "양변을 제곱하면 $p^2 = 2q^2$이므로 $p^2$이 짝수이고, 따라서 $p$도 짝수이다.",
+   "$p = 2k$로 놓으면 $q^2 = 2k^2$이므로 $q$도 짝수이다.",
+   "이는 $p$, $q$가 서로소라는 가정에 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "양변을 제곱하면 $p^2 = 2q^2$이므로 $p^2$이 짝수이고, 따라서 $p$도 짝수이다.",
+   "양변을 제곱하면 $p^2 = 2q^2$이므로 $p^2$이 홀수이고, 따라서 $p$도 홀수이다.",
+   "양변을 제곱하면 $p^2 = 2q$이므로 $q$가 $p$의 배수이다.",
+   "양변을 제곱하면 $p^2 = 2q^2$이므로 $q$가 $p$의 약수이다."
+  ],
+  "answer": 0,
+  "explain": "$2q^2$은 짝수이고, 홀수의 제곱은 홀수이므로 제곱이 짝수인 수는 짝수이다."
+ },
+ {
+  "id": "p-logic-002",
+  "domain": "logic",
+  "rating": 1500,
+  "topic": "고등",
+  "theorem": "대우를 이용한 증명",
+  "statement": "정수 $n$에 대해 $n^2$이 짝수이면 $n$도 짝수이다.",
+  "steps": [
+   "대우인 '$n$이 홀수이면 $n^2$도 홀수이다'를 증명하면 된다.",
+   "$n = 2k + 1$이면 $n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$이다.",
+   "따라서 $n^2$은 홀수이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "역인 '$n$이 짝수이면 $n^2$도 짝수이다'를 증명하면 된다.",
+   "대우인 '$n$이 홀수이면 $n^2$도 홀수이다'를 증명하면 된다.",
+   "이인 '$n^2$이 홀수이면 $n$도 홀수이다'를 증명하면 된다.",
+   "부정인 '$n^2$이 짝수이고 $n$은 홀수이다'를 증명하면 된다."
+  ],
+  "answer": 1,
+  "explain": "명제와 그 대우는 진리값이 같다. 역과 이는 원래 명제와 동치가 아니다."
+ },
+ {
+  "id": "p-logic-003",
+  "domain": "logic",
+  "rating": 1800,
+  "topic": "수리논리학",
+  "theorem": "가언 삼단논법",
+  "statement": "명제논리에서 $p \\Rightarrow q$와 $q \\Rightarrow r$로부터 $p \\Rightarrow r$이 논리적으로 귀결된다.",
+  "steps": [
+   "$p \\Rightarrow q$와 $q \\Rightarrow r$이 모두 참인 진리값 배정을 생각한다.",
+   "$p$가 거짓이면 $p \\Rightarrow r$은 참이다.",
+   "$p$가 참이면 첫째 전제에서 $q$가 참이고, 둘째 전제에서 $r$이 참이므로 $p \\Rightarrow r$은 참이다.",
+   "두 경우 모두 $p \\Rightarrow r$이 참이다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$p$가 참이면 첫째 전제에서 $q$가 거짓이고, 둘째 전제에서 $r$이 참이므로 $p \\Rightarrow r$은 참이다.",
+   "$p$가 참이면 $q$와 $r$의 값과 무관하게 $p \\Rightarrow r$은 참이다.",
+   "$p$가 참이면 첫째 전제에서 $q$가 참이고, 둘째 전제에서 $r$이 참이므로 $p \\Rightarrow r$은 참이다.",
+   "$p$가 참이면 둘째 전제에서 $r$이 거짓이므로 $p \\Rightarrow r$은 참이다."
+  ],
+  "answer": 2,
+  "explain": "조건문이 참이고 전건이 참이면 후건이 참이다(전건 긍정)를 두 번 쓴다."
+ },
+ {
+  "id": "p-logic-004",
+  "domain": "logic",
+  "rating": 2000,
+  "topic": "수리논리학",
+  "theorem": "식의 구성에 대한 귀납법",
+  "statement": "괄호를 완전히 쓴 모든 명제식에서 여는 괄호의 수와 닫는 괄호의 수는 같다.",
+  "steps": [
+   "원자 명제에는 괄호가 없으므로 성립한다.",
+   "$\\varphi$, $\\psi$에 대해 성립한다고 가정하면, $(\\neg\\varphi)$와 $(\\varphi \\land \\psi)$는 여는 괄호와 닫는 괄호를 하나씩 더한 것이다.",
+   "따라서 식의 구성에 대한 귀납법에 의해 모든 명제식에서 두 수가 같다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$\\varphi$, $\\psi$에 대해 성립한다고 가정하면, $(\\neg\\varphi)$와 $(\\varphi \\land \\psi)$는 여는 괄호만 하나 더한 것이다.",
+   "가정과 무관하게 $(\\varphi \\land \\psi)$의 괄호는 정확히 두 개이다.",
+   "$\\varphi$에 대해 성립하면 $\\psi$에 대해서도 성립하므로 $(\\varphi \\land \\psi)$는 원자 명제이다.",
+   "$\\varphi$, $\\psi$에 대해 성립한다고 가정하면, $(\\neg\\varphi)$와 $(\\varphi \\land \\psi)$는 여는 괄호와 닫는 괄호를 하나씩 더한 것이다."
+  ],
+  "answer": 3,
+  "explain": "명제식은 원자 명제에서 시작해 연결사로 만들어지므로, 각 구성 규칙이 성질을 보존함을 보이면 된다."
+ },
+ {
+  "id": "p-logic-005",
+  "domain": "logic",
+  "rating": 2150,
+  "topic": "수리논리학",
+  "theorem": "콤팩트성 정리 (완전성 정리 이용)",
+  "statement": "문장의 집합 $\\Sigma$의 모든 유한 부분집합이 만족 가능하면 $\\Sigma$도 만족 가능하다.",
+  "steps": [
+   "$\\Sigma$가 만족 불가능하다고 가정하면 완전성 정리에 의해 $\\Sigma$에서 모순이 증명된다.",
+   "증명은 유한 개의 식으로 이루어지므로 $\\Sigma$의 유한 부분집합 $\\Sigma_0$만 사용한다.",
+   "건전성 정리에 의해 $\\Sigma_0$은 만족 불가능하다.",
+   "이는 모든 유한 부분집합이 만족 가능하다는 가정에 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "증명은 유한 개의 식으로 이루어지므로 $\\Sigma$의 유한 부분집합 $\\Sigma_0$만 사용한다.",
+   "증명은 무한히 길 수 있으므로 $\\Sigma$ 전체를 사용한다.",
+   "$\\Sigma$는 유한집합이므로 $\\Sigma_0 = \\Sigma$로 택한다.",
+   "증명에 쓰인 식은 모두 항진식이므로 $\\Sigma$의 문장은 하나도 사용하지 않는다."
+  ],
+  "answer": 0,
+  "explain": "형식적 증명은 유한한 대상이라는 점이 콤팩트성의 핵심이다."
+ },
+ {
+  "id": "p-logic-006",
+  "domain": "logic",
+  "rating": 1900,
+  "topic": "집합론",
+  "theorem": "칸토어 정리",
+  "statement": "임의의 집합 $X$에 대해 $X$에서 멱집합 $\\mathcal{P}(X)$로 가는 전사함수는 없다.",
+  "steps": [
+   "$f: X \\to \\mathcal{P}(X)$가 전사라고 가정한다.",
+   "$D = \\{x \\in X : x \\notin f(x)\\}$로 놓는다.",
+   "전사이므로 $f(d) = D$인 $d \\in X$가 있다.",
+   "$d \\in D$이면 정의에 의해 $d \\notin f(d) = D$이고, $d \\notin D$이면 $d \\in D$가 되어 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$D = \\{x \\in X : x \\in f(x)\\}$로 놓는다.",
+   "$D = \\{x \\in X : x \\notin f(x)\\}$로 놓는다.",
+   "$D = \\{f(x) : x \\in X\\}$로 놓는다.",
+   "$D = X$로 놓는다."
+  ],
+  "answer": 1,
+  "explain": "대각선 논법: 각 $x$에서 $f(x)$와 다르게 행동하도록 만든 집합은 어떤 $f(x)$와도 같을 수 없다."
+ },
+ {
+  "id": "p-logic-007",
+  "domain": "logic",
+  "rating": 2100,
+  "topic": "집합론",
+  "theorem": "정렬집합의 순증가 함수",
+  "statement": "정렬집합 $W$에서 자기 자신으로 가는 순증가 함수 $f$는 모든 $x$에 대해 $f(x) \\ge x$를 만족한다.",
+  "steps": [
+   "$f(x) < x$인 $x$가 있다고 가정하고, 정렬성에 의해 그런 $x$ 중 최소인 것을 $x_0$이라 하자.",
+   "$y = f(x_0) < x_0$이고 $f$가 순증가이므로 $f(y) < f(x_0) = y$이다.",
+   "즉 $y < x_0$이면서 $f(y) < y$이므로 $x_0$의 최소성에 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$y = f(x_0) < x_0$이고 $f$가 순증가이므로 $f(y) > f(x_0) = y$이다.",
+   "$y = f(x_0) > x_0$이고 $f$가 순증가이므로 $f(y) > f(x_0) = y$이다.",
+   "$y = f(x_0) < x_0$이고 $f$가 순증가이므로 $f(y) < f(x_0) = y$이다.",
+   "$f$가 전사이므로 $f(y) = x_0$인 $y < x_0$이 있다."
+  ],
+  "answer": 2,
+  "explain": "순증가 함수에 부등식 $y < x_0$을 적용하면 $f(y) < f(x_0)$이 되어 더 작은 반례가 나온다."
+ },
+ {
+  "id": "p-logic-008",
+  "domain": "logic",
+  "rating": 2250,
+  "topic": "집합론",
+  "theorem": "선택공리",
+  "statement": "전사함수 $f: A \\to B$는 $f \\circ g = \\mathrm{id}_B$인 함수 $g: B \\to A$를 가진다.",
+  "steps": [
+   "$f$가 전사이므로 각 $b \\in B$에 대해 원상 $f^{-1}(\\{b\\})$는 공집합이 아니다.",
+   "선택공리에 의해 각 $b$에 대해 $g(b) \\in f^{-1}(\\{b\\})$인 함수 $g: B \\to A$가 존재한다.",
+   "그러면 모든 $b$에 대해 $f(g(b)) = b$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$f$가 단사이므로 $g = f^{-1}$로 놓는다.",
+   "각 $b$에 대해 $g(b) = f^{-1}(\\{b\\})$로 놓으면 함수 $g: B \\to A$가 된다.",
+   "선택공리에 의해 각 $b$에 대해 $g(b) \\in B$인 함수 $g: B \\to A$가 존재한다.",
+   "선택공리에 의해 각 $b$에 대해 $g(b) \\in f^{-1}(\\{b\\})$인 함수 $g: B \\to A$가 존재한다."
+  ],
+  "answer": 3,
+  "explain": "공집합이 아닌 집합들의 족에서 원소를 하나씩 동시에 고르는 함수의 존재가 선택공리이다. 원상 전체는 $A$의 원소가 아니라 부분집합이다."
+ },
+ {
+  "id": "p-logic-009",
+  "domain": "logic",
+  "rating": 2400,
+  "topic": "모델론",
+  "theorem": "콤팩트성 정리의 응용",
+  "statement": "임의로 큰 유한 모형을 갖는 일차 이론 $T$는 무한 모형을 가진다.",
+  "steps": [
+   "새 상수 기호 $c_1, c_2, \\ldots$를 추가하고 $T' = T \\cup \\{c_i \\neq c_j : i < j\\}$로 놓는다.",
+   "$T'$의 유한 부분집합은 유한 개의 상수만 언급하므로, 충분히 큰 $T$의 유한 모형에서 그 상수들을 서로 다른 원소로 해석하면 만족된다.",
+   "콤팩트성 정리에 의해 $T'$은 모형을 가진다.",
+   "그 모형에서 $c_i$들의 해석은 모두 다르므로 이는 $T$의 무한 모형이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$T'$의 유한 부분집합은 유한 개의 상수만 언급하므로, 충분히 큰 $T$의 유한 모형에서 그 상수들을 서로 다른 원소로 해석하면 만족된다.",
+   "$T'$의 유한 부분집합은 모든 상수를 언급하므로 무한 모형에서만 만족된다.",
+   "$T'$은 $T$를 포함하므로 $T$의 모든 모형에서 만족된다.",
+   "$T'$의 유한 부분집합은 유한 개의 상수만 언급하므로, 원소가 하나인 모형에서 그 상수들을 같은 원소로 해석하면 만족된다."
+  ],
+  "answer": 0,
+  "explain": "유한 부분집합은 \"서로 다른 원소가 $k$개 이상\"만 요구하므로 큰 유한 모형으로 충분하다. 전체를 한꺼번에 만족시키는 것은 콤팩트성이 해 준다."
+ },
+ {
+  "id": "p-logic-010",
+  "domain": "logic",
+  "rating": 2650,
+  "topic": "모델론",
+  "theorem": "동형인 구조는 기본 동치",
+  "statement": "동형사상 $h: \\mathcal{M} \\to \\mathcal{N}$이 있으면 $\\mathcal{M}$과 $\\mathcal{N}$은 같은 일차 문장을 만족한다.",
+  "steps": [
+   "모든 식 $\\varphi$와 배정 $s$에 대해 $\\mathcal{M} \\models \\varphi[s] \\Leftrightarrow \\mathcal{N} \\models \\varphi[h \\circ s]$임을 식의 구성에 대한 귀납법으로 보인다.",
+   "원자식과 논리 연결사의 경우는 $h$가 관계와 함수를 보존하는 전단사이므로 성립한다.",
+   "$\\exists x\\,\\psi$의 경우, $\\mathcal{N}$에서의 증인 $b$에 대해 $h$가 전사이므로 $b = h(a)$인 $a$를 택해 귀납 가정을 적용한다.",
+   "문장의 참·거짓은 배정과 무관하므로 두 구조는 같은 문장을 만족한다."
+  ],
+  "blank": 2,
+  "choices": [
+   "$\\exists x\\,\\psi$의 경우, $\\mathcal{N}$에서의 증인 $b$는 $\\mathcal{M}$의 원소이기도 하므로 그대로 사용한다.",
+   "$\\exists x\\,\\psi$의 경우, $\\mathcal{N}$에서의 증인 $b$에 대해 $h$가 전사이므로 $b = h(a)$인 $a$를 택해 귀납 가정을 적용한다.",
+   "$\\exists x\\,\\psi$의 경우는 양화사가 있어 귀납 가정을 쓸 수 없으므로 원자식의 경우로 되돌린다.",
+   "$\\exists x\\,\\psi$의 경우, $\\mathcal{N}$에서의 증인 $b$에 대해 $h$가 단사이므로 $b = h(a)$인 $a$를 택해 귀납 가정을 적용한다."
+  ],
+  "answer": 1,
+  "explain": "$\\mathcal{N}$의 증인을 $\\mathcal{M}$으로 끌어오려면 원상이 있어야 하고, 이를 보장하는 것은 전사성이다."
+ },
+ {
+  "id": "p-logic-011",
+  "domain": "logic",
+  "rating": 2400,
+  "topic": "증명론",
+  "theorem": "건전성 정리",
+  "statement": "$\\Gamma \\vdash \\varphi$이면 $\\Gamma \\models \\varphi$이다.",
+  "steps": [
+   "증명의 길이에 대한 귀납법을 쓴다. 증명의 어떤 줄이 논리 공리이거나 $\\Gamma$의 원소이면 $\\Gamma$의 모든 모형에서 참이다.",
+   "어떤 줄 $\\chi$가 앞의 두 줄 $\\psi$, $\\psi \\Rightarrow \\chi$에서 전건 긍정으로 얻어졌다면, 귀납 가정에 의해 $\\Gamma$의 모든 모형에서 $\\psi$와 $\\psi \\Rightarrow \\chi$가 참이므로 $\\chi$도 참이다.",
+   "따라서 마지막 줄 $\\varphi$도 $\\Gamma$의 모든 모형에서 참이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "어떤 줄 $\\chi$가 앞의 두 줄 $\\psi$, $\\psi \\Rightarrow \\chi$에서 얻어졌다면, 귀납 가정에 의해 어떤 한 모형에서 $\\psi$가 참이므로 $\\chi$는 모든 모형에서 참이다.",
+   "어떤 줄 $\\psi$가 앞의 두 줄 $\\chi$, $\\psi \\Rightarrow \\chi$에서 얻어졌다면, $\\chi$와 $\\psi \\Rightarrow \\chi$가 참이므로 $\\psi$도 참이다.",
+   "어떤 줄 $\\chi$가 앞의 두 줄 $\\psi$, $\\psi \\Rightarrow \\chi$에서 전건 긍정으로 얻어졌다면, 귀납 가정에 의해 $\\Gamma$의 모든 모형에서 $\\psi$와 $\\psi \\Rightarrow \\chi$가 참이므로 $\\chi$도 참이다.",
+   "전건 긍정은 기호 조작 규칙이므로 의미와 무관하게 $\\chi$는 참이다."
+  ],
+  "answer": 2,
+  "explain": "추론 규칙이 참을 보존함을 보이는 것이 건전성의 핵심이다. $\\chi$와 $\\psi \\Rightarrow \\chi$에서 $\\psi$를 얻는 것은 후건 긍정의 오류이다."
+ },
+ {
+  "id": "p-logic-012",
+  "domain": "logic",
+  "rating": 2700,
+  "topic": "증명론",
+  "theorem": "괴델의 제1 불완전성 정리 (핵심 단계)",
+  "statement": "무모순이고 충분히 강한 이론 $T$와 $T \\vdash G \\Leftrightarrow \\neg\\mathrm{Prov}_T(\\overline{G})$인 괴델 문장 $G$에 대해 $T$는 $G$를 증명하지 못한다. (여기서 $\\overline{G}$는 $G$의 괴델 수를 나타내는 수사이다.)",
+  "steps": [
+   "$T \\vdash G$라 가정한다.",
+   "$G$의 증명이 실제로 존재하므로, 증명 가능성 술어의 표현 가능성에 의해 $T \\vdash \\mathrm{Prov}_T(\\overline{G})$이다.",
+   "한편 $G$의 정의와 가정에 의해 $T \\vdash \\neg\\mathrm{Prov}_T(\\overline{G})$이다.",
+   "이는 $T$의 무모순성에 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$G$의 증명이 실제로 존재하므로 $T \\vdash \\neg\\mathrm{Prov}_T(\\overline{G})$이다.",
+   "$T$는 완전하므로 $T \\vdash \\neg G$이다.",
+   "$G$의 증명이 실제로 존재하므로 $G$는 표준 모형에서 거짓이다.",
+   "$G$의 증명이 실제로 존재하므로, 증명 가능성 술어의 표현 가능성에 의해 $T \\vdash \\mathrm{Prov}_T(\\overline{G})$이다."
+  ],
+  "answer": 3,
+  "explain": "\"증명이 존재한다\"는 참인 $\\Sigma_1$ 문장이고, 충분히 강한 이론은 참인 $\\Sigma_1$ 문장을 모두 증명한다."
+ },
+ {
+  "id": "p-logic-013",
+  "domain": "logic",
+  "rating": 2350,
+  "topic": "계산가능성 이론",
+  "theorem": "정지 문제의 결정 불가능성",
+  "statement": "임의의 프로그램 $P$와 입력 $x$에 대해 $P$가 $x$에서 정지하는지 판정하는 프로그램은 존재하지 않는다.",
+  "steps": [
+   "그런 판정 프로그램 $H(P, x)$가 있다고 가정한다.",
+   "프로그램 $D(P)$를 '$H(P, P)$가 \"정지한다\"고 답하면 무한 루프에 빠지고, 아니면 정지하는' 것으로 정의한다.",
+   "$D(D)$가 정지한다면 $H(D, D)$가 \"정지한다\"고 답하므로 $D(D)$는 무한 루프에 빠진다.",
+   "$D(D)$가 정지하지 않는다면 $H(D, D)$가 \"정지하지 않는다\"고 답하므로 $D(D)$는 정지한다. 어느 쪽이든 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "프로그램 $D(P)$를 '$H(P, P)$가 \"정지한다\"고 답하면 무한 루프에 빠지고, 아니면 정지하는' 것으로 정의한다.",
+   "프로그램 $D(P)$를 '$H(P, P)$가 \"정지한다\"고 답하면 정지하고, 아니면 무한 루프에 빠지는' 것으로 정의한다.",
+   "프로그램 $D(P)$를 $H(P, P)$의 답을 그대로 출력하고 정지하는 것으로 정의한다.",
+   "프로그램 $D(P)$를 입력과 무관하게 항상 정지하는 것으로 정의한다."
+  ],
+  "answer": 0,
+  "explain": "판정 결과와 반대로 행동하는 프로그램을 만들어 자기 자신을 입력으로 주는 대각선 논법이다."
+ },
+ {
+  "id": "p-logic-014",
+  "domain": "logic",
+  "rating": 2600,
+  "topic": "계산가능성 이론",
+  "theorem": "포스트 정리 (결정 가능성의 특성화)",
+  "statement": "집합 $A$와 그 여집합이 모두 계산가능 열거 가능이면 $A$는 결정 가능하다.",
+  "steps": [
+   "$A$와 여집합을 각각 열거하는 기계를 $M_1$, $M_2$라 하자.",
+   "입력 $x$에 대해 $M_1$과 $M_2$를 한 단계씩 번갈아 실행한다.",
+   "$x$는 $A$ 또는 여집합에 속하므로 둘 중 하나가 유한 시간 안에 $x$를 출력한다.",
+   "어느 쪽이 출력했는지에 따라 답하면 항상 정지하는 판정 알고리즘이 된다."
+  ],
+  "blank": 1,
+  "choices": [
+   "입력 $x$에 대해 $M_1$을 끝까지 실행한 뒤 $M_2$를 실행한다.",
+   "입력 $x$에 대해 $M_1$과 $M_2$를 한 단계씩 번갈아 실행한다.",
+   "입력 $x$에 대해 $M_1$만 실행하고 $x$가 나오지 않으면 \"아니오\"라고 답한다.",
+   "입력 $x$에 대해 $M_1$과 $M_2$를 정확히 $x$단계씩 실행한 뒤 멈춘다."
+  ],
+  "answer": 1,
+  "explain": "열거 기계는 멈추지 않을 수 있으므로 하나를 끝까지 기다릴 수 없다. 번갈아 실행(도브테일링)해야 한다."
+ },
+ {
+  "id": "p-misc-001",
+  "domain": "misc",
+  "rating": 1800,
+  "topic": "수치해석",
+  "theorem": "뉴턴 방법의 이차 수렴",
+  "statement": "$f(r) = 0$, $f'(r) \\neq 0$인 근 $r$ 근처에서 뉴턴 방법의 오차 $e_n = x_n - r$은 $e_{n+1} = \\frac{f''(\\xi)}{2f'(x_n)}e_n^2$을 만족한다.",
+  "steps": [
+   "$x_n$을 중심으로 한 테일러 전개에 의해 $0 = f(r) = f(x_n) - f'(x_n)e_n + \\frac{1}{2}f''(\\xi)e_n^2$이다.",
+   "양변을 $f'(x_n)$으로 나누고 $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$을 쓰면 $e_{n+1} = e_n - \\frac{f(x_n)}{f'(x_n)} = \\frac{f''(\\xi)}{2f'(x_n)}e_n^2$이다.",
+   "따라서 오차는 이전 오차의 제곱에 비례한다."
+  ],
+  "blank": 0,
+  "choices": [
+   "$x_n$을 중심으로 한 테일러 전개에 의해 $0 = f(r) = f(x_n) - f'(x_n)e_n + \\frac{1}{2}f''(\\xi)e_n^2$이다.",
+   "$x_n$을 중심으로 한 테일러 전개에 의해 $0 = f(r) = f(x_n) - f'(x_n)e_n$이다 (나머지항 없음).",
+   "$x_n$을 중심으로 한 테일러 전개에 의해 $0 = f(r) = f(x_n) + f'(x_n)e_n + \\frac{1}{2}f''(\\xi)e_n$이다.",
+   "$x_n$을 중심으로 한 테일러 전개에 의해 $0 = f(r) = f(x_n) - f'(x_n)e_n + \\frac{1}{2}f''(\\xi)e_n^3$이다."
+  ],
+  "answer": 0,
+  "explain": "$r = x_n - e_n$이므로 $f(r) = f(x_n) + f'(x_n)(-e_n) + \\frac{1}{2}f''(\\xi)(-e_n)^2$이다."
+ },
+ {
+  "id": "p-misc-002",
+  "domain": "misc",
+  "rating": 2000,
+  "topic": "수치해석",
+  "theorem": "고정점 반복의 수렴 (축소사상)",
+  "statement": "$|g(x) - g(y)| \\le L|x - y|$ ($0 \\le L < 1$)이고 $g(r) = r$이면 반복 $x_{n+1} = g(x_n)$은 $r$로 수렴한다.",
+  "steps": [
+   "$|x_{n+1} - r| = |g(x_n) - g(r)| \\le L|x_n - r|$이다.",
+   "반복하면 $|x_n - r| \\le L^n|x_0 - r|$이다.",
+   "$L < 1$이므로 $L^n \\to 0$이고 $x_n \\to r$이다."
+  ],
+  "blank": 0,
+  "choices": [
+   "$|x_{n+1} - r| = |g(x_n) - g(r)| \\ge L|x_n - r|$이다.",
+   "$|x_{n+1} - r| = |g(x_n) - g(r)| \\le L|x_n - r|$이다.",
+   "$|x_{n+1} - r| = |g(x_n) - r| \\le |x_n - r| + L$이다.",
+   "$|x_{n+1} - r| = |g(x_n) - g(r)| = L^n$이다."
+  ],
+  "answer": 1,
+  "explain": "$r = g(r)$을 넣어 축소 조건을 $x_n$과 $r$에 적용한다."
+ },
+ {
+  "id": "p-misc-003",
+  "domain": "misc",
+  "rating": 2150,
+  "topic": "수치해석",
+  "theorem": "보간 다항식의 유일성",
+  "statement": "서로 다른 $n + 1$개의 점에서 주어진 값을 갖는 $n$차 이하 다항식은 많아야 하나이다.",
+  "steps": [
+   "차수가 $n$ 이하인 두 다항식 $p$, $q$가 서로 다른 $n + 1$개의 점에서 값이 일치한다고 하자.",
+   "$p - q$는 차수가 $n$ 이하이면서 근을 $n + 1$개 가진다.",
+   "$0$이 아닌 $n$차 이하 다항식의 근은 많아야 $n$개이므로 $p - q = 0$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$p - q$는 차수가 $n + 1$이고 근을 $n + 1$개 가진다.",
+   "$p + q$는 차수가 $n$ 이하이면서 근을 $n + 1$개 가진다.",
+   "$p - q$는 차수가 $n$ 이하이면서 근을 $n + 1$개 가진다.",
+   "$p - q$는 상수이므로 근을 갖지 않는다."
+  ],
+  "answer": 2,
+  "explain": "값이 일치하는 점은 차 $p - q$의 근이고, 차의 차수는 $n$을 넘지 않는다."
+ },
+ {
+  "id": "p-misc-004",
+  "domain": "misc",
+  "rating": 1900,
+  "topic": "최적화",
+  "theorem": "볼록함수의 국소 최소는 전역 최소",
+  "statement": "볼록함수 $f$의 국소 최소점 $x^*$는 전역 최소점이다.",
+  "steps": [
+   "$f(y) < f(x^*)$인 $y$가 있다고 가정한다.",
+   "볼록성에 의해 $0 < t \\le 1$일 때 $f\\left((1 - t)x^* + ty\\right) \\le (1 - t)f(x^*) + tf(y) < f(x^*)$이다.",
+   "$t$를 충분히 작게 잡으면 $(1 - t)x^* + ty$는 $x^*$에 임의로 가깝다.",
+   "이는 $x^*$가 국소 최소점이라는 것에 모순이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "볼록성에 의해 $0 < t \\le 1$일 때 $f\\left((1 - t)x^* + ty\\right) \\ge (1 - t)f(x^*) + tf(y) > f(x^*)$이다.",
+   "연속성에 의해 $0 < t \\le 1$일 때 $f\\left((1 - t)x^* + ty\\right) = f(x^*)$이다.",
+   "볼록성에 의해 $f\\left((1 - t)x^* + ty\\right) \\le f(y)$이므로 $y$가 국소 최소점이다.",
+   "볼록성에 의해 $0 < t \\le 1$일 때 $f\\left((1 - t)x^* + ty\\right) \\le (1 - t)f(x^*) + tf(y) < f(x^*)$이다."
+  ],
+  "answer": 3,
+  "explain": "볼록함수의 그래프는 현 아래에 있으므로, $x^*$에서 더 낮은 점 $y$ 쪽으로 조금만 움직여도 값이 줄어든다."
+ },
+ {
+  "id": "p-misc-005",
+  "domain": "misc",
+  "rating": 2100,
+  "topic": "최적화",
+  "theorem": "경사하강법의 감소 보조정리",
+  "statement": "$\\nabla f$가 $L$-립시츠이면 $y = x - \\frac{1}{L}\\nabla f(x)$에 대해 $f(y) \\le f(x) - \\frac{1}{2L}|\\nabla f(x)|^2$이다.",
+  "steps": [
+   "$\\nabla f$가 $L$-립시츠이면 $f(y) \\le f(x) + \\nabla f(x) \\cdot (y - x) + \\frac{L}{2}|y - x|^2$이다.",
+   "$y - x = -\\frac{1}{L}\\nabla f(x)$를 대입하면 $f(y) \\le f(x) - \\frac{1}{L}|\\nabla f(x)|^2 + \\frac{1}{2L}|\\nabla f(x)|^2$이다.",
+   "정리하면 $f(y) \\le f(x) - \\frac{1}{2L}|\\nabla f(x)|^2$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$y - x = -\\frac{1}{L}\\nabla f(x)$를 대입하면 $f(y) \\le f(x) - \\frac{1}{L}|\\nabla f(x)|^2 + \\frac{1}{2L}|\\nabla f(x)|^2$이다.",
+   "$y - x = -\\frac{1}{L}\\nabla f(x)$를 대입하면 $f(y) \\le f(x) + \\frac{1}{L}|\\nabla f(x)|^2 + \\frac{1}{2L}|\\nabla f(x)|^2$이다.",
+   "$y - x = -\\frac{1}{L}\\nabla f(x)$를 대입하면 $f(y) \\le f(x) - \\frac{1}{L}|\\nabla f(x)|^2 + \\frac{L}{2}|\\nabla f(x)|^2$이다.",
+   "$y - x = -\\frac{1}{L}\\nabla f(x)$를 대입하면 $f(y) \\le f(x) - \\frac{1}{L}|\\nabla f(x)| + \\frac{1}{2L}|\\nabla f(x)|$이다."
+  ],
+  "answer": 0,
+  "explain": "일차항은 $-\\frac{1}{L}|\\nabla f|^2$, 이차항은 $\\frac{L}{2} \\cdot \\frac{1}{L^2}|\\nabla f|^2 = \\frac{1}{2L}|\\nabla f|^2$이다."
+ },
+ {
+  "id": "p-misc-006",
+  "domain": "misc",
+  "rating": 1950,
+  "topic": "동역학계",
+  "theorem": "랴푸노프 안정성 정리",
+  "statement": "$x' = f(x)$, $f(0) = 0$에 대해 원점 근방에서 $V(0) = 0$, $V(x) > 0$ ($x \\neq 0$), $\\nabla V \\cdot f \\le 0$인 연속미분가능 함수 $V$가 있으면 원점은 안정하다.",
+  "steps": [
+   "궤도를 따라 $\\frac{d}{dt}V(x(t)) = \\nabla V(x(t)) \\cdot f(x(t)) \\le 0$이다.",
+   "따라서 $V(x(t)) \\le V(x(0))$이고, 궤도는 준위집합 $\\{V \\le V(x(0))\\}$을 벗어나지 못한다.",
+   "$V$가 양의 정부호이므로 원점의 임의의 근방 안에 충분히 작은 준위집합이 들어 있고, 그 안에서 출발한 궤도는 근방 안에 머문다."
+  ],
+  "blank": 1,
+  "choices": [
+   "따라서 $V(x(t)) \\ge V(x(0))$이고, 궤도는 원점에서 계속 멀어진다.",
+   "따라서 $V(x(t)) \\le V(x(0))$이고, 궤도는 준위집합 $\\{V \\le V(x(0))\\}$을 벗어나지 못한다.",
+   "따라서 $V(x(t)) = 0$이고, 모든 $t$에서 $x(t) = 0$이다.",
+   "따라서 $V(x(t)) \\le V(x(0))$이고, 궤도는 유한 시간 안에 원점에 도달한다."
+  ],
+  "answer": 1,
+  "explain": "$V$가 궤도를 따라 증가하지 않으므로 궤도는 $V$의 준위집합 안에 갇힌다. 점근 안정까지는 $\\nabla V \\cdot f < 0$이 필요하다."
+ },
+ {
+  "id": "p-misc-007",
+  "domain": "misc",
+  "rating": 2150,
+  "topic": "동역학계",
+  "theorem": "고정점의 선형 안정성",
+  "statement": "연속미분가능한 $f$의 고정점 $x^*$에서 $|f'(x^*)| < 1$이면 $x^*$ 근방의 점은 반복 $x \\mapsto f(x)$에 의해 $x^*$로 수렴한다.",
+  "steps": [
+   "$f'$이 연속이므로 $x^*$의 어떤 근방에서 $|f'(x)| \\le c < 1$인 상수 $c$가 있다.",
+   "그 근방의 $x$에 대해 평균값 정리에 의해 $|f(x) - x^*| = |f(x) - f(x^*)| \\le c|x - x^*|$이다.",
+   "반복하면 $|f^n(x) - x^*| \\le c^n|x - x^*| \\to 0$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "그 근방의 $x$에 대해 평균값 정리에 의해 $|f(x) - x^*| = |f(x) - f(x^*)| \\ge c|x - x^*|$이다.",
+   "그 근방의 $x$에 대해 중간값 정리에 의해 $f(x) = x^*$이다.",
+   "그 근방의 $x$에 대해 평균값 정리에 의해 $|f(x) - x^*| = |f(x) - f(x^*)| \\le c|x - x^*|$이다.",
+   "그 근방의 $x$에 대해 $|f(x) - x^*| \\le c + |x - x^*|$이다."
+  ],
+  "answer": 2,
+  "explain": "평균값 정리로 $f(x) - f(x^*) = f'(\\xi)(x - x^*)$이고 $|f'(\\xi)| \\le c$이다. 한 번 적용할 때마다 거리가 $c$배 이하로 줄어든다."
+ },
+ {
+  "id": "p-misc-008",
+  "domain": "misc",
+  "rating": 2100,
+  "topic": "혼돈이론",
+  "theorem": "배가 사상의 초기조건 민감성",
+  "statement": "원 $\\mathbb{R}/\\mathbb{Z}$ 위의 배가 사상 $f(x) = 2x - \\lfloor 2x \\rfloor$는 초기조건에 민감하다.",
+  "steps": [
+   "원 위에서 거리가 $\\frac{1}{4}$보다 작은 두 점은 $f$를 한 번 적용하면 거리가 정확히 두 배가 된다.",
+   "따라서 거리가 $\\delta > 0$인 두 점은 거리가 $\\frac{1}{4}$ 이상이 되기 전까지 $n$번 뒤에 $2^n\\delta$만큼 떨어진다.",
+   "아무리 작은 $\\delta$라도 유한 번 뒤에는 거리가 $\\frac{1}{4}$ 이상이 된다."
+  ],
+  "blank": 0,
+  "choices": [
+   "원 위에서 거리가 $\\frac{1}{4}$보다 작은 두 점은 $f$를 한 번 적용하면 거리가 절반이 된다.",
+   "원 위에서 거리가 $\\frac{1}{4}$보다 작은 두 점은 $f$를 한 번 적용해도 거리가 변하지 않는다.",
+   "원 위에서 거리가 $\\frac{1}{4}$보다 작은 두 점은 $f$를 한 번 적용하면 거리가 정확히 $\\frac{1}{4}$이 된다.",
+   "원 위에서 거리가 $\\frac{1}{4}$보다 작은 두 점은 $f$를 한 번 적용하면 거리가 정확히 두 배가 된다."
+  ],
+  "answer": 3,
+  "explain": "$f$는 국소적으로 $x \\mapsto 2x$이므로 가까운 두 점의 거리를 두 배로 늘린다. 지수적으로 벌어지는 것이 혼돈의 특징이다."
+ },
+ {
+  "id": "p-misc-009",
+  "domain": "misc",
+  "rating": 2300,
+  "topic": "혼돈이론",
+  "theorem": "랴푸노프 지수",
+  "statement": "텐트 사상 $f(x) = 1 - |2x - 1|$ ($0 \\le x \\le 1$)의 랴푸노프 지수는 거의 모든 초기값에서 $\\ln 2$이다.",
+  "steps": [
+   "랴푸노프 지수는 $\\lambda = \\lim_{n \\to \\infty}\\frac{1}{n}\\sum_{k=0}^{n-1}\\ln|f'(x_k)|$이다.",
+   "텐트 사상은 꺾이는 점 $x = \\frac{1}{2}$을 제외하면 $|f'(x)| = 2$이다.",
+   "궤도가 $\\frac{1}{2}$을 지나지 않는 거의 모든 초기값에 대해 합의 각 항이 $\\ln 2$이므로 $\\lambda = \\ln 2 > 0$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "텐트 사상은 꺾이는 점 $x = \\frac{1}{2}$을 제외하면 $|f'(x)| = 2$이다.",
+   "텐트 사상은 꺾이는 점 $x = \\frac{1}{2}$을 제외하면 $|f'(x)| = 1$이다.",
+   "텐트 사상은 꺾이는 점 $x = \\frac{1}{2}$을 제외하면 $|f'(x)| = \\frac{1}{2}$이다.",
+   "텐트 사상은 모든 점에서 $f'(x) = 0$이다."
+  ],
+  "answer": 0,
+  "explain": "$x < \\frac{1}{2}$에서 $f(x) = 2x$, $x > \\frac{1}{2}$에서 $f(x) = 2 - 2x$이므로 기울기의 절댓값은 항상 $2$이다."
+ },
+ {
+  "id": "p-misc-010",
+  "domain": "misc",
+  "rating": 2300,
+  "topic": "범주론",
+  "theorem": "항등 사상의 유일성",
+  "statement": "범주의 각 대상 $A$에 대해 항등 사상은 유일하다.",
+  "steps": [
+   "$e$와 $e'$이 모두 $A$의 항등 사상이라 하자.",
+   "$e'$이 오른쪽 항등원이므로 $e \\circ e' = e$이고, $e$가 왼쪽 항등원이므로 $e \\circ e' = e'$이다.",
+   "따라서 $e = e'$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "합성은 교환법칙을 만족하므로 $e \\circ e' = e' \\circ e$이고, 따라서 둘은 서로 역사상이다.",
+   "$e'$이 오른쪽 항등원이므로 $e \\circ e' = e$이고, $e$가 왼쪽 항등원이므로 $e \\circ e' = e'$이다.",
+   "$e \\circ e'$은 정의되지 않으므로 $e$와 $e'$은 비교할 수 없다.",
+   "$e \\circ e' = e \\circ e$이고 $e' \\circ e = e' \\circ e'$이다."
+  ],
+  "answer": 1,
+  "explain": "하나의 합성 $e \\circ e'$을 두 항등 성질로 각각 계산하면 서로 같아야 한다. 군의 항등원 유일성과 같은 논법이다."
+ },
+ {
+  "id": "p-misc-011",
+  "domain": "misc",
+  "rating": 2500,
+  "topic": "범주론",
+  "theorem": "함자는 동형사상을 보존",
+  "statement": "함자 $F: \\mathcal{C} \\to \\mathcal{D}$와 동형사상 $f: A \\to B$에 대해 $F(f)$는 동형사상이다.",
+  "steps": [
+   "$g \\circ f = \\mathrm{id}_A$, $f \\circ g = \\mathrm{id}_B$인 $g: B \\to A$가 있다.",
+   "함자는 합성과 항등 사상을 보존하므로 $F(g) \\circ F(f) = F(g \\circ f) = F(\\mathrm{id}_A) = \\mathrm{id}_{F(A)}$이다.",
+   "마찬가지로 $F(f) \\circ F(g) = \\mathrm{id}_{F(B)}$이므로 $F(f)$는 $F(g)$를 역사상으로 갖는 동형사상이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "함자는 합성과 항등 사상을 보존하므로 $F(g) \\circ F(f) = F(f \\circ g) = F(\\mathrm{id}_B) = \\mathrm{id}_{F(B)}$이다.",
+   "함자는 사상 위에서 단사이므로 $F(f)$는 단사 사상이다.",
+   "함자는 합성과 항등 사상을 보존하므로 $F(g) \\circ F(f) = F(g \\circ f) = F(\\mathrm{id}_A) = \\mathrm{id}_{F(A)}$이다.",
+   "함자는 합을 보존하므로 $F(g) \\circ F(f) = F(g) + F(f)$이다."
+  ],
+  "answer": 2,
+  "explain": "공변 함자는 $F(g \\circ f) = F(g) \\circ F(f)$와 $F(\\mathrm{id}) = \\mathrm{id}$를 만족하므로 역사상 관계가 그대로 옮겨진다."
+ },
+ {
+  "id": "p-misc-012",
+  "domain": "misc",
+  "rating": 2700,
+  "topic": "범주론",
+  "theorem": "보편 성질에 의한 유일성",
+  "statement": "범주의 시작 대상은 유일한 동형사상을 제외하고 유일하다.",
+  "steps": [
+   "$I$, $I'$이 모두 시작 대상이면 유일한 사상 $f: I \\to I'$과 $g: I' \\to I$가 있다.",
+   "$g \\circ f$와 $\\mathrm{id}_I$는 모두 $I$에서 $I$로 가는 사상이고, $I$가 시작 대상이므로 그런 사상은 하나뿐이어서 $g \\circ f = \\mathrm{id}_I$이다.",
+   "마찬가지로 $f \\circ g = \\mathrm{id}_{I'}$이므로 $f$는 동형사상이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "$g \\circ f$와 $f \\circ g$는 정의역이 같으므로 서로 같은 사상이다.",
+   "$I$에서 $I$로 가는 사상은 여러 개일 수 있지만 $g \\circ f$는 합성이므로 항상 항등 사상이다.",
+   "$g \\circ f$와 $\\mathrm{id}_I$는 모두 $I$에서 $I$로 가는 사상이고, $I'$이 끝 대상이므로 $g \\circ f = \\mathrm{id}_I$이다.",
+   "$g \\circ f$와 $\\mathrm{id}_I$는 모두 $I$에서 $I$로 가는 사상이고, $I$가 시작 대상이므로 그런 사상은 하나뿐이어서 $g \\circ f = \\mathrm{id}_I$이다."
+  ],
+  "answer": 3,
+  "explain": "시작 대상에서 임의의 대상(자기 자신 포함)으로 가는 사상은 정확히 하나이다. 보편 성질로 정의된 대상의 유일성은 모두 이 방식으로 증명된다."
+ },
+ {
+  "id": "p-misc-013",
+  "domain": "misc",
+  "rating": 2450,
+  "topic": "호몰로지 대수",
+  "theorem": "완전열과 단사성",
+  "statement": "아벨 군의 열 $0 \\to A \\to B$ (둘째 사상을 $f$라 하자)가 $A$에서 완전이면 $f$는 단사이다.",
+  "steps": [
+   "$A$에서의 완전성은 $\\ker f$가 사상 $0 \\to A$의 상과 같다는 뜻이다.",
+   "사상 $0 \\to A$의 상은 $\\{0\\}$이다.",
+   "따라서 $\\ker f = \\{0\\}$이고 $f$는 단사이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "사상 $0 \\to A$의 상은 $\\{0\\}$이다.",
+   "사상 $0 \\to A$의 상은 $A$ 전체이다.",
+   "사상 $0 \\to A$의 상은 $B$이다.",
+   "사상 $0 \\to A$의 상은 $\\ker f$의 여집합이다."
+  ],
+  "answer": 0,
+  "explain": "자명군에서 나가는 준동형은 $0$을 $0$으로 보내는 것뿐이므로 상이 $\\{0\\}$이다."
+ },
+ {
+  "id": "p-misc-014",
+  "domain": "misc",
+  "rating": 2700,
+  "topic": "호몰로지 대수",
+  "theorem": "사슬 호모토피 불변성",
+  "statement": "사슬 사상 $f$, $g$가 사슬 호모토픽이면 호몰로지에서 같은 준동형을 유도한다.",
+  "steps": [
+   "$f - g = dh + hd$인 사슬 호모토피 $h$가 있다.",
+   "순환 $z$ ($dz = 0$)에 대해 $f(z) - g(z) = d(h(z)) + h(d(z)) = d(h(z))$이다.",
+   "즉 $f(z) - g(z)$는 경계이므로 호몰로지류로서 $[f(z)] = [g(z)]$이다."
+  ],
+  "blank": 1,
+  "choices": [
+   "순환 $z$ ($dz = 0$)에 대해 $f(z) - g(z) = d(h(z)) + h(d(z)) = h(z)$이다.",
+   "순환 $z$ ($dz = 0$)에 대해 $f(z) - g(z) = d(h(z)) + h(d(z)) = d(h(z))$이다.",
+   "순환 $z$ ($dz = 0$)에 대해 $f(z) - g(z) = h(d(z))$이고 이는 순환이 아니다.",
+   "순환 $z$ ($dz = 0$)에 대해 $f(z) = g(z)$이다."
+  ],
+  "answer": 1,
+  "explain": "순환에서는 $hd$ 항이 사라지고 $dh$ 항만 남는데, 이는 경계이므로 호몰로지에서 $0$이다."
+ }
+]
