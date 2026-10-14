@@ -1,7 +1,7 @@
 // 화면. 계산과 저장 규칙은 다른 모듈에 있고 여기서는 그리기와 입력 처리만 한다.
 import { DOMAINS, LEVELS } from './elo.js';
 import { TEMPLATES } from './generators/index.js';
-import { buildPool, openDomains, pickDomain, pickProblem } from './pick.js';
+import { buildPool, openDomains, pickDomain, pickProblem, unseen } from './pick.js';
 import { applyAnswer, grade, toProblem } from './quiz.js';
 import { STORAGE_KEY, load, newState, overall, save } from './store.js';
 
@@ -73,7 +73,7 @@ function renderStart() {
 function renderHome() {
   const total = Object.values(state.ratings).reduce((s, x) => s + x.n, 0);
   const rows = [{ id: null, name: '전체', r: overall(state) ?? '–', n: total }];
-  for (const id of openDomains(pool, state.ratings)) rows.push({ id, name: DOMAIN_NAME[id], r: state.ratings[id].r, n: state.ratings[id].n });
+  for (const id of openDomains(unseen(pool, state.seen), state.ratings)) rows.push({ id, name: DOMAIN_NAME[id], r: state.ratings[id].r, n: state.ratings[id].n });
   $('domains').tBodies[0].replaceChildren(...rows.map((row) => {
     const button = el('button', { type: 'button', textContent: row.name });
     button.addEventListener('click', () => startQuiz(row.id));
@@ -103,8 +103,9 @@ function shuffled(list) {
 }
 
 function nextProblem() {
-  const domain = session.filter ?? pickDomain(pool, state.ratings, Math.random);
-  const item = pickProblem(pool, domain, state.ratings[domain].r, state.recent, Math.random);
+  const fresh = unseen(pool, state.seen);
+  const domain = session.filter ?? pickDomain(fresh, state.ratings, Math.random);
+  const item = pickProblem(fresh, domain, state.ratings[domain].r, state.recent, Math.random);
   const problem = toProblem(item, proofsById, 1 + Math.floor(Math.random() * 0x7fffffff));
   session = { filter: session.filter, problem, order: shuffled([0, 1, 2, 3]), done: false };
 

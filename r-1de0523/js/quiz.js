@@ -2,7 +2,7 @@
 import { isCorrect } from './answer.js';
 import { GUESS_PROOF, update } from './elo.js';
 import { record } from './store.js';
-import { generate } from './generators/index.js';
+import { generate, isFixed } from './generators/index.js';
 
 // 출제 항목을 풀 수 있는 문제로 만든다. 증명 문항은 proofsById(Map)에서 찾는다.
 export function toProblem(item, proofsById, seed) {
@@ -21,6 +21,7 @@ export function applyAnswer(state, problem, correct, t) {
   const { r, n } = state.ratings[problem.domain];
   const guess = problem.type === 'proof' ? GUESS_PROOF : 0;
   const { delta } = update(r, problem.rating, correct, n, guess);
-  const next = record(state, { id: problem.id, domain: problem.domain, correct, delta, t });
+  const fixed = problem.type === 'proof' || isFixed(problem.id);
+  const next = record(state, { id: problem.id, domain: problem.domain, correct, delta, t, fixed });
   return { state: next, delta };
 }

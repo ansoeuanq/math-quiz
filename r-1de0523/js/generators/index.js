@@ -12,6 +12,9 @@ export const TEMPLATES = [...algebra, ...analysis, ...geometry, ...number, ...di
 
 const byId = new Map(TEMPLATES.map((t) => [t.id, t]));
 
+// 숫자가 바뀌지 않는(내용이 고정된) 템플릿인가. 이런 문제는 한 번 풀면 다시 내지 않는다.
+export const isFixed = (id) => byId.get(id)?.fixed === true;
+
 // 같은 id와 시드는 항상 같은 문제를 만든다(Dart 구현과도 같다).
 export function generate(id, seed) {
   const t = byId.get(id);

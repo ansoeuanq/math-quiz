@@ -10,6 +10,12 @@ export function buildPool(templates, proofs) {
   return [...templates.map(item('numeric')), ...proofs.map(item('proof'))];
 }
 
+// 이미 푼, 내용이 고정된 문제(seen)를 출제 목록에서 뺀다. 숫자가 바뀌는 계산 문제는 seen에 없으므로 계속 나온다.
+export function unseen(pool, seen) {
+  const done = new Set(seen);
+  return pool.filter((p) => !done.has(p.id));
+}
+
 // 열린 영역: 내 최고 ELO + 150 이하의 문제가 있는 영역. 대학 수준부터 있는 "기타"는
 // ELO가 낮은 동안 홈에도 없고 "전체"에서도 나오지 않는다. 최고 ELO는 초등 시작값보다 낮게 보지 않는다.
 export function openDomains(pool, ratings) {

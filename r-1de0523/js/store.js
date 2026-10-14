@@ -11,7 +11,8 @@ export function newState(levelKey) {
   const r = levelRating(levelKey);
   const ratings = {};
   for (const d of DOMAINS) ratings[d.id] = { r, n: 0 };
-  return { version: 1, level: levelKey, ratings, recent: [], history: [] };
+  // seen: 이미 푼, 내용이 고정된 문제(증명 빈칸·IMO 기출)의 id. 다시 내지 않는다.
+  return { version: 1, level: levelKey, ratings, recent: [], history: [], seen: [] };
 }
 
 // 저장값이 없거나 읽을 수 없으면 null. 빠진 영역은 저장된 단계의 초기 ELO로 채운다.
@@ -29,6 +30,7 @@ export function load(storage) {
     if (Number.isFinite(saved?.r) && Number.isInteger(saved?.n)) state.ratings[d.id] = { r: saved.r, n: saved.n };
   }
   if (Array.isArray(raw.recent)) state.recent = raw.recent.slice(-MAX_RECENT);
+  if (Array.isArray(raw.seen)) state.seen = raw.seen.filter((id) => typeof id === 'string');
   if (Array.isArray(raw.history)) state.history = raw.history.slice(-MAX_HISTORY);
   return state;
 }
@@ -43,14 +45,15 @@ export function save(storage, state) {
   }
 }
 
-// 한 문제의 결과를 반영한 새 상태를 돌려준다.
-export function record(state, { id, domain, correct, delta, t }) {
+// 한 문제의 결과를 반영한 새 상태를 돌려준다. fixed는 내용이 고정된 문제인지(그러면 seen에 남긴다).
+export function record(state, { id, domain, correct, delta, t, fixed = false }) {
   const { r, n } = state.ratings[domain];
   return {
     ...state,
     ratings: { ...state.ratings, [domain]: { r: r + delta, n: n + 1 } },
     recent: [...state.recent, id].slice(-MAX_RECENT),
     history: [...state.history, { t, id, domain, correct, delta }].slice(-MAX_HISTORY),
+    seen: fixed && !state.seen.includes(id) ? [...state.seen, id] : state.seen,
   };
 }
 
