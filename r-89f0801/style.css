@@ -1,0 +1,276 @@
+/* 모눈 공책 위의 시험지. 잉크색 글씨와 채점용 빨간펜만 쓴다.
+   아래 색·글꼴 값은 앱(app/lib/ui/theme.dart)에서도 같은 값을 쓴다. */
+:root {
+  --paper: #fbfcfe;
+  --grid: #dce6f2;
+  --ink: #1b2a4a;
+  --pencil: #5b6880;
+  --red-pen: #e0312b;
+  --highlighter: #ffe873;
+
+  --font-text: 'IBM Plex Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  --font-problem: 'Noto Serif KR', 'Batang', 'AppleMyungjo', serif;
+  --font-pen: 'Nanum Pen Script', 'Gaegu', cursive;
+
+  --cell: 24px;
+}
+
+* { box-sizing: border-box; }
+
+/* display를 지정한 요소에서도 hidden 속성이 항상 이기게 한다. */
+[hidden] { display: none !important; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-text);
+  line-height: 1.6;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell);
+}
+
+.sheet {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: calc(var(--cell) * 1) 16px calc(var(--cell) * 3);
+}
+
+/* 시험지 머리: 제목과 점수 칸 */
+.sheet-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--ink);
+}
+
+h1 { margin: 0; font-size: 1rem; }
+
+.title {
+  font-family: var(--font-problem);
+  font-weight: 700;
+  font-size: 1.65rem;
+  letter-spacing: -0.01em;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 6.5rem;
+  padding: 2px 10px 0;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+.score-label {
+  width: 100%;
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--pencil);
+  border-bottom: 1px solid var(--ink);
+}
+
+.pen {
+  font-family: var(--font-pen);
+  color: var(--red-pen);
+  font-size: 2.3rem;
+  line-height: 1.1;
+}
+
+main { padding-top: calc(var(--cell) * 1.5); }
+
+h2 {
+  margin: 0 0 8px;
+  font-family: var(--font-problem);
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
+.lead { margin: 0 0 var(--cell); color: var(--pencil); max-width: 34em; }
+
+.notice {
+  margin: 0 0 var(--cell);
+  padding: 8px 12px;
+  border-left: 4px solid var(--red-pen);
+  background: var(--paper);
+}
+
+/* 버튼 */
+button, input { font: inherit; color: inherit; }
+
+button {
+  cursor: pointer;
+  padding: 9px 18px;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+}
+
+button.quiet { background: var(--paper); color: var(--ink); font-weight: 400; }
+button.danger { border-color: var(--red-pen); color: var(--red-pen); }
+button:disabled { opacity: 0.45; cursor: default; }
+
+:focus-visible { outline: 3px solid var(--highlighter); outline-offset: 2px; box-shadow: 0 0 0 1px var(--ink); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--cell); }
+
+/* 단계 고르기 */
+.rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.rows li { border-bottom: 1px solid var(--ink); }
+.rows button {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  padding: 14px 8px;
+  border: 0;
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  text-align: left;
+}
+.rows button:hover { background: var(--highlighter); }
+.rows .level-name { font-family: var(--font-problem); font-weight: 700; font-size: 1.15rem; }
+.rows .level-note { color: var(--pencil); font-weight: 400; font-size: 0.9rem; }
+
+/* 성적표 꼴의 표 */
+.report { width: 100%; border-collapse: collapse; margin-bottom: 12px; background: var(--paper); }
+.report th, .report td { padding: 10px 8px; border-bottom: 1px solid var(--ink); text-align: left; }
+.report thead th { font-size: 0.8rem; font-weight: 400; color: var(--pencil); border-bottom-width: 2px; }
+.report .num { text-align: right; font-variant-numeric: tabular-nums; }
+.report tbody tr:first-child td { border-bottom-width: 2px; }
+.report td button {
+  padding: 2px 0;
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+  background: none;
+  color: var(--ink);
+  font-family: var(--font-problem);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.report td button:hover { background: var(--highlighter); }
+#h-table tbody tr:first-child td { border-bottom-width: 1px; }
+.tick { font-family: var(--font-pen); color: var(--red-pen); font-size: 1.5rem; line-height: 1; }
+
+/* 문제 */
+.meta { display: flex; justify-content: space-between; margin: 0 0 12px; font-size: 0.85rem; color: var(--pencil); }
+
+.problem {
+  font-family: var(--font-problem);
+  font-size: 1.22rem;
+  line-height: 1.75;
+  margin-bottom: var(--cell);
+}
+
+.scroll-x { overflow-x: auto; overflow-y: hidden; padding-bottom: 2px; }
+
+.steps { margin: 0 0 var(--cell); padding-left: 1.6em; font-family: var(--font-problem); }
+.steps li { padding: 6px 0; }
+.steps .blank {
+  display: inline-block;
+  min-width: 9em;
+  padding: 2px 10px;
+  border: 2px dashed var(--ink);
+  background: var(--highlighter);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 0.9rem;
+  text-align: center;
+}
+.steps li.filled { background: var(--highlighter); }
+
+#q-form { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+#q-form label { font-family: var(--font-problem); font-weight: 700; }
+#q-form input {
+  flex: 1 1 8rem;
+  min-width: 0;
+  padding: 8px 4px;
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  font-size: 1.2rem;
+}
+#q-form input:disabled { color: var(--ink); opacity: 1; -webkit-text-fill-color: var(--ink); }
+.hint { flex-basis: 100%; margin: 0; font-size: 0.9rem; color: var(--red-pen); }
+
+/* 보기 */
+.choices { list-style: none; margin: 0; padding: 0; counter-reset: choice; }
+.choices li { margin-bottom: 10px; }
+.choices button {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-problem);
+  font-weight: 400;
+  text-align: left;
+}
+.choices button::before {
+  counter-increment: choice;
+  content: counter(choice);
+  flex: none;
+  width: 1.5em;
+  height: 1.5em;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  line-height: 1.45em;
+  text-align: center;
+}
+.choices button > span { min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.choices button:hover:not(:disabled) { background: var(--highlighter); }
+.choices button:disabled { opacity: 1; cursor: default; }
+.choices button.correct { border-width: 2px; background: var(--highlighter); }
+.choices button.correct::before { background: var(--ink); color: var(--paper); }
+.choices button.chosen.wrong { border: 2px solid var(--red-pen); color: var(--red-pen); text-decoration: line-through; }
+
+/* 채점 결과: 빨간펜 표시 */
+.result { display: flex; gap: 16px; align-items: flex-start; margin-top: var(--cell); padding-top: var(--cell); border-top: 2px solid var(--ink); }
+.mark { flex: none; width: 76px; height: 76px; }
+.mark svg { width: 100%; height: 100%; overflow: visible; }
+.mark path {
+  fill: none;
+  stroke: var(--red-pen);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw 420ms ease-out forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.result-body { min-width: 0; flex: 1; }
+.result-body p { margin: 0 0 6px; }
+.verdict { font-family: var(--font-problem); font-weight: 700; font-size: 1.2rem; }
+.elo-change { font-variant-numeric: tabular-nums; }
+.elo-change .pen { font-size: 1.7rem; margin-left: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mark path { animation: none; stroke-dashoffset: 0; }
+}
+
+@media (max-width: 420px) {
+  html { font-size: 16px; }
+  .problem { font-size: 1.12rem; }
+  .mark { width: 56px; height: 56px; }
+}
