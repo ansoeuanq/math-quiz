@@ -10,9 +10,15 @@ export function buildPool(templates, proofs) {
   return [...templates.map(item('numeric')), ...proofs.map(item('proof'))];
 }
 
-// 풀이로 바뀐 문제 ELO(state.problems)를 출제 목록에 입힌다.
-export function ratedPool(pool, problems) {
-  return pool.map((p) => (Object.hasOwn(problems, p.id) ? { ...p, rating: problems[p.id] } : p));
+// 서버에서 받은 문제 ELO를 출제 목록에 입힌다. 받지 못한 문제는 원래 ELO 그대로다.
+export function ratedPool(pool, ratings) {
+  return pool.map((p) => (Object.hasOwn(ratings, p.id) ? { ...p, rating: ratings[p.id] } : p));
+}
+
+// 이미 푼, 내용이 고정된 문제(seen)를 출제 목록에서 뺀다. 숫자가 바뀌는 계산 문제는 seen에 없으므로 계속 나온다.
+export function unseen(pool, seen) {
+  const done = new Set(seen);
+  return pool.filter((p) => !done.has(p.id));
 }
 
 // 열린 영역: 내 최고 ELO + 150 이하의 문제가 있는 영역. 대학 수준부터 있는 "기타"는

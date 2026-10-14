@@ -1,8 +1,9 @@
 // 화면. 계산과 저장 규칙은 다른 모듈에 있고 여기서는 그리기와 입력 처리만 한다.
 import { DOMAINS, LEVELS } from './elo.js';
 import { TEMPLATES } from './generators/index.js';
-import { buildPool, openDomains, pickDomain, pickProblem, ratedPool } from './pick.js';
+import { buildPool, openDomains, pickDomain, pickProblem, ratedPool, unseen } from './pick.js';
 import { applyAnswer, grade, toProblem } from './quiz.js';
+import { loadRemote, postResult, rememberRating } from './server.js';
 import { STORAGE_KEY, load, newState, overall, save } from './store.js';
 
 const $ = (id) => document.getElementById(id);
@@ -28,6 +29,10 @@ let state = load(storage);
 let pool = buildPool(TEMPLATES, []);
 let proofsById = new Map();
 let session = null; // { filter, problem, order, done }
+// 서버에서 받은 문제 ELO. url이 null이면 서버 기능이 꺼져 있고 원래 ELO를 쓴다.
+let remote = { url: null, ratings: {} };
+// 기록을 지운 뒤 새로 시작할 때 이어받을 보내기 설정(끈 사용자가 다시 켜지지 않게)
+let keepShare = true;
 
 function show(screen) {
   $('boot').hidden = true;
@@ -59,12 +64,13 @@ function renderStart() {
       el('span', { className: 'level-note', textContent: `ELO ${level.rating}에서 시작` }),
     ]);
     button.addEventListener('click', () => {
-      state = newState(level.key);
+      state = newState(level.key, keepShare);
       save(storage, state);
       renderHome();
     });
     return el('li', {}, [button]);
   }));
+  $('share-note').hidden = !remote.url;
   show('start');
 }
 
@@ -73,7 +79,7 @@ function renderStart() {
 function renderHome() {
   const total = Object.values(state.ratings).reduce((s, x) => s + x.n, 0);
   const rows = [{ id: null, name: '전체', r: overall(state) ?? '–', n: total }];
-  for (const id of openDomains(ratedPool(pool, state.problems), state.ratings)) rows.push({ id, name: DOMAIN_NAME[id], r: state.ratings[id].r, n: state.ratings[id].n });
+  for (const id of openDomains(ratedPool(unseen(pool, state.seen), remote.ratings), state.ratings)) rows.push({ id, name: DOMAIN_NAME[id], r: state.ratings[id].r, n: state.ratings[id].n });
   $('domains').tBodies[0].replaceChildren(...rows.map((row) => {
     const button = el('button', { type: 'button', textContent: row.name });
     button.addEventListener('click', () => startQuiz(row.id));
@@ -83,8 +89,15 @@ function renderHome() {
       el('td', { className: 'num', textContent: row.n }),
     ]);
   }));
+  $('share-row').hidden = !remote.url;
+  $('share-toggle').checked = state.share;
   show('home');
 }
+
+$('share-toggle').addEventListener('change', (event) => {
+  state = { ...state, share: event.target.checked };
+  save(storage, state);
+});
 
 // ── 문제 ────────────────────────────────────────────────────
 
@@ -103,9 +116,9 @@ function shuffled(list) {
 }
 
 function nextProblem() {
-  const rated = ratedPool(pool, state.problems);
-  const domain = session.filter ?? pickDomain(rated, state.ratings, Math.random);
-  const item = pickProblem(rated, domain, state.ratings[domain].r, state.recent, Math.random);
+  const fresh = ratedPool(unseen(pool, state.seen), remote.ratings);
+  const domain = session.filter ?? pickDomain(fresh, state.ratings, Math.random);
+  const item = pickProblem(fresh, domain, state.ratings[domain].r, state.recent, Math.random);
   const problem = toProblem(item, proofsById, 1 + Math.floor(Math.random() * 0x7fffffff));
   session = { filter: session.filter, problem, order: shuffled([0, 1, 2, 3]), done: false };
 
@@ -170,6 +183,14 @@ function answer(input) {
   state = applied.state;
   const saved = save(storage, state);
   renderResult(problem, input, correct, before, applied.delta, saved);
+  // 결과를 익명으로 보내고, 서버가 돌려준 새 문제 ELO를 바로 쓴다. 실패하면 그냥 넘어간다.
+  if (remote.url && state.share) {
+    postResult({ fetch: window.fetch.bind(window), url: remote.url, id: problem.id, correct, player: before }).then((r) => {
+      if (r === null) return;
+      remote.ratings[problem.id] = r;
+      rememberRating(storage, problem.id, r);
+    });
+  }
 }
 
 function renderResult(problem, input, correct, before, delta, saved) {
@@ -193,7 +214,6 @@ function renderResult(problem, input, correct, before, delta, saved) {
     $('q-theorem').hidden = false;
     setMath($('q-theorem'), `근거: ${problem.theorem}`);
   }
-  $('q-rating').textContent = `문제 ELO ${problem.rating} → ${state.problems[problem.id]}`;
   $('q-mark').innerHTML = MARK[correct];
   $('q-verdict').textContent = correct ? '정답입니다' : '오답입니다';
   setMath($('q-explain'), `풀이: ${problem.explain}`);
@@ -245,6 +265,7 @@ $('h-reset').addEventListener('click', () => {
   } catch {
     // 저장소를 쓸 수 없는 브라우저에서는 메모리 상태만 지운다.
   }
+  keepShare = state.share;
   state = null;
   renderStart();
 });
@@ -266,6 +287,12 @@ async function loadProofs() {
   }
 }
 
-await loadProofs();
+// 증명 문항과 서버의 문제 ELO를 함께 받는다. 서버가 없으면 3초 안에 원래 ELO로 시작한다.
+await Promise.all([
+  loadProofs(),
+  loadRemote({ fetch: window.fetch.bind(window), storage, configUrl: 'server.json' }).then((r) => {
+    remote = r;
+  }),
+]);
 if (state) renderHome();
 else renderStart();

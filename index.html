@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <base href="r-1de0523/">
+  <base href="r-9fc56c5/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>수학 퀴즈</title>
@@ -33,6 +33,7 @@
         <h2>어느 단계에서 시작할까요?</h2>
         <p class="lead">고른 단계에 맞춰 첫 난이도를 정합니다. 풀수록 실력에 맞게 달라집니다.</p>
         <ul id="levels" class="rows"></ul>
+        <p id="share-note" class="lead" hidden>풀이 결과(문제, 정답 여부, 그 영역의 내 ELO)를 익명으로 보내 문제 난이도를 함께 맞춥니다. 홈에서 끌 수 있습니다.</p>
       </section>
 
       <section id="home" hidden>
@@ -44,6 +45,10 @@
           <tbody></tbody>
         </table>
         <p class="lead">영역을 누르면 그 영역의 문제를, 전체를 누르면 모든 영역에서 골고루 냅니다.</p>
+        <p id="share-row" class="share" hidden>
+          <label><input type="checkbox" id="share-toggle"> 풀이 결과 보내기</label>
+          <span>문제, 정답 여부, 내 ELO만 익명으로 보내 문제 난이도를 함께 맞춥니다.</span>
+        </p>
         <div class="actions">
           <button type="button" id="open-history" class="quiet">풀이 기록 보기</button>
         </div>

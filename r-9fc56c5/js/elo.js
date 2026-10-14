@@ -22,7 +22,7 @@ export const LEVELS = [
 // 보기 4개 중 찍어서 맞힐 확률
 export const GUESS_PROOF = 0.25;
 
-export const MIN_RATING = 100;
+const MIN_RATING = 100;
 
 export function expected(player, problem, guess = 0) {
   return guess + (1 - guess) / (1 + 10 ** ((problem - player) / 400));

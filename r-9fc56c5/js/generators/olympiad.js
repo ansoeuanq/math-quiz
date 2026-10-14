@@ -1,4 +1,5 @@
 // 수학 올림피아드 템플릿: 직접 만든 경시 유형 10개와 국제수학올림피아드(IMO) 기출 5개.
+// 기출은 숫자가 바뀌지 않으므로 fixed: true(한 번 풀면 다시 내지 않는다).
 // app/lib/generators/olympiad.dart와 한 줄씩 대응한다. 정수 연산만 쓰고 %, / 대신 mod, fdiv를 쓴다.
 import { frac, tfrac, fdiv, mod, ipow, numDivisors } from '../mathutil.js';
 
@@ -114,7 +115,7 @@ const noconsec = {
 };
 
 const imo1962 = {
-  id: 'olympiad-imo1962', domain: D, rating: 1700,
+  id: 'olympiad-imo1962', domain: D, rating: 1700, fixed: true,
   gen() {
     return {
       text: '(IMO 1962 1번) 일의 자리 숫자가 $6$이고, 이 $6$을 지워 맨 앞자리로 옮기면 원래 수의 $4$배가 되는 가장 작은 자연수를 구하시오.',
@@ -156,7 +157,7 @@ const lte = {
 };
 
 const imo1978 = {
-  id: 'olympiad-imo1978', domain: D, rating: 2100,
+  id: 'olympiad-imo1978', domain: D, rating: 2100, fixed: true,
   gen() {
     return {
       text: '(IMO 1978 1번) 자연수 $m$, $n$ ($1 \\le m < n$)에 대하여 $1978^m$과 $1978^n$의 마지막 세 자리가 같다. $m + n$의 최솟값을 구하시오.',
@@ -184,7 +185,7 @@ const sumsq = {
 };
 
 const imo1975 = {
-  id: 'olympiad-imo1975', domain: D, rating: 2200,
+  id: 'olympiad-imo1975', domain: D, rating: 2200, fixed: true,
   gen() {
     return {
       text: '(IMO 1975 4번) $4444^{4444}$을 십진법으로 쓴 수의 각 자리 숫자의 합을 $A$, $A$의 각 자리 숫자의 합을 $B$라 할 때, $B$의 각 자리 숫자의 합을 구하시오.',
@@ -196,7 +197,7 @@ const imo1975 = {
 };
 
 const imo1981 = {
-  id: 'olympiad-imo1981', domain: D, rating: 2300,
+  id: 'olympiad-imo1981', domain: D, rating: 2300, fixed: true,
   gen() {
     return {
       text: '(IMO 1981 3번) $m$, $n$이 $1$ 이상 $1981$ 이하의 정수이고 $(n^2 - mn - m^2)^2 = 1$을 만족할 때, $m^2 + n^2$의 최댓값을 구하시오.',
@@ -208,7 +209,7 @@ const imo1981 = {
 };
 
 const imo1977 = {
-  id: 'olympiad-imo1977', domain: D, rating: 2500,
+  id: 'olympiad-imo1977', domain: D, rating: 2500, fixed: true,
   gen() {
     return {
       text: '(IMO 1977 2번) 실수로 이루어진 유한 수열에서 연속한 $7$개 항의 합은 항상 음수이고 연속한 $11$개 항의 합은 항상 양수이다. 이 수열의 항의 개수의 최댓값을 구하시오.',

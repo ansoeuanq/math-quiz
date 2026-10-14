@@ -274,3 +274,25 @@ button:disabled { opacity: 0.45; cursor: default; }
   .problem { font-size: 1.12rem; }
   .mark { width: 56px; height: 56px; }
 }
+
+/* 홈의 결과 보내기 스위치 */
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  color: var(--pencil);
+}
+.share label {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+}
+.share input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--red-pen);
+}
