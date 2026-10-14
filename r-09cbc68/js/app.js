@@ -3,11 +3,12 @@ import { DOMAINS, LEVELS } from './elo.js';
 import { TEMPLATES } from './generators/index.js';
 import { buildPool, openDomains, pickDomain, pickProblem, ratedPool, unseen } from './pick.js';
 import { applyAnswer, grade, toProblem } from './quiz.js';
-import { loadRemote, postResult, rememberRating } from './server.js';
-import { STORAGE_KEY, load, newState, overall, save } from './store.js';
+import { addProfile, currentProfile, decodeBook, encodeBook, newKey, selectProfile, updateProfile } from './profiles.js';
+import { loadRemote, postResult, rememberRating, resetRemote } from './server.js';
+import { STORAGE_KEY, newState, overall } from './store.js';
 
 const $ = (id) => document.getElementById(id);
-const SCREENS = ['start', 'home', 'quiz', 'history'];
+const SCREENS = ['who', 'start', 'home', 'quiz', 'history'];
 const DOMAIN_NAME = Object.fromEntries(DOMAINS.map((d) => [d.id, d.name]));
 
 // 정답은 동그라미, 오답은 빗금(빨간펜 채점)
@@ -25,17 +26,40 @@ const storage = (() => {
   }
 })();
 
-let state = load(storage);
+// 이 기기의 이름 목록과 지금 이름의 풀이 상태(state는 book 안 지금 이름의 state와 같게 유지한다)
+let book = decodeBook(readRaw());
+let state = currentProfile(book)?.state ?? null;
 let pool = buildPool(TEMPLATES, []);
 let proofsById = new Map();
 let session = null; // { filter, problem, order, done }
 // 서버에서 받은 문제 ELO. url이 null이면 서버 기능이 꺼져 있고 원래 ELO를 쓴다.
 let remote = { url: null, ratings: {} };
-// 기록을 지운 뒤 새로 시작할 때 이어받을 보내기 설정(끈 사용자가 다시 켜지지 않게)
-let keepShare = true;
+
+function readRaw() {
+  try {
+    return storage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+// 지금 이름의 상태를 이름 목록에 넣고 목록 전체를 저장한다. 저장하지 못하면 false.
+function persist() {
+  const profile = currentProfile(book);
+  if (profile) book = updateProfile(book, profile.key, { state });
+  try {
+    storage.setItem(STORAGE_KEY, encodeBook(book));
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 function show(screen) {
   $('boot').hidden = true;
+  const profile = currentProfile(book);
+  $('who-now').hidden = !profile || screen === 'who';
+  $('who-now').textContent = profile?.name ?? '';
   for (const id of SCREENS) $(id).hidden = id !== screen;
   $('overall').textContent = (state && overall(state)) ?? '–';
   window.scrollTo(0, 0);
@@ -55,6 +79,46 @@ function el(tag, props = {}, children = []) {
   return node;
 }
 
+// ── 누가 풀까요? ────────────────────────────────────────────
+
+function renderWho() {
+  $('people').replaceChildren(...book.profiles.map((p) => {
+    const button = el('button', { type: 'button' }, [
+      el('span', { className: 'level-name', textContent: p.name }),
+      el('span', { className: 'level-note', textContent: p.state ? `종합 ELO ${overall(p.state) ?? '–'}` : '단계를 아직 고르지 않음' }),
+    ]);
+    button.addEventListener('click', () => choose(selectProfile(book, p.key)));
+    return el('li', {}, [button]);
+  }));
+  $('people').hidden = book.profiles.length === 0;
+  $('who-name').value = '';
+  $('who-hint').hidden = true;
+  show('who');
+  if (book.profiles.length === 0) $('who-name').focus();
+}
+
+function choose(next) {
+  book = next;
+  state = currentProfile(book).state;
+  persist();
+  if (state) renderHome();
+  else renderStart();
+}
+
+$('who-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const added = addProfile(book, $('who-name').value, newKey());
+  if (added.error) {
+    $('who-hint').textContent = added.error === 'length' ? '이름은 1–20자로 입력해 주세요.' : '이미 있는 이름입니다. 위에서 골라 주세요.';
+    $('who-hint').hidden = false;
+    $('who-name').focus();
+    return;
+  }
+  choose(added.book);
+});
+
+$('who-now').addEventListener('click', renderWho);
+
 // ── 단계 고르기 ─────────────────────────────────────────────
 
 function renderStart() {
@@ -64,8 +128,9 @@ function renderStart() {
       el('span', { className: 'level-note', textContent: `ELO ${level.rating}에서 시작` }),
     ]);
     button.addEventListener('click', () => {
-      state = newState(level.key, keepShare);
-      save(storage, state);
+      // 기록을 지운 이름은 그때의 보내기 설정을 이어받는다(끈 사람이 다시 켜지지 않게).
+      state = newState(level.key, currentProfile(book).share);
+      persist();
       renderHome();
     });
     return el('li', {}, [button]);
@@ -96,7 +161,7 @@ function renderHome() {
 
 $('share-toggle').addEventListener('change', (event) => {
   state = { ...state, share: event.target.checked };
-  save(storage, state);
+  persist();
 });
 
 // ── 문제 ────────────────────────────────────────────────────
@@ -181,11 +246,12 @@ function answer(input) {
   const before = state.ratings[problem.domain].r;
   const applied = applyAnswer(state, problem, correct, Date.now());
   state = applied.state;
-  const saved = save(storage, state);
+  const saved = persist();
   renderResult(problem, input, correct, before, applied.delta, saved);
-  // 결과를 익명으로 보내고, 서버가 돌려준 새 문제 ELO를 바로 쓴다. 실패하면 그냥 넘어간다.
+  // 결과를 이름·키와 함께 보내고, 서버가 돌려준 새 문제 ELO를 바로 쓴다. 실패하면 그냥 넘어간다.
+  const profile = currentProfile(book);
   if (remote.url && state.share) {
-    postResult({ fetch: window.fetch.bind(window), url: remote.url, id: problem.id, correct, player: before }).then((r) => {
+    postResult({ fetch: window.fetch.bind(window), url: remote.url, id: problem.id, correct, player: before, name: profile.name, key: profile.key }).then((r) => {
       if (r === null) return;
       remote.ratings[problem.id] = r;
       rememberRating(storage, problem.id, r);
@@ -259,18 +325,29 @@ function renderHistory() {
 $('open-history').addEventListener('click', renderHistory);
 $('h-back').addEventListener('click', renderHome);
 $('h-reset').addEventListener('click', () => {
-  if (!window.confirm('풀이 기록과 ELO를 모두 지우고 단계 선택부터 다시 시작할까요?')) return;
-  try {
-    storage.removeItem(STORAGE_KEY);
-  } catch {
-    // 저장소를 쓸 수 없는 브라우저에서는 메모리 상태만 지운다.
-  }
-  keepShare = state.share;
+  if (!window.confirm('이 이름의 풀이 기록과 ELO를 지우고, 서버에 보낸 이 이름의 결과도 지웁니다. 계속할까요?')) return;
+  const { key } = currentProfile(book);
+  book = updateProfile(book, key, { pendingReset: true, share: state.share });
   state = null;
+  persist();
   renderStart();
+  sendReset(key);
 });
 
-$('go-home').addEventListener('click', () => (state ? renderHome() : renderStart()));
+// 서버에 보낸 그 이름의 결과를 지운다. 실패하거나 서버 주소가 없으면 pendingReset이 남아 다음 시작 때 다시 보낸다.
+// 보내기를 꺼 둔 이름도 끄기 전에 보낸 결과가 있을 수 있으므로 보낸다.
+async function sendReset(key) {
+  if (!remote.url) return;
+  if (!(await resetRemote({ fetch: window.fetch.bind(window), url: remote.url, key }))) return;
+  book = updateProfile(book, key, { pendingReset: false });
+  persist();
+}
+
+$('go-home').addEventListener('click', () => {
+  if (!currentProfile(book)) renderWho();
+  else if (state) renderHome();
+  else renderStart();
+});
 
 // ── 시작 ────────────────────────────────────────────────────
 
@@ -294,5 +371,7 @@ await Promise.all([
     remote = r;
   }),
 ]);
-if (state) renderHome();
+for (const p of book.profiles.filter((x) => x.pendingReset)) sendReset(p.key);
+if (!currentProfile(book)) renderWho();
+else if (state) renderHome();
 else renderStart();

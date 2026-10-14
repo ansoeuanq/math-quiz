@@ -25,6 +25,11 @@ export function load(storage) {
   } catch {
     return null;
   }
+  return parseState(raw);
+}
+
+// 이미 JSON에서 읽은 상태 객체를 확인해 상태로 만든다. 읽을 수 없으면 null(이름 목록의 각 상태에도 쓴다).
+export function parseState(raw) {
   if (raw === null || typeof raw !== 'object' || raw.version !== 1 || levelRating(raw.level) === undefined) return null;
   const state = newState(raw.level);
   for (const d of DOMAINS) {

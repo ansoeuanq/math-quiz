@@ -2,7 +2,7 @@
 // 어느 단계든 실패하면 예외를 내지 않고 캐시나 빈 값을 돌려준다. 빈 값이면 화면은 원래(고정) 문제 ELO를 쓴다.
 // 설계: docs/superpowers/specs/2026-10-14-shared-problem-elo-design.md 7장
 
-export const APP_VERSION = '1.4.1';
+export const APP_VERSION = '1.5.1';
 export const CACHE_KEY = 'mathquiz.ratings.v1';
 const NONE = { url: null, ratings: {} };
 
@@ -62,16 +62,31 @@ export async function loadRemote({ fetch, storage, configUrl, timeoutMs = 3000 }
 }
 
 // 채점한 뒤 부른다. 새 문제 ELO, 실패하면 null. 다시 보내지 않는다.
-export async function postResult({ fetch, url, id, correct, player, timeoutMs = 3000 }) {
+// name과 key는 지금 이름과 그 비밀 키(서버가 이 이름의 결과를 지울 때 확인한다).
+export async function postResult({ fetch, url, id, correct, player, name, key, timeoutMs = 3000 }) {
   try {
     const body = await getJson(fetch, `${url}/v1/results`, timeoutMs, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ id, correct, player, v: APP_VERSION }),
+      body: JSON.stringify({ id, correct, player, v: APP_VERSION, name, key }),
     });
     return Number.isInteger(body?.r) ? body.r : null;
   } catch {
     return null;
+  }
+}
+
+// 기록을 지울 때 부른다: 이 키로 보낸 서버 결과를 지운다. 성공하면 true(실패하면 나중에 다시 보낸다).
+export async function resetRemote({ fetch, url, key, timeoutMs = 3000 }) {
+  try {
+    const body = await getJson(fetch, `${url}/v1/reset`, timeoutMs, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ key }),
+    });
+    return Number.isInteger(body?.deleted);
+  } catch {
+    return false;
   }
 }
 
