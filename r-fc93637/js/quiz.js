@@ -5,10 +5,11 @@ import { record } from './store.js';
 import { generate, isFixed } from './generators/index.js';
 
 // 출제 항목을 풀 수 있는 문제로 만든다. 증명 문항은 proofsById(Map)에서 찾는다.
+// 문제 ELO는 출제 항목의 값(서버에서 받은 값일 수 있다)을 쓴다.
 export function toProblem(item, proofsById, seed) {
-  if (item.type === 'numeric') return generate(item.id, seed);
+  if (item.type === 'numeric') return { ...generate(item.id, seed), rating: item.rating };
   const p = proofsById.get(item.id);
-  return { ...p, type: 'proof', text: p.statement };
+  return { ...p, type: 'proof', text: p.statement, rating: item.rating };
 }
 
 // 계산형: 입력 문자열을 값으로 비교(읽을 수 없으면 null). 증명형: 섞기 전 보기 번호를 비교.

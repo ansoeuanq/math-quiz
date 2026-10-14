@@ -7,12 +7,14 @@ const MAX_RECENT = 5;
 
 const levelRating = (levelKey) => LEVELS.find((l) => l.key === levelKey)?.rating;
 
-export function newState(levelKey) {
+// share는 결과 보내기 설정. 기록을 지우고 다시 시작할 때 끈 설정을 이어받는다.
+export function newState(levelKey, share = true) {
   const r = levelRating(levelKey);
   const ratings = {};
   for (const d of DOMAINS) ratings[d.id] = { r, n: 0 };
   // seen: 이미 푼, 내용이 고정된 문제(증명 빈칸·IMO 기출)의 id. 다시 내지 않는다.
-  return { version: 1, level: levelKey, ratings, recent: [], history: [], seen: [] };
+  // share: 풀이 결과를 서버로 보낼지(기본 켬, 홈에서 끈다).
+  return { version: 1, level: levelKey, ratings, recent: [], history: [], seen: [], share };
 }
 
 // 저장값이 없거나 읽을 수 없으면 null. 빠진 영역은 저장된 단계의 초기 ELO로 채운다.
@@ -30,6 +32,7 @@ export function load(storage) {
     if (Number.isFinite(saved?.r) && Number.isInteger(saved?.n)) state.ratings[d.id] = { r: saved.r, n: saved.n };
   }
   if (Array.isArray(raw.recent)) state.recent = raw.recent.slice(-MAX_RECENT);
+  state.share = raw.share !== false;
   if (Array.isArray(raw.seen)) state.seen = raw.seen.filter((id) => typeof id === 'string');
   if (Array.isArray(raw.history)) state.history = raw.history.slice(-MAX_HISTORY);
   return state;
