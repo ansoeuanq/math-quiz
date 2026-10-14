@@ -2,7 +2,7 @@
 // 어느 단계든 실패하면 예외를 내지 않고 캐시나 빈 값을 돌려준다. 빈 값이면 화면은 원래(고정) 문제 ELO를 쓴다.
 // 설계: docs/superpowers/specs/2026-10-14-shared-problem-elo-design.md 7장
 
-export const APP_VERSION = '1.4.0';
+export const APP_VERSION = '1.4.1';
 export const CACHE_KEY = 'mathquiz.ratings.v1';
 const NONE = { url: null, ratings: {} };
 
