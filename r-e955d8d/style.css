@@ -63,6 +63,24 @@ h1 { margin: 0; font-size: 1rem; }
   color: var(--ink);
 }
 
+/* 시험지의 이름 칸: 지금 푸는 사람. 누르면 이름을 바꾼다. */
+.who-now {
+  margin-left: auto;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 4px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: none;
+  color: var(--ink);
+  font-family: var(--font-pen);
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+.who-now::before { content: '이름 '; font-family: var(--font-text); font-size: 0.75rem; color: var(--pencil); }
+
 .score {
   display: flex;
   flex-direction: column;
@@ -194,9 +212,9 @@ button:disabled { opacity: 0.45; cursor: default; }
 }
 .steps li.filled { background: var(--highlighter); }
 
-#q-form { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-#q-form label { font-family: var(--font-problem); font-weight: 700; }
-#q-form input {
+#q-form, .name-form { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+#q-form label, .name-form label { font-family: var(--font-problem); font-weight: 700; }
+#q-form input, .name-form input {
   flex: 1 1 8rem;
   min-width: 0;
   padding: 8px 4px;
