@@ -314,3 +314,69 @@ button:disabled { opacity: 0.45; cursor: default; }
   height: 18px;
   accent-color: var(--red-pen);
 }
+
+/* ── 이름 계정(1.6.0) ── */
+
+/* 머리: 좁은 화면에서 제목이 글자 중간에서 끊기지 않게 점수 칸을 줄인다 */
+.title { white-space: nowrap; }
+.who-now .tag {
+  margin-left: 6px;
+  padding: 0 5px;
+  border: 1px solid var(--red-pen);
+  color: var(--red-pen);
+  font-family: var(--font-text);
+  font-size: 0.7rem;
+  vertical-align: middle;
+}
+@media (max-width: 419px) {
+  .score { min-width: 4.4rem; padding: 2px 6px 0; }
+  .title { font-size: 1.35rem; }
+  .score .pen { font-size: 1.8rem; }
+}
+
+/* 새 이름 / 내 이름 불러오기: 시험지 문항 탭처럼, 고른 쪽에 빨간펜 밑줄 */
+.mode {
+  display: flex;
+  margin: var(--cell) 0 4px;
+  border-bottom: 2px solid var(--ink);
+}
+.mode button {
+  flex: 1;
+  min-height: 44px;
+  margin-bottom: -2px;
+  padding: 8px;
+  border: 0;
+  border-bottom: 4px solid transparent;
+  border-radius: 0;
+  background: none;
+  color: var(--pencil);
+}
+.mode button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--red-pen); }
+.mode button:hover { background: var(--highlighter); }
+
+/* 이름·암호 칸: 답을 쓰는 밑줄 */
+.account-form { display: grid; gap: 6px; max-width: 26rem; }
+.account-form label { margin-top: 12px; font-family: var(--font-problem); font-weight: 700; }
+.account-form .label-note { margin-left: 4px; color: var(--pencil); font-family: var(--font-text); font-size: 0.8rem; font-weight: 400; }
+.account-form input {
+  min-width: 0;
+  padding: 8px 4px;
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  font-size: 1.15rem;
+}
+.pass { display: flex; gap: 8px; align-items: flex-end; }
+.pass input { flex: 1; }
+.show-pass { min-height: 40px; padding: 0 12px; background: var(--paper); color: var(--ink); font-weight: 400; font-size: 0.9rem; }
+.account-form .actions { margin-top: 12px; }
+
+/* 이름 지키기: 오려 내는 이름표처럼 점선 상자 */
+.protect {
+  margin: 0 0 var(--cell);
+  padding: 12px 16px 16px;
+  border: 2px dashed var(--ink);
+  background: var(--paper);
+}
+.protect > p { margin: 0; font-weight: 600; }

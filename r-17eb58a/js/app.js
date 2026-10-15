@@ -3,12 +3,12 @@ import { DOMAINS, LEVELS } from './elo.js';
 import { TEMPLATES } from './generators/index.js';
 import { buildPool, openDomains, pickDomain, pickProblem, ratedPool, unseen } from './pick.js';
 import { applyAnswer, grade, toProblem } from './quiz.js';
-import { addProfile, currentProfile, decodeBook, encodeBook, newKey, selectProfile, updateProfile } from './profiles.js';
-import { loadRemote, postResult, rememberRating, resetRemote } from './server.js';
-import { STORAGE_KEY, newState, overall } from './store.js';
+import { addProfile, currentProfile, decodeBook, encodeBook, newKey, normalizeName, renameProfile, selectProfile, updateProfile } from './profiles.js';
+import { loadRemote, loginRemote, onLock, postResult, registerRemote, rememberRating, resetRemote, saveStateRemote } from './server.js';
+import { STORAGE_KEY, newState, overall, parseState } from './store.js';
 
 const $ = (id) => document.getElementById(id);
-const SCREENS = ['who', 'start', 'home', 'quiz', 'history'];
+const SCREENS = ['lock', 'who', 'start', 'home', 'quiz', 'history'];
 const DOMAIN_NAME = Object.fromEntries(DOMAINS.map((d) => [d.id, d.name]));
 
 // 정답은 동그라미, 오답은 빗금(빨간펜 채점)
@@ -34,6 +34,12 @@ let proofsById = new Map();
 let session = null; // { filter, problem, order, done }
 // 서버에서 받은 문제 ELO. url이 null이면 서버 기능이 꺼져 있고 원래 ELO를 쓴다.
 let remote = { url: null, ratings: {} };
+let mode = 'new'; // 누가 풀까요: 'new' 새 이름, 'load' 내 이름 불러오기
+let renaming = false; // 이름 지키기: 서버에 같은 이름이 있어 새 이름을 받는 중
+const later = new Set(); // 이번 실행 동안 이름 지키기를 미룬 이름(키)
+let flashNext = ''; // 다음 화면 맨 위에 한 번 보일 알림
+let locked = false; // 업데이트 잠금(onLock)
+const api = () => ({ fetch: window.fetch.bind(window), url: remote.url });
 
 function readRaw() {
   try {
@@ -43,10 +49,7 @@ function readRaw() {
   }
 }
 
-// 지금 이름의 상태를 이름 목록에 넣고 목록 전체를 저장한다. 저장하지 못하면 false.
-function persist() {
-  const profile = currentProfile(book);
-  if (profile) book = updateProfile(book, profile.key, { state });
+function writeBook() {
   try {
     storage.setItem(STORAGE_KEY, encodeBook(book));
     return true;
@@ -55,11 +58,79 @@ function persist() {
   }
 }
 
+// 지금 이름의 상태를 이름 목록에 넣고 목록 전체를 저장한다. 저장하지 못하면 false.
+// 등록된 이름이면 서버에도 저장한다(보낼 때까지 dirty로 표시해, 못 보내면 다음 시작 때 다시 보낸다).
+function persist() {
+  const profile = currentProfile(book);
+  if (profile) book = updateProfile(book, profile.key, profile.registered ? { state, dirty: true } : { state });
+  const saved = writeBook();
+  if (profile?.registered) saveState(profile.key);
+  return saved;
+}
+
+async function saveState(key) {
+  const sent = book.profiles.find((p) => p.key === key);
+  if (!remote.url || !sent) return;
+  const result = await saveStateRemote({ ...api(), key, state: sent.state });
+  const now = book.profiles.find((p) => p.key === key);
+  if (!now) return;
+  // 보내는 동안 상태가 또 바뀌었으면 그 뒤의 저장이 dirty를 푼다.
+  if (result === 'ok' && now.state === sent.state) book = updateProfile(book, key, { dirty: false });
+  else if (result === 'unknown') book = updateProfile(book, key, { registered: false, dirty: false }); // 서버가 이 기기를 모른다
+  else return;
+  writeBook();
+  if (key === currentProfile(book)?.key) drawWhoNow();
+}
+
+function drawWhoNow() {
+  const profile = currentProfile(book);
+  $('who-now').replaceChildren(...(profile ? [profile.name, ...(profile.registered ? [] : [el('span', { className: 'tag', textContent: '미등록' })])] : []));
+}
+
+function hint(id, text) {
+  $(id).textContent = text;
+  $(id).hidden = false;
+}
+
+function clearHints(...ids) {
+  for (const id of ids) $(id).hidden = true;
+}
+
+function fail(hintId, inputId, text) {
+  hint(hintId, text);
+  $(inputId).focus();
+}
+
+// 보내는 동안 버튼을 막고 진행 문구를 보인다.
+function busy(button, on, text) {
+  button.disabled = on;
+  if (on) {
+    button.dataset.label = button.textContent;
+    button.textContent = text;
+  } else if (button.dataset.label) {
+    button.textContent = button.dataset.label;
+  }
+}
+
+for (const button of document.querySelectorAll('.show-pass')) {
+  button.addEventListener('click', () => {
+    const input = $(button.getAttribute('aria-controls'));
+    const shown = input.type === 'password';
+    input.type = shown ? 'text' : 'password';
+    button.setAttribute('aria-pressed', String(shown));
+    button.textContent = shown ? '숨기기' : '보기';
+  });
+}
+
 function show(screen) {
+  if (locked) screen = 'lock';
   $('boot').hidden = true;
   const profile = currentProfile(book);
-  $('who-now').hidden = !profile || screen === 'who';
-  $('who-now').textContent = profile?.name ?? '';
+  $('who-now').hidden = !profile || screen === 'who' || screen === 'lock';
+  drawWhoNow();
+  $('flash').textContent = flashNext;
+  $('flash').hidden = !flashNext;
+  flashNext = '';
   for (const id of SCREENS) $(id).hidden = id !== screen;
   $('overall').textContent = (state && overall(state)) ?? '–';
   window.scrollTo(0, 0);
@@ -84,7 +155,7 @@ function el(tag, props = {}, children = []) {
 function renderWho() {
   $('people').replaceChildren(...book.profiles.map((p) => {
     const button = el('button', { type: 'button' }, [
-      el('span', { className: 'level-name', textContent: p.name }),
+      el('span', { className: 'level-name' }, [p.name, ...(p.registered ? [] : [el('span', { className: 'level-note', textContent: ' 미등록' })])]),
       el('span', { className: 'level-note', textContent: p.state ? `종합 ELO ${overall(p.state) ?? '–'}` : '단계를 아직 고르지 않음' }),
     ]);
     button.addEventListener('click', () => choose(selectProfile(book, p.key)));
@@ -92,7 +163,8 @@ function renderWho() {
   }));
   $('people').hidden = book.profiles.length === 0;
   $('who-name').value = '';
-  $('who-hint').hidden = true;
+  $('who-pass').value = '';
+  setMode('new');
   show('who');
   if (book.profiles.length === 0) $('who-name').focus();
 }
@@ -105,17 +177,68 @@ function choose(next) {
   else renderStart();
 }
 
-$('who-form').addEventListener('submit', (event) => {
+function setMode(next) {
+  mode = next;
+  $('mode-new').setAttribute('aria-pressed', String(mode === 'new'));
+  $('mode-load').setAttribute('aria-pressed', String(mode === 'load'));
+  $('who-pass').autocomplete = mode === 'new' ? 'new-password' : 'current-password';
+  $('who-submit').textContent = mode === 'new' ? '시작하기' : '불러오기';
+  clearHints('who-hint', 'who-pass-hint', 'who-status');
+}
+
+$('mode-new').addEventListener('click', () => setMode('new'));
+$('mode-load').addEventListener('click', () => setMode('load'));
+
+const sameName = (a, b) => a.toLowerCase() === b.toLowerCase();
+
+$('who-form').addEventListener('submit', async (event) => {
   event.preventDefault();
-  const added = addProfile(book, $('who-name').value, newKey());
-  if (added.error) {
-    $('who-hint').textContent = added.error === 'length' ? '이름은 1–20자로 입력해 주세요.' : '이미 있는 이름입니다. 위에서 골라 주세요.';
-    $('who-hint').hidden = false;
-    $('who-name').focus();
-    return;
+  clearHints('who-hint', 'who-pass-hint', 'who-status');
+  const name = normalizeName($('who-name').value);
+  const password = $('who-pass').value;
+  if (!name) return fail('who-hint', 'who-name', '이름은 1–20자로 입력해 주세요.');
+  if ([...password].length < 6) return fail('who-pass-hint', 'who-pass', '암호는 6자 이상으로 입력해 주세요.');
+  const button = $('who-submit');
+  busy(button, true, mode === 'new' ? '등록 중…' : '불러오는 중…');
+  try {
+    if (mode === 'new') await createName(name, password);
+    else await loadName(name, password);
+  } finally {
+    busy(button, false);
+  }
+});
+
+// 새 이름: 서버가 있으면 등록하고, 없으면 이 기기에만 만든다(서버가 연결되면 이름 지키기로 등록).
+async function createName(name, password) {
+  if (book.profiles.some((p) => sameName(p.name, name))) return fail('who-hint', 'who-name', '이미 있는 이름입니다. 위에서 골라 주세요.');
+  const key = newKey();
+  const result = remote.url ? await registerRemote({ ...api(), name, password, key, state: book.legacy }) : { error: 'offline' };
+  if (result.error === 'taken') return fail('who-hint', 'who-name', '이미 다른 사람이 쓰는 이름입니다.');
+  const added = addProfile(book, result.ok ? result.name : name, key, { registered: result.ok === true });
+  if (added.error) return fail('who-hint', 'who-name', '이미 있는 이름입니다. 위에서 골라 주세요.');
+  if (!result.ok) {
+    flashNext = '서버에 연결되지 않아 이 기기에만 만들었습니다. 연결되면 암호를 다시 정해 등록합니다.';
+    later.add(key);
   }
   choose(added.book);
-});
+}
+
+// 내 이름 불러오기: 이름 + 암호로 서버의 상태를 받아 이 기기에 만든다(같은 이름이 있으면 그 이름을 바꿔 쓴다).
+async function loadName(name, password) {
+  if (!remote.url) return hint('who-status', '서버에 연결할 수 없습니다.');
+  const key = newKey();
+  const result = await loginRemote({ ...api(), name, password, key });
+  if (result.error === 'wrong') return fail('who-pass-hint', 'who-pass', '이름이나 암호가 틀립니다.');
+  if (result.error === 'locked') {
+    const minutes = Math.ceil(result.retryAfter / 60);
+    return hint('who-pass-hint', `여러 번 틀려서 잠시 막혔습니다. ${minutes}분 뒤 다시 해 주세요.`);
+  }
+  if (result.error) return hint('who-status', '서버에 연결할 수 없습니다.');
+  const rest = { ...book, profiles: book.profiles.filter((p) => !sameName(p.name, result.name)) };
+  // 서버의 상태가 망가졌으면 그 이름은 단계 선택부터(이름은 등록된 채로).
+  const loaded = result.state ? parseState(result.state) : null;
+  choose(addProfile(rest, result.name, key, { registered: true, state: loaded }).book);
+}
 
 $('who-now').addEventListener('click', renderWho);
 
@@ -156,8 +279,60 @@ function renderHome() {
   }));
   $('share-row').hidden = !remote.url;
   $('share-toggle').checked = state.share;
+  const profile = currentProfile(book);
+  const ask = Boolean(remote.url) && !profile.registered && !later.has(profile.key);
+  if (ask !== !$('protect').hidden || !ask) resetProtect();
+  $('protect').hidden = !ask;
   show('home');
 }
+
+// ── 이름 지키기(미등록 이름에 암호를 정해 등록) ──
+
+function resetProtect() {
+  renaming = false;
+  $('protect-text').textContent = '이 이름을 지키려면 암호를 정하세요. 다시 깔아도 이 이름과 기록을 불러올 수 있습니다.';
+  $('protect-name').hidden = true;
+  $('protect-name-label').hidden = true;
+  $('protect-pass').value = '';
+  clearHints('protect-hint');
+}
+
+$('protect-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  clearHints('protect-hint');
+  const profile = currentProfile(book);
+  const name = renaming ? normalizeName($('protect-name').value) : profile.name;
+  const password = $('protect-pass').value;
+  if (!name) return fail('protect-hint', 'protect-name', '이름은 1–20자로 입력해 주세요.');
+  if (book.profiles.some((p) => p.key !== profile.key && sameName(p.name, name))) return fail('protect-hint', 'protect-name', '이 기기에 이미 있는 이름입니다.');
+  if ([...password].length < 6) return fail('protect-hint', 'protect-pass', '암호는 6자 이상으로 입력해 주세요.');
+  const button = $('protect-submit');
+  busy(button, true, '등록 중…');
+  try {
+    const result = await registerRemote({ ...api(), name, password, key: profile.key, state });
+    if (result.error === 'taken') {
+      renaming = true;
+      $('protect-text').textContent = '다른 사람이 이미 쓰는 이름입니다. 새 이름을 정해 주세요.';
+      $('protect-name').hidden = false;
+      $('protect-name-label').hidden = false;
+      $('protect-name').value = '';
+      $('protect-name').focus();
+      return;
+    }
+    if (result.error) return hint('protect-hint', '서버에 연결할 수 없습니다.');
+    if (result.name !== profile.name) book = renameProfile(book, profile.key, result.name).book ?? book;
+    book = updateProfile(book, profile.key, { registered: true, dirty: false });
+    writeBook();
+    renderHome();
+  } finally {
+    busy(button, false);
+  }
+});
+
+$('protect-later').addEventListener('click', () => {
+  later.add(currentProfile(book).key);
+  $('protect').hidden = true;
+});
 
 $('share-toggle').addEventListener('change', (event) => {
   state = { ...state, share: event.target.checked };
@@ -325,7 +500,7 @@ function renderHistory() {
 $('open-history').addEventListener('click', renderHistory);
 $('h-back').addEventListener('click', renderHome);
 $('h-reset').addEventListener('click', () => {
-  if (!window.confirm('이 이름의 풀이 기록과 ELO를 지우고, 서버에 보낸 이 이름의 결과도 지웁니다. 계속할까요?')) return;
+  if (!window.confirm('이 이름의 풀이 기록과 ELO를 지우고, 서버에 보낸 이 이름의 결과와 저장된 기록도 지웁니다. 이름과 암호는 남습니다. 계속할까요?')) return;
   const { key } = currentProfile(book);
   book = updateProfile(book, key, { pendingReset: true, share: state.share });
   state = null;
@@ -348,6 +523,22 @@ $('go-home').addEventListener('click', () => {
   else if (state) renderHome();
   else renderStart();
 });
+
+// ── 업데이트 잠금 ───────────────────────────────────────────
+// 서버가 업데이트 중이거나 이 버전이 낡았다고 답하면 모든 화면을 잠근다(서버에 닿지 못하면 잠그지 않는다).
+
+onLock((kind) => {
+  locked = true;
+  const update = kind === 'update';
+  $('lock-title').textContent = update ? '새 버전이 나왔습니다' : '업데이트 중';
+  $('lock-text').textContent = update
+    ? '새로 고침하면 새 버전으로 풉니다. 지금까지의 기록은 그대로 남습니다.'
+    : '새 버전으로 바꾸는 중입니다. 잠시 뒤 다시 확인해 주세요. 지금까지의 기록은 그대로 남습니다.';
+  $('lock-reload').textContent = update ? '새로 고침' : '다시 확인';
+  show('lock');
+});
+// 주소에 시각을 붙여 브라우저가 캐시한 옛 index.html 대신 새로 받게 한다.
+$('lock-reload').addEventListener('click', () => location.replace(`${location.pathname}?t=${Date.now()}`));
 
 // ── 시작 ────────────────────────────────────────────────────
 
@@ -372,6 +563,7 @@ await Promise.all([
   }),
 ]);
 for (const p of book.profiles.filter((x) => x.pendingReset)) sendReset(p.key);
+for (const p of book.profiles.filter((x) => x.registered && x.dirty)) saveState(p.key);
 if (!currentProfile(book)) renderWho();
 else if (state) renderHome();
 else renderStart();
