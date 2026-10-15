@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <base href="r-09cbc68/">
+  <base href="r-2bc1293/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>수학 퀴즈</title>
@@ -29,16 +29,28 @@
     <main>
       <p id="boot" class="notice">문제를 불러오는 중입니다.</p>
       <noscript><p class="notice">이 페이지는 자바스크립트를 켜야 쓸 수 있습니다.</p></noscript>
+      <p id="flash" class="notice" role="status" hidden></p>
 
       <section id="who" hidden>
         <h2>누가 풀까요?</h2>
-        <p class="lead">이름마다 풀이 기록과 ELO를 따로 둡니다.</p>
+        <p class="lead">이름마다 풀이 기록과 ELO를 따로 둡니다. 암호를 정한 이름은 다시 깔아도 불러올 수 있습니다.</p>
         <ul id="people" class="rows" hidden></ul>
-        <form id="who-form" class="name-form" autocomplete="off">
-          <label for="who-name">새 이름</label>
-          <input id="who-name" type="text" autocapitalize="off" spellcheck="false" aria-describedby="who-hint">
-          <button type="submit">시작하기</button>
-          <p id="who-hint" class="hint" hidden></p>
+        <div class="mode" role="group" aria-label="이름을 정하는 방법">
+          <button type="button" id="mode-new" aria-pressed="true">새 이름</button>
+          <button type="button" id="mode-load" aria-pressed="false">내 이름 불러오기</button>
+        </div>
+        <form id="who-form" class="account-form" novalidate>
+          <label for="who-name">이름</label>
+          <input id="who-name" type="text" autocomplete="username" autocapitalize="off" spellcheck="false" aria-describedby="who-hint">
+          <p id="who-hint" class="hint" role="alert" hidden></p>
+          <label for="who-pass">암호 <span class="label-note">6자 이상</span></label>
+          <div class="pass">
+            <input id="who-pass" type="password" autocomplete="new-password" aria-describedby="who-pass-hint">
+            <button type="button" class="show-pass" aria-controls="who-pass" aria-pressed="false">보기</button>
+          </div>
+          <p id="who-pass-hint" class="hint" role="alert" hidden></p>
+          <div class="actions"><button type="submit" id="who-submit">시작하기</button></div>
+          <p id="who-status" class="hint" role="status" hidden></p>
         </form>
       </section>
 
@@ -46,10 +58,27 @@
         <h2>어느 단계에서 시작할까요?</h2>
         <p class="lead">고른 단계에 맞춰 첫 난이도를 정합니다. 풀수록 실력에 맞게 달라집니다.</p>
         <ul id="levels" class="rows"></ul>
-        <p id="share-note" class="lead" hidden>이름과 풀이 결과(문제, 정답 여부, 그 영역의 내 ELO)를 서버로 보내 문제 난이도를 함께 맞춥니다. 홈에서 끌 수 있습니다.</p>
+        <p id="share-note" class="lead" hidden>이름과 풀이 결과(문제, 정답 여부, 그 영역의 내 ELO)를 서버로 보내 문제 난이도를 함께 맞춥니다. 등록한 이름의 기록은 서버에도 저장합니다. 홈에서 결과 보내기를 끌 수 있습니다.</p>
       </section>
 
       <section id="home" hidden>
+        <div id="protect" class="protect" hidden>
+          <p id="protect-text">이 이름을 지키려면 암호를 정하세요. 다시 깔아도 이 이름과 기록을 불러올 수 있습니다.</p>
+          <form id="protect-form" class="account-form" novalidate>
+            <label for="protect-name" id="protect-name-label" hidden>새 이름</label>
+            <input id="protect-name" type="text" autocomplete="username" autocapitalize="off" spellcheck="false" aria-describedby="protect-hint" hidden>
+            <label for="protect-pass">암호 <span class="label-note">6자 이상</span></label>
+            <div class="pass">
+              <input id="protect-pass" type="password" autocomplete="new-password" aria-describedby="protect-hint">
+              <button type="button" class="show-pass" aria-controls="protect-pass" aria-pressed="false">보기</button>
+            </div>
+            <p id="protect-hint" class="hint" role="alert" hidden></p>
+            <div class="actions">
+              <button type="submit" id="protect-submit">등록</button>
+              <button type="button" id="protect-later" class="quiet">나중에</button>
+            </div>
+          </form>
+        </div>
         <p id="notice" class="notice" hidden></p>
         <table id="domains" class="report">
           <thead>
@@ -60,7 +89,7 @@
         <p class="lead">영역을 누르면 그 영역의 문제를, 전체를 누르면 모든 영역에서 골고루 냅니다.</p>
         <p id="share-row" class="share" hidden>
           <label><input type="checkbox" id="share-toggle"> 풀이 결과 보내기</label>
-          <span>이름과 문제, 정답 여부, 내 ELO를 서버로 보내 문제 난이도를 함께 맞춥니다.</span>
+          <span>이름과 문제, 정답 여부, 내 ELO를 서버로 보내 문제 난이도를 함께 맞춥니다. 꺼도 등록한 이름의 기록은 서버에 저장합니다.</span>
         </p>
         <div class="actions">
           <button type="button" id="open-history" class="quiet">풀이 기록 보기</button>

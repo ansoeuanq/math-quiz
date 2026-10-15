@@ -2,7 +2,7 @@
 // 어느 단계든 실패하면 예외를 내지 않고 캐시나 빈 값을 돌려준다. 빈 값이면 화면은 원래(고정) 문제 ELO를 쓴다.
 // 설계: docs/superpowers/specs/2026-10-14-shared-problem-elo-design.md 7장
 
-export const APP_VERSION = '1.5.0';
+export const APP_VERSION = '1.6.0';
 export const CACHE_KEY = 'mathquiz.ratings.v1';
 const NONE = { url: null, ratings: {} };
 
@@ -94,4 +94,61 @@ export async function resetRemote({ fetch, url, key, timeoutMs = 3000 }) {
 export function rememberRating(storage, id, r) {
   const cache = readCache(storage);
   if (cache.url) writeCache(storage, { url: cache.url, ratings: { ...cache.ratings, [id]: r } });
+}
+
+// ── 이름 계정 (설계: docs/superpowers/specs/2026-10-15-name-accounts-design.md 5장) ──
+
+// 응답 코드와 JSON 본문(읽지 못하면 null). 연결 실패·시간 초과는 예외.
+async function request(fetch, url, timeoutMs, method, body) {
+  const abort = new AbortController();
+  const timer = setTimeout(() => abort.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { method, headers: { 'content-type': 'application/json' }, body: JSON.stringify(body), signal: abort.signal });
+    let json = null;
+    try {
+      json = await res.json();
+    } catch {
+      // 오류 페이지 등
+    }
+    return { status: res.status, body: json };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// 새 이름 등록. { ok: true, name } | { error: 'taken' } | { error: 'offline' }(서버 없음·그 밖의 실패)
+export async function registerRemote({ fetch, url, name, password, key, state, timeoutMs = 3000 }) {
+  try {
+    const res = await request(fetch, `${url}/v1/register`, timeoutMs, 'POST', { name, password, key, state });
+    if (res.status === 200 && typeof res.body?.name === 'string') return { ok: true, name: res.body.name };
+    if (res.status === 409) return { error: 'taken' };
+  } catch {
+    // 연결 실패
+  }
+  return { error: 'offline' };
+}
+
+// 이름 + 암호로 불러오기. { ok: true, name, state } | { error: 'wrong' } | { error: 'locked', retryAfter } | { error: 'offline' }
+export async function loginRemote({ fetch, url, name, password, key, timeoutMs = 3000 }) {
+  try {
+    const res = await request(fetch, `${url}/v1/login`, timeoutMs, 'POST', { name, password, key });
+    if (res.status === 200 && typeof res.body?.name === 'string') return { ok: true, name: res.body.name, state: res.body.state ?? null };
+    if (res.status === 401) return { error: 'wrong' };
+    if (res.status === 423) return { error: 'locked', retryAfter: Number(res.body?.retryAfter) || 900 };
+  } catch {
+    // 연결 실패
+  }
+  return { error: 'offline' };
+}
+
+// 등록된 이름의 상태 저장. 'ok' | 'unknown'(서버가 이 키를 모름: 등록이 풀림) | 'failed'(다음에 다시)
+export async function saveStateRemote({ fetch, url, key, state, timeoutMs = 3000 }) {
+  try {
+    const res = await request(fetch, `${url}/v1/state`, timeoutMs, 'PUT', { key, state });
+    if (res.status === 200) return 'ok';
+    if (res.status === 404) return 'unknown';
+  } catch {
+    // 연결 실패
+  }
+  return 'failed';
 }

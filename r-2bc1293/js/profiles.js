@@ -1,5 +1,7 @@
 // 한 기기 안의 이름 목록. 이름마다 풀이 상태(store.js의 상태 JSON)와 서버용 비밀 키를 따로 둔다.
-// 저장 형식(키 mathquiz.v1): { version: 2, current, profiles: [{ name, key, state, pendingReset }] }
+// 저장 형식(키 mathquiz.v1): { version: 2, current, profiles: [{ name, key, state, pendingReset, share }] }
+// share는 기록을 지운 이름의 보내기 설정(단계를 다시 고를 때 이어받는다). 없으면 켬.
+// registered는 서버에 등록된 이름인지, dirty는 서버에 아직 저장하지 못한 상태가 있는지(1.6.0, 없으면 false).
 // version 1(1.4.1까지의 상태 하나)은 legacy로 읽고, 처음 만드는 이름이 이어받는다.
 // 설계: docs/superpowers/specs/2026-10-14-named-players-design.md 3장
 import { parseState } from './store.js';
@@ -39,7 +41,15 @@ export function decodeBook(raw) {
     if (!name || typeof p.key !== 'string' || !KEY.test(p.key)) continue;
     if (profiles.some((q) => q.key === p.key || sameName(q.name, name))) continue;
     // 상태가 망가졌으면 그 이름만 단계 선택부터 다시 시작한다.
-    profiles.push({ name, key: p.key, state: p.state ? parseState(p.state) : null, pendingReset: p.pendingReset === true });
+    profiles.push({
+      name,
+      key: p.key,
+      state: p.state ? parseState(p.state) : null,
+      pendingReset: p.pendingReset === true,
+      share: p.share !== false,
+      registered: p.registered === true,
+      dirty: p.dirty === true,
+    });
   }
   const current = profiles.some((p) => p.key === json.current) ? json.current : null;
   return { current, profiles, legacy: null };
@@ -50,12 +60,22 @@ export function encodeBook(book) {
 }
 
 // 새 이름을 만들어 지금 이름으로 정한다. 1.4.1의 기록(legacy)이 있으면 이 이름이 이어받는다.
-export function addProfile(book, rawName, key) {
+// opts.state를 주면(서버에서 불러온 이름) 그 상태로 시작하고 legacy는 다음 이름에 남긴다.
+export function addProfile(book, rawName, key, opts = {}) {
   const name = normalizeName(rawName);
   if (!name) return { error: 'length' };
   if (book.profiles.some((p) => sameName(p.name, name))) return { error: 'duplicate' };
-  const profile = { name, key, state: book.legacy, pendingReset: false };
-  return { book: { current: key, profiles: [...book.profiles, profile], legacy: null } };
+  const loaded = 'state' in opts;
+  const profile = { name, key, state: loaded ? opts.state : book.legacy, pendingReset: false, share: true, registered: opts.registered === true, dirty: false };
+  return { book: { current: key, profiles: [...book.profiles, profile], legacy: loaded ? book.legacy : null } };
+}
+
+// 이름을 바꾼다(서버에 같은 이름이 이미 있어 다른 이름으로 등록할 때). 기록은 그대로.
+export function renameProfile(book, key, rawName) {
+  const name = normalizeName(rawName);
+  if (!name) return { error: 'length' };
+  if (book.profiles.some((p) => p.key !== key && sameName(p.name, name))) return { error: 'duplicate' };
+  return { book: updateProfile(book, key, { name }) };
 }
 
 export const currentProfile = (book) => book.profiles.find((p) => p.key === book.current) ?? null;
